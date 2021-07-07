@@ -1,0 +1,140 @@
+if [ -f ~/git/dotfiles/zsh/antigen.zsh ]; then
+  source ~/git/dotfiles/zsh/antigen.zsh
+
+  antigen use oh-my-zsh
+
+  antigen bundle command-not-found
+  antigen bundle zsh-users/zsh-autosuggestions
+  antigen bundle zsh-users/zsh-completions
+  antigen bundle zsh-users/zsh-syntax-highlighting
+
+  antigen theme simple
+
+  antigen apply
+fi
+
+export TERM=xterm-256color
+export LANG=en_US.UTF-8
+export PS1='%(!.%{$fg[red]%}.%{$fg[green]%})%1~%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
+export RPROMPT='%n@%m %*'
+
+setopt vi
+setopt NO_HUP
+setopt rmstarsilent ## supress warning when `rm -rf *` "zsh: sure you want to delete all the files in ... [yn]"?
+
+export PATH=$PATH:/sbin
+export PATH=$PATH:/usr/local/sbin
+export PATH=$PATH:${HOME}/git/note/bin
+export PATH=$PATH:${HOME}/bin
+
+user=`whoami`
+uname -a | grep Darwin 1>/dev/null 2>&1
+if [ $? -eq 0 ]; then
+  export os="mac"
+  export ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'`
+else
+  export os="linux"
+  export ip=`ifconfig eth0 | grep inet | grep -v inet6 | awk '{print $2}'`
+fi
+
+if [[ "x$os" == "xlinux" ]]; then
+  export env=`systemd-detect-virt`
+elif [[ "x$os" == "xmac" ]]; then
+  export PATH=$PATH:"/usr/local/texlive/2020/bin/x86_64-darwin"
+fi
+
+ulimit -c unlimited
+
+alias grep='grep --color=auto'
+alias watch='watch -d -n 1'
+alias tuer="ps x | fzf | awk '{print \$1}' | xargs kill -9"
+alias tmux="TERM=screen-256color-bce tmux"
+
+which fd >/dev/null
+if [ $? -ne 0 ]; then
+  alias fd="fdfind"
+fi
+
+alias ll="ls -l"
+if [[ "x$os" == "xmac" ]]; then
+  alias ls="ls -G"
+else
+  alias ls="ls --color=auto"
+fi
+
+export no_proxy="localhost,127.0.0.1,$ip"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f /usr/local/etc/profile.d/autojump.sh ]] && source /usr/local/etc/profile.d/autojump.sh # mac homebrew
+[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh # linux
+
+# git
+# tells 'less' not to paginate if less than a page
+export LESS="-F -X $LESS"
+
+# blade
+export BLADE_AUTO_UPGRADE="no"
+alias bb="blade build"
+alias bt="blade test"
+alias br="blade run"
+test -s ~/bin/bladefunctions && . ~/bin/bladefunctions || true
+
+## go
+export GOROOT="$HOME/opt/go"
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOTMPDIR="/tmp/go"
+if [ ! -d $GOTMPDIR ]; then
+  mkdir $GOTMPDIR
+fi
+export PATH=$PATH:$GOROOT/bin:$GOBIN
+export GO111MODULE=on
+export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,https://sum.golang.org,direct"
+
+## node
+if [ -d $HOME/opt/node ]; then
+  export PATH="$PATH:$HOME/opt/node/bin"
+fi
+
+## java
+export JAVA_HOME="$HOME/opt/jdk"
+export PATH=$PATH:"$HOME/opt/jdk/bin"
+
+# enterprise
+if [ -f ~/.bashrc_enterprise ]; then
+  source ~/.bashrc_enterprise
+fi
+
+# udf
+function where() {
+  env | grep VIMRUNTIME >/dev/null
+  if [ $? -eq 0 ]; then
+    echo "vim"
+  else
+    echo "raw"
+  fi
+}
+
+function dm(){
+  if [[ "x$1" == "xinit" ]]; then
+    name=$2
+    if [[ -z $name ]]; then
+      echo "name invalid" >&2
+      return 1
+    fi
+    ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
+    docker run -dt \
+      -v $HOME/.container:/root \
+      -v $HOME:/root/host \
+      -w /root \
+      -p 8022:22 \
+      --privileged \
+      --security-opt seccomp=unconfined \
+      --hostname $name \
+      --name $name \
+      ericuni/ubuntu:latest
+  else
+    docker exec -it $1 /bin/zsh
+  fi
+}
+

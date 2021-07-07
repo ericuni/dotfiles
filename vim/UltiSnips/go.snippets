@@ -1,0 +1,249 @@
+snippet handler "handler template"
+// ${1:Template}Handler .
+type $1Handler struct {
+	ctx  context.Context
+	req  *$2.$1Request
+	rsp  *$2.$1Response
+	code int32
+	msg  string
+	tags []metrics.T
+}
+
+// New$1Handler .
+func New$1Handler(ctx context.Context, req *$2.$1Request) *$1Handler {
+	return &$1Handler{
+		ctx: ctx,
+		req: req,
+		rsp: &$2.$1Response{
+			HttpCode: http.StatusOK,
+			BaseResp: base.NewBaseResp(),
+		},
+		code: fault.RetCodeInternalErr,
+		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
+	}
+}
+
+// Handle .
+func (h *$1Handler) Handle() *$2.$1Response {
+	if err := h.isValid(); err != nil {
+		h.emitError("isValid")
+		return h.returnAhead(errors.Trace(err))
+	}
+
+	if err := h.check(); err != nil {
+		h.emitError("check")
+		return h.returnAhead(errors.Trace(err))
+	}
+
+	return h.returnAhead(nil)
+}
+
+func (h *$1Handler) isValid() error {
+	h.code = fault.RetCodeParamErr
+
+	h.code = fault.RetCodeInternalErr
+	return nil
+}
+
+func (h *$1Handler) check() error {
+	return nil
+}
+
+func (h *$1Handler) returnAhead(err error) *$2.$1Response {
+	if err == nil {
+		bmetrics.EmitCounter("success.count", 1, h.tags...)
+		return h.rsp
+	}
+
+	logs.CtxError(h.ctx, "$1 error %d %+v", h.code, err)
+	h.rsp.BaseResp.StatusCode = h.code
+	if h.msg == "" {
+		h.msg = fault.GetErrorMessageFmt(h.code, "%+v", err)
+	}
+	h.rsp.BaseResp.StatusMessage = h.msg
+	return h.rsp
+}
+
+func (h *$1Handler) emitError(reason string) {
+	bmetrics.EmitCounter("error.count", 1, append(h.tags, metrics.Tag("reason", reason))...)
+}
+endsnippet
+
+snippet handler_faas_cronjob "faas cronjob handler template"
+// ${1:Template}Handler .
+type $1Handler struct {
+	ctx  context.Context
+	rsp  *events.EventResponse
+	code int32
+	tags []metrics.T
+}
+
+// New$1Handler .
+func New$1Handler(ctx context.Context) *$1Handler {
+	return &$1Handler{
+		ctx: ctx,
+		rsp: &events.EventResponse{
+			StatusCode: http.StatusOK,
+		},
+		code: fault.RetCodeInternalErr,
+		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
+	}
+}
+
+// Handle .
+func (h *$1Handler) Handle() *events.EventResponse {
+	return h.returnAhead(nil)
+}
+
+func (h *$1Handler) returnAhead(err error) *events.EventResponse {
+	if err == nil {
+		bmetrics.EmitCounter("success.count", 1, h.tags...)
+		return h.rsp
+	}
+
+	logs.CtxError(h.ctx, "$1 error %v %+v", h.code, err)
+	h.rsp.StatusCode = int(fault.GetHTTPCode(h.code))
+	h.rsp.Headers["code"] = strconv.FormatInt(int64(h.code), 10)
+	h.rsp.Body = []byte(err.Error())
+	return h.rsp
+}
+
+func (h *$1Handler) emitError(reason string) {
+	bmetrics.EmitCounter("error.count", 1, append(h.tags, metrics.Tag("reason", reason))...)
+}
+endsnippet
+
+snippet ut_clean "unit test template"
+type ${1:Template}Suite struct {
+	suite.Suite
+}
+
+func (s *$1Suite) SetupSuite() {
+}
+
+func (s *$1Suite) TearDownSuite() {
+}
+
+func (s *$1Suite) SetupTest() {
+}
+
+func (s *$1Suite) TearDownTest() {
+}
+
+func (s *$1Suite) TestEx() {
+	assert := s.Assert()
+	t := s.T()
+}
+
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1Suite))
+}
+endsnippet
+
+snippet ut "unit test template"
+type ${1:Template}Suite struct {
+	suite.Suite
+	ctx context.Context
+}
+
+func (s *$1Suite) SetupSuite() {
+}
+
+func (s *$1Suite) TearDownSuite() {
+}
+
+func (s *$1Suite) SetupTest() {
+	t := s.T()
+
+	id := logid.GetNginxID()
+	t.Logf("logid: %s", id)
+
+	ctx := context.Background()
+	ctx = kitutil.NewCtxWithLogID(ctx, id)
+	s.ctx = ctx
+}
+
+func (s *$1Suite) TearDownTest() {
+	defer logs.Flush()
+}
+
+func (s *$1Suite) TestEx() {
+	assert := s.Assert()
+	t := s.T()
+}
+
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1Suite))
+}
+endsnippet
+
+snippet ut_http "http unit test template"
+type ${1:Template}Suite struct {
+	suite.Suite
+	ctx    context.Context
+	router *ginex.Engine
+	w      *httptest.ResponseRecorder
+}
+
+func (s *$1Suite) SetupSuite() {
+	ginex.Init()
+	router := ginex.Default()
+	router.Get()
+	s.router = router
+}
+
+func (s *$1Suite) TearDownSuite() {
+}
+
+func (s *$1Suite) SetupTest() {
+	ctx := context.Background()
+	ctx = kitutil.NewCtxWithLogID(ctx, logid.GetNginxID())
+	s.ctx = ctx
+	s.w = httptest.NewRecorder()
+}
+
+func (s *$1Suite) TearDownTest() {
+	defer logs.Flush()
+}
+
+func (s *$1Suite) TestEx() {
+	assert := s.Assert()
+	t := s.T()
+
+	url := fmt.Sprintf("")
+	req := httptest.NewRequest(http.MethodGet, url, nil)
+	s.router.ServeHTTP(s.w, req)
+
+	rsp := s.w.Result()
+	defer rsp.Body.Close()
+	assert.Equal(http.StatusOK, rsp.StatusCode)
+
+	bs, _ := ioutil.ReadAll(rsp.Body)
+	t.Log(string(bs))
+}
+
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1Suite))
+}
+endsnippet
+
+snippet cmd "cmd"
+func init() {
+	flag.Set("alsologtostderr", "true")
+	flag.Set("log_dir", "./")
+	flag.Parse()
+}
+
+func main() {
+	defer glog.Flush()
+	if err := run(); err != nil {
+		glog.Errorf("run error %+v", err)
+	}
+}
+
+func run() error {
+	glog.Infoln("done")
+	return nil
+}
+endsnippet
+

@@ -1,0 +1,15 @@
+Host testhost
+  HostName 1.2.3.4
+  User root
+  Port 54321
+  IdentityFile ~/.ssh/id_rsa
+
+Host *
+  ForwardAgent yes
+  ServerAliveInterval 10
+  ServerAliveCountMax 10000
+  TCPKeepAlive no
+  ControlMaster auto
+  ControlPath ~/.ssh/%h-%p-%r
+  ControlPersist 4h
+  Compression yes

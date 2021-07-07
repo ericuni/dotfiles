@@ -1,0 +1,42 @@
+{
+    "C_Cpp.clang_format_sortIncludes": true,
+    "C_Cpp.experimentalFeatures": "Enabled",
+    "C_Cpp.updateChannel": "Insiders",
+    "editor.rulers": [120],
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 2,
+    "explorer.confirmDragAndDrop": false,
+    "extensions.ignoreRecommendations": false,
+    "go.autocompleteUnimportedPackages": true,
+    "go.formatTool": "goimports",
+    "go.testFlags": ["-v", "-gcflags=all=-l"],
+    "go.useLanguageServer": true,
+    "http.proxySupport": "off",
+    "markdownlint.config": {
+        "MD007": false,
+        "MD010": false,
+        "MD012": false,
+        "MD022": false,
+        "MD024": false,
+        "MD025": false,
+        "MD031": false,
+        "MD032": false,
+        "MD033": false,
+        "MD034": false,
+        "MD036": false,
+        "MD041": false,
+        "MD046": false
+    },
+    "python.languageServer": "Pylance",
+    "remote.SSH.showLoginTerminal": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.nativeTabs": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.startupEditor": "gettingStarted"
+}

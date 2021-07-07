@@ -1,0 +1,5 @@
+global_config(
+  ## high, mid, low, no
+  debug_info_level = 'no',
+)
+
