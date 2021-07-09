@@ -7,6 +7,7 @@ type $1Handler struct {
 	code int32
 	msg  string
 	tags []metrics.T
+	t    time.Time
 }
 
 // New$1Handler .
@@ -20,6 +21,7 @@ func New$1Handler(ctx context.Context, req *$2.$1Request) *$1Handler {
 		},
 		code: fault.RetCodeInternalErr,
 		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
+		t:    time.Now(),
 	}
 }
 
@@ -52,6 +54,7 @@ func (h *$1Handler) check() error {
 func (h *$1Handler) returnAhead(err error) *$2.$1Response {
 	if err == nil {
 		bmetrics.EmitCounter("success.count", 1, h.tags...)
+		bmetrics.EmitTimer("success.cost.ms", time.Since(h.t).Milliseconds(), h.tags...)
 		return h.rsp
 	}
 
