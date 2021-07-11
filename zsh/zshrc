@@ -115,7 +115,7 @@ function where() {
   fi
 }
 
-function dm(){
+function dm() {
   if [[ "x$1" == "xinit" ]]; then
     name=$2
     if [[ -z $name ]]; then
@@ -136,5 +136,30 @@ function dm(){
   else
     docker exec -it $1 /bin/zsh
   fi
+}
+
+function clean() {
+  setopt null_glob
+
+  ## latex
+  rm *.aux *.bbl *.blg *.lof *.lot *.toc *.thm *.snm *.vrb *.nav *.fdb_latexmk *.fls 2>/dev/null
+
+  ## glog
+  rm *.`hostname`.`whoami`.* 2>/dev/null
+  for file in `ls *.INFO *.WARNING *.ERROR *.FATAL`
+  do
+    if [ -L $file ]; then
+      rm $file
+    fi
+  done 2>/dev/null
+
+  for file in `ls *.out *.log`
+  do
+    ## preserve nohup.out and err.log
+    if [ "x$file" == "xnohup.out" -o "x$file" == "xerr.log" ]; then
+      continue
+    fi
+    rm $file
+  done 2>/dev/null
 }
 
