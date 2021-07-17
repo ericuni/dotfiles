@@ -1,4 +1,4 @@
-snippet handler "handler template"
+snippet handler "handler template" b
 // ${1:Template}Handler .
 type $1Handler struct {
 	ctx  context.Context
@@ -72,7 +72,7 @@ func (h *$1Handler) emitError(reason string) {
 }
 endsnippet
 
-snippet handler_faas_cronjob "faas cronjob handler template"
+snippet handler_faas_cronjob "faas cronjob handler template" b
 // ${1:Template}Handler .
 type $1Handler struct {
 	ctx  context.Context
@@ -116,7 +116,7 @@ func (h *$1Handler) emitError(reason string) {
 }
 endsnippet
 
-snippet ut_clean "unit test template"
+snippet ut_clean "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 }
@@ -143,7 +143,7 @@ func Test$1(t *testing.T) {
 }
 endsnippet
 
-snippet ut "unit test template"
+snippet ut "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx context.Context
@@ -180,7 +180,7 @@ func Test$1(t *testing.T) {
 }
 endsnippet
 
-snippet ut_http "http unit test template"
+snippet ut_http "http unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx    context.Context
@@ -230,7 +230,7 @@ func Test$1(t *testing.T) {
 }
 endsnippet
 
-snippet cmd "cmd"
+snippet cmd "cmd" b
 func init() {
 	flag.Set("alsologtostderr", "true")
 	flag.Set("log_dir", "./")
@@ -245,7 +245,7 @@ func main() {
 }
 
 func run() error {
-	glog.Infoln("done")
+	defer glog.Infoln("done")
 	return nil
 }
 endsnippet

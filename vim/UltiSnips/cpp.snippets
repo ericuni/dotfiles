@@ -1,4 +1,4 @@
-snippet cmd "cmd template"
+snippet cmd "cmd template" b
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <stdio.h>
@@ -10,6 +10,35 @@ int main(int argc, char* argv[]) {
   google::ParseCommandLineFlags(&argc, &argv, true);
 
   return 0;
+}
+endsnippet
+
+snippet leetcode "leetcode solution" b
+#include <glog/logging.h>
+#include <gtest/gtest.h>
+#include <memory>
+
+class Solution {
+ public:
+  virtual ~Solution() {}
+};
+
+class Solution$2 : public Solution {
+ public:
+};
+
+TEST($1, ex) {
+  struct TestData {
+  } tds[]{
+  };
+
+  std::vector<std::unique_ptr<Solution>> sos;
+  sos.push_back(std::make_unique<Solution$2>());
+
+  for (auto&& so : sos) {
+    for (auto&& td : tds) {
+    }
+  }
 }
 endsnippet
 
