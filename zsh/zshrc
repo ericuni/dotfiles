@@ -80,7 +80,11 @@ alias br="blade run"
 test -s ~/bin/bladefunctions && . ~/bin/bladefunctions || true
 
 ## go
-export GOROOT="$HOME/opt/go"
+if [[ "x$os" == "xmac" ]]; then
+  export GOROOT="/usr/local/opt/go@1.15/libexec"  # installed using brew
+else
+  export GOROOT="$HOME/opt/go"
+fi
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export GOTMPDIR="/tmp/go"
