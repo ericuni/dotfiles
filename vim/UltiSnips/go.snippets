@@ -75,46 +75,29 @@ endsnippet
 snippet handler_faas_cronjob "faas cronjob handler template" b
 // ${1:Template}Handler .
 type $1Handler struct {
-	ctx  context.Context
-	rsp  *events.EventResponse
-	code int32
-	tags []metrics.T
-	t    time.Time
+	ctx    context.Context
+	reason string
+	tags   []metrics.T
+	t      time.Time
 }
 
 // New$1Handler .
 func New$1Handler(ctx context.Context) *$1Handler {
 	return &$1Handler{
-		ctx: ctx,
-		rsp: &events.EventResponse{
-			StatusCode: http.StatusOK,
-		},
-		code: fault.RetCodeInternalErr,
+		ctx:  ctx,
 		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
 		t:    time.Now(),
 	}
 }
 
 // Handle .
-func (h *$1Handler) Handle() *events.EventResponse {
-	return h.returnAhead(nil)
+func (h *$1Handler) Handle() error {
+	return nil
 }
 
-func (h *$1Handler) returnAhead(err error) *events.EventResponse {
-	if err == nil {
-		bmetrics.EmitCounter("success.count", 1, h.tags...)
-		return h.rsp
-	}
-
-	logs.CtxError(h.ctx, "$1 error %v %+v", h.code, err)
-	h.rsp.StatusCode = int(fault.GetHTTPCode(h.code))
-	h.rsp.Headers["code"] = strconv.FormatInt(int64(h.code), 10)
-	h.rsp.Body = []byte(err.Error())
-	return h.rsp
-}
-
-func (h *$1Handler) emitError(reason string) {
-	bmetrics.EmitCounter("error.count", 1, append(h.tags, metrics.Tag("reason", reason))...)
+// Handle .
+func (h *$1Handler) GetTags() map[string]string {
+	return map[string]string{"reason": h.reason}
 }
 endsnippet
 
