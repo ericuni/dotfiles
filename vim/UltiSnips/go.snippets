@@ -79,6 +79,7 @@ type $1Handler struct {
 	rsp  *events.EventResponse
 	code int32
 	tags []metrics.T
+	t    time.Time
 }
 
 // New$1Handler .
@@ -90,6 +91,7 @@ func New$1Handler(ctx context.Context) *$1Handler {
 		},
 		code: fault.RetCodeInternalErr,
 		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
+		t:    time.Now(),
 	}
 }
 
