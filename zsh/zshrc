@@ -100,6 +100,11 @@ if [ -d $HOME/opt/node ]; then
   export PATH="$PATH:$HOME/opt/node/bin"
 fi
 
+# rust
+if [ -d $HOME/.cargo ]; then
+  export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
 ## java
 export JAVA_HOME="$HOME/opt/jdk"
 export PATH=$PATH:"$HOME/opt/jdk/bin"
