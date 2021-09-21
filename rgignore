@@ -1,0 +1,5 @@
+--glob
+kitex_gen
+thrift_gen
+clients
+

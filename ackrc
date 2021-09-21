@@ -1,7 +1,0 @@
---type-set=protobuf=.proto
---type-set=flags=.flags
---type-set=conf=.conf,.config
---type-set=txt=.txt
---ignore-dir=kitex_gen
---ignore-dir=thrift_gen
---ignore-dir=clients
