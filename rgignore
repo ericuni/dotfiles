@@ -1,4 +1,5 @@
 --glob
+target
 kitex_gen
 thrift_gen
 clients

@@ -64,7 +64,11 @@ fi
 
 export no_proxy="localhost,127.0.0.1,$ip"
 
+# fzf
+export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL-T as well
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 [[ -f /usr/local/etc/profile.d/autojump.sh ]] && source /usr/local/etc/profile.d/autojump.sh # mac homebrew
 [[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh # linux
 
@@ -106,8 +110,10 @@ if [ -d $HOME/.cargo ]; then
 fi
 
 ## java
-export JAVA_HOME="$HOME/opt/jdk"
-export PATH=$PATH:"$HOME/opt/jdk/bin"
+if [ -d $HOME/opt/jdk ]; then
+  export JAVA_HOME="$HOME/opt/jdk"
+  export PATH=$PATH:"$HOME/opt/jdk/bin"
+fi
 
 # enterprise
 if [ -f ~/.bashrc_enterprise ]; then
