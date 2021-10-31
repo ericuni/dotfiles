@@ -76,14 +76,33 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL
 # tells 'less' not to paginate if less than a page
 export LESS="-F -X $LESS"
 
-# blade
-export BLADE_AUTO_UPGRADE="no"
-alias bb="blade build"
-alias bt="blade test"
-alias br="blade run"
-test -s ~/bin/bladefunctions && . ~/bin/bladefunctions || true
+# bazel
+function bb() {
+  target=":all"
+  if [ $# -gt 0 ]; then
+    if [[ $1 == : ]]; then
+      target=$1
+      shift 1
+    fi
+  fi
+  set -x
+  bazel build $target $@
+  set +x
+}
 
-## go
+function bt() {
+  target=":all"
+  if [ $# -gt 0 ]; then
+    target="$@"
+  fi
+  bazel test $target
+}
+
+function br() {
+  bazel run $@
+}
+
+## golang
 if [[ "x$os" == "xmac" ]]; then
   export GOROOT="/usr/local/opt/go@1.15/libexec"  # installed using brew
 else
