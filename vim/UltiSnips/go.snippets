@@ -43,6 +43,11 @@ func (h *$1Handler) Handle() *$2.$1Response {
 func (h *$1Handler) isValid() error {
 	h.code = fault.RetCodeParamErr
 
+	if h.req.GetIdentity() == "" {
+		return errors.New("identity empty")
+	}
+	h.tags = append(h.tags, metrics.Tag("identity", h.req.GetIdentity()))
+
 	h.code = fault.RetCodeInternalErr
 	return nil
 }
@@ -95,7 +100,7 @@ func (h *$1Handler) Handle() error {
 	return nil
 }
 
-// Handle .
+// GetTags .
 func (h *$1Handler) GetTags() map[string]string {
 	return map[string]string{"reason": h.reason}
 }
