@@ -43,10 +43,10 @@ func (h *$1Handler) Handle() *$2.$1Response {
 func (h *$1Handler) isValid() error {
 	h.code = fault.RetCodeParamErr
 
-	if h.req.GetIdentity() == "" {
-		return errors.New("identity empty")
+	if h.req.GetFromSource() == "" {
+		return errors.New("from_source empty")
 	}
-	h.tags = append(h.tags, metrics.Tag("identity", h.req.GetIdentity()))
+	h.tags = append(h.tags, metrics.Tag("from_source", h.req.GetFromSource()))
 
 	h.code = fault.RetCodeInternalErr
 	return nil
@@ -137,6 +137,7 @@ snippet ut "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx context.Context
+	t   time.Time
 }
 
 func (s *$1Suite) SetupSuite() {
@@ -154,6 +155,8 @@ func (s *$1Suite) SetupTest() {
 	ctx := context.Background()
 	ctx = kitutil.NewCtxWithLogID(ctx, id)
 	s.ctx = ctx
+
+	s.t = time.Now()
 }
 
 func (s *$1Suite) TearDownTest() {
