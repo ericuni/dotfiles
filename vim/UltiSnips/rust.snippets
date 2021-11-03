@@ -1,0 +1,27 @@
+snippet leetcode "leetcode template" b
+trait Solution {
+}
+
+struct SolutionNaive;
+impl Solution for SolutionNaive {
+}
+
+#[test]
+fn ex() {
+    struct TestData {
+    }
+    let tds = vec![
+        TestData {
+        },
+    ];
+
+    let mut sos: Vec<Box<dyn Solution>> = Vec::new();
+    sos.push(Box::new(SolutionNaive {}));
+
+    for so in sos {
+        for td in tds.iter() {
+        }
+    }
+}
+endsnippet
+
