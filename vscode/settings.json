@@ -1,7 +1,10 @@
 {
     "C_Cpp.clang_format_sortIncludes": true,
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17",
     "C_Cpp.experimentalFeatures": "Enabled",
     "C_Cpp.updateChannel": "Insiders",
+    "cmake.configureOnOpen": true,
     "editor.rulers": [120],
     "editor.suggestSelection": "first",
     "editor.tabSize": 2,
@@ -29,6 +32,7 @@
     },
     "python.languageServer": "Pylance",
     "remote.SSH.showLoginTerminal": true,
+    "terminal.integrated.defaultProfile.linux": "zsh",
     "vsicons.dontShowNewVersionMessage": true,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.nativeTabs": true,

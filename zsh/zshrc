@@ -91,11 +91,11 @@ function bb() {
 }
 
 function bt() {
-  target=":all"
   if [ $# -gt 0 ]; then
-    target="$@"
+    bazel test --test_output=all $@
+  else
+    bazel test :all
   fi
-  bazel test $target --test_output=all
 }
 
 function br() {
