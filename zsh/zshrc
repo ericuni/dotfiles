@@ -156,9 +156,14 @@ function dm() {
       echo "name invalid" >&2
       return 1
     fi
+    home="$HOME/.container"
+    if [[ ! -d $home ]]; then
+      mkdir $home
+    fi
+
     ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
     docker run -dt \
-      -v $HOME/.container:/root \
+      -v $home:/root \
       -v $HOME:/root/host \
       -w /root \
       -p 8022:22 \
@@ -166,7 +171,7 @@ function dm() {
       --security-opt seccomp=unconfined \
       --hostname $name \
       --name $name \
-      ericuni/ubuntu:latest
+      ubuntu:latest
   else
     docker exec -it $1 /bin/zsh
   fi
