@@ -32,11 +32,6 @@ func (h *$1Handler) Handle() *$2.$1Response {
 		return h.returnAhead(errors.Trace(err))
 	}
 
-	if err := h.check(); err != nil {
-		h.emitError("check")
-		return h.returnAhead(errors.Trace(err))
-	}
-
 	return h.returnAhead(nil)
 }
 
@@ -49,10 +44,6 @@ func (h *$1Handler) isValid() error {
 	h.tags = append(h.tags, metrics.Tag("from_source", h.req.GetFromSource()))
 
 	h.code = fault.RetCodeInternalErr
-	return nil
-}
-
-func (h *$1Handler) check() error {
 	return nil
 }
 
