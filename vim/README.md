@@ -32,6 +32,20 @@ nore: 表示非递归 not recursion
 # vim script
 [vim scripting cheatsheet](https://devhints.io/vimscript)
 
+# nvim
+install
+```bash
+sudo apt-get install libtool-bin python3-pip
+pip2 install --user --upgrade pynvim
+pip3 install --user --upgrade pynvim
+npm install -g neovim
+```
+
+check
+```
+:checkhealth
+```
+
 # plugin
 [将 VIM 打造成 go 语言的 ide](https://learnku.com/articles/24924)
 
