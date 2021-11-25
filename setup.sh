@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+current=`pwd`
 dot="$HOME/git/dotfiles"
 
 cd $HOME
@@ -11,9 +12,11 @@ ln -si $dot/gitconfig .gitconfig
 if [ ! -d .config/nvim ]; then
   mkdir -p .config/nvim
 fi
-ln -sf $dot/vim/init.vim .config/nvim/init.vim
+cd .config/nvim
+ln -sf $dot/vim/init.vim init.vim
+ln -sf $dot/vim/coc-settings.json coc-settings.json
 
-cd -
+cd $current
 
 exit 0
 

@@ -13,7 +13,8 @@ endif
 
 set nocompatible
 set pastetoggle=<F9> "raw copy, do not use auto indent etc.
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard+=unnamedplus
 set mouse-=a "disable visual mode
 set modifiable  " nerdtree create dir/file
 set backspace=indent,eol,start
