@@ -20,12 +20,21 @@ export RPROMPT='%n@%m %*'
 
 setopt vi
 setopt NO_HUP
-setopt rmstarsilent ## supress warning when `rm -rf *` "zsh: sure you want to delete all the files in ... [yn]"?
+setopt rmstarsilent  ## supress warning when `rm -rf *` "zsh: sure you want to delete all the files in ... [yn]"?
 
-export PATH=/sbin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=${HOME}/git/note/bin:$PATH
-export PATH=${HOME}/bin:$PATH
+function append_path() {
+  for p in $@; do
+    [[ -d $p ]] && export PATH=$p:$PATH
+  done
+}
+
+function source_path() {
+  for p in $@; do
+    [[ -f $p ]] && source $p
+  done
+}
+
+append_path $HOME/bin $HOME/git/note/bin
 
 user=`whoami`
 uname -a | grep Darwin 1>/dev/null 2>&1
@@ -40,7 +49,7 @@ fi
 if [[ "x$os" == "xlinux" ]]; then
   export env=`systemd-detect-virt`
 elif [[ "x$os" == "xmac" ]]; then
-  export PATH=$PATH:"/usr/local/texlive/2020/bin/x86_64-darwin"
+  append_path "/usr/local/texlive/2020/bin/x86_64-darwin"
 fi
 
 ulimit -c unlimited
@@ -67,14 +76,14 @@ export no_proxy="localhost,127.0.0.1,$ip"
 # fzf
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL-T as well
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source_path "$HOME/.fzf.zsh"
 
-[[ -f /usr/local/etc/profile.d/autojump.sh ]] && source /usr/local/etc/profile.d/autojump.sh # mac homebrew
-[[ -s /usr/share/autojump/autojump.sh ]] && source /usr/share/autojump/autojump.sh # linux
+# autojump
+source_path "/usr/local/etc/profile.d/autojump.sh"  ## mac homebrew
+source_path "/usr/share/autojump/autojump.sh"       ## linux
 
 # git
-# tells 'less' not to paginate if less than a page
-export LESS="-F -X $LESS"
+export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
 # bazel
 function bb() {
@@ -102,7 +111,7 @@ function br() {
   bazel run $@
 }
 
-## golang
+# golang
 if [[ "x$os" == "xmac" ]]; then
   export GOROOT="/usr/local/opt/go@1.15/libexec"  # installed using brew
 else
@@ -114,40 +123,30 @@ export GOTMPDIR="/tmp/go"
 if [ ! -d $GOTMPDIR ]; then
   mkdir $GOTMPDIR
 fi
-export PATH=$GOROOT/bin:$GOBIN:$PATH
+append_path $GOROOT/bin $GOBIN
 export GO111MODULE=on
 export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,https://sum.golang.org,direct"
 
-## node
-if [ -d $HOME/opt/node ]; then
-  export PATH="$HOME/opt/node/bin:$PATH"
-fi
-
-# rust
-if [ -d $HOME/.cargo ]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# cmake
-if [ -d $HOME/opt/cmake ]; then
-  export PATH="$HOME/opt/cmake/bin:$PATH"
-fi
+append_path $HOME/opt/node/bin   ## node
+append_path $HOME/.cargo/bin     ## rust
+append_path $HOME/opt/cmake/bin  ## cmake
 
 # clang + llvm
-if [ -d $HOME/opt/clang+llvm ]; then
-  export PATH="$HOME/opt/clang+llvm/bin:$PATH"
+p=$HOME/opt/clang+llvm
+if [ -d $p ]; then
+  export PATH=$p:$PATH
+  export LIBRARY_PATH=$p/lib:$LIBRARY_PATH
+  export CPLUS_INCLUDE_PATH=$p/include:$CPLUS_INCLUDE_PATH
 fi
 
-## java
+# java
 if [ -d $HOME/opt/jdk ]; then
   export JAVA_HOME="$HOME/opt/jdk"
   export PATH=$PATH:"$HOME/opt/jdk/bin"
 fi
 
 # enterprise
-if [ -f ~/.bashrc_enterprise ]; then
-  source ~/.bashrc_enterprise
-fi
+source_path $HOME/.bashrc_enterprise
 
 # udf
 function where() {
