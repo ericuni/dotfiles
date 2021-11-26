@@ -51,9 +51,23 @@ check
 
 [junegunn/vim-plug](https://github.com/junegunn/vim-plug)
 
+安装gcc
+```bash
+./configure --disable-multilib
+```
+
+说是需要GMP 4.2+, MPFR 2.4.0+, MPC 0.8.0+, gcc 安装包里已经提供了下载方式, 可以直接用
+```bash
+sh ./contrib/download_prerequisites
+```
+也可以通过包管理系统来安装
+```bash
+sudo apt-get install libgmp-dev libmpfr-dev libmpc-dev flex
+```
+
 对 vim 的版本有要求, 且需要vim 支持python 3.[Vim 8 支持 Python 3 的一些坑](https://toutiao.io/posts/runvgs/preview)
 
-1. 安装node, 下载linux binary version, 建个软链, 放到PATH 就行了.
+1. 安装node, 下载linux binary version, 建个软链, 放到$PATH 就行了.
 1. python3 的版本不用安装最新的, 我的机器上 Python 3.5.3 就行了.
 1. 安装vim, 下载最新版源代码
 
@@ -181,6 +195,29 @@ coc-go 和 languageserver.golang 只能使用其中的一个, 否则自动补全
 ```
 
 [jstemmer/gotags](https://github.com/jstemmer/gotags)
+
+#### ccls
+ccls is better than clangd, 可以在只打开一个头文件的情况下, 跳转到实现的地方, 而clangd 需要先把实现文件也打开才能正常跳转
+
+安装, https://github.com/MaskRay/ccls/wiki/Build
+
+1. cmake, 使用 https://cmake.org/download/ 上的 ``make-3.22.0-linux-x86_64.sh` 就行, 然后通过软链
+1. clang+llvm, 使用 https://github.com/llvm/llvm-project/releases 上的 `clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-16.04.tar.xz` 就可以
+1. 编译 ccls
+  ```
+  cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-13.0.0-x86_64-linux-gnu-ubuntu-16.04
+  cmake --build Release
+  ```
+1. 将编译出的 Release/ccls 拷贝到某个$PATH 目录下, 比如 `~/bin`
+
+发现在编译安装期间, /usr/lib/x86_64-linux-gnu/libstdc++.so.6 经常被重新指向一个旧的, 需要手动重新指向新的
+[Where can I find GLIBCXX_3.4.29?](https://stackoverflow.com/questions/65349875/where-can-i-find-glibcxx-3-4-29)
+```
+sudo find / -name "libstdc++.so*"  // 会找到包括/usr/local/lib64/libstdc++.so.6.0.29 在内的很多文件
+sudo ln -sf /usr/local/lib64/libstdc++.so.6.0.29 /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+```
+
+[编译安装ccls](https://edward852.github.io/post/编译安装ccls/)
 
 #### clangd
 同理, coc-clangd 和 languageserver.clangd 也只能用一个.
