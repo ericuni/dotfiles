@@ -109,7 +109,7 @@ function bt() {
 }
 
 function br() {
-  bazel run $@
+  bazel run --test_output=all $@
 }
 
 # golang
