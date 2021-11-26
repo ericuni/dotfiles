@@ -24,7 +24,7 @@ setopt rmstarsilent  ## supress warning when `rm -rf *` "zsh: sure you want to d
 
 function append_path() {
   for p in $@; do
-    [[ -d $p ]] && export PATH=$p:$PATH
+    [[ -d $p ]] && [[ ! $PATH =~ $p ]] && export PATH=$p:$PATH
   done
 }
 
