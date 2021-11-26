@@ -22,10 +22,10 @@ setopt vi
 setopt NO_HUP
 setopt rmstarsilent ## supress warning when `rm -rf *` "zsh: sure you want to delete all the files in ... [yn]"?
 
-export PATH=$PATH:/sbin
-export PATH=$PATH:/usr/local/sbin
-export PATH=$PATH:${HOME}/git/note/bin
-export PATH=$PATH:${HOME}/bin
+export PATH=/sbin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=${HOME}/git/note/bin:$PATH
+export PATH=${HOME}/bin:$PATH
 
 user=`whoami`
 uname -a | grep Darwin 1>/dev/null 2>&1
@@ -114,18 +114,28 @@ export GOTMPDIR="/tmp/go"
 if [ ! -d $GOTMPDIR ]; then
   mkdir $GOTMPDIR
 fi
-export PATH=$PATH:$GOROOT/bin:$GOBIN
+export PATH=$GOROOT/bin:$GOBIN:$PATH
 export GO111MODULE=on
 export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,https://sum.golang.org,direct"
 
 ## node
 if [ -d $HOME/opt/node ]; then
-  export PATH="$PATH:$HOME/opt/node/bin"
+  export PATH="$HOME/opt/node/bin:$PATH"
 fi
 
 # rust
 if [ -d $HOME/.cargo ]; then
-  export PATH="$PATH:$HOME/.cargo/bin"
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# cmake
+if [ -d $HOME/opt/cmake ]; then
+  export PATH="$HOME/opt/cmake/bin:$PATH"
+fi
+
+# clang + llvm
+if [ -d $HOME/opt/clang+llvm ]; then
+  export PATH="$HOME/opt/clang+llvm/bin:$PATH"
 fi
 
 ## java
