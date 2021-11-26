@@ -135,6 +135,7 @@ append_path $HOME/opt/cmake/bin  ## cmake
 # clang + llvm
 p=$HOME/opt/clang+llvm
 if [ -d $p ]; then
+  export CC=clang
   export PATH=$p/bin:$PATH
   export LIBRARY_PATH=$p/lib:$LIBRARY_PATH
   export CPLUS_INCLUDE_PATH=$p/include:$CPLUS_INCLUDE_PATH
