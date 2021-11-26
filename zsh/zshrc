@@ -34,6 +34,7 @@ function source_path() {
   done
 }
 
+append_path /sbin /usr/sbin /usr/local/sbin
 append_path $HOME/bin $HOME/git/note/bin
 
 user=`whoami`
@@ -134,7 +135,7 @@ append_path $HOME/opt/cmake/bin  ## cmake
 # clang + llvm
 p=$HOME/opt/clang+llvm
 if [ -d $p ]; then
-  export PATH=$p:$PATH
+  export PATH=$p/bin:$PATH
   export LIBRARY_PATH=$p/lib:$LIBRARY_PATH
   export CPLUS_INCLUDE_PATH=$p/include:$CPLUS_INCLUDE_PATH
 fi
