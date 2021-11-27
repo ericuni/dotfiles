@@ -13,7 +13,15 @@ int main(int argc, char* argv[]) {
 }
 endsnippet
 
+snippet ut "unit test" b
+int main(int argc, char** argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+}
+endsnippet
+
 snippet leetcode "leetcode solution" b
+#include <glog/logging.h>
 #include <gtest/gtest.h>
 
 /*
@@ -41,6 +49,11 @@ TEST($1, ex) {
     for (auto&& td : tds) {
     }
   }
+}
+
+int main(int argc, char** argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
 endsnippet
 
