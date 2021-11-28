@@ -13,13 +13,13 @@
     "clangd": {
       "command": "clangd",
       "filetypes": ["c", "cpp", "cc", "cxx", "h"],
-      "rootPatterns": ["compile_flags.txt", ".git"],
+      "rootPatterns": ["compile_flags.txt"],
       "requireRootPattern": true
     },
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "cc", "cxx", "h"],
-      "rootPatterns": [".ccls", ".git"],
+      "rootPatterns": [".ccls"],
       "requireRootPattern": true,
       "initializationOptions": {
          "cache": {
