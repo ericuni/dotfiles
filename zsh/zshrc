@@ -37,20 +37,13 @@ function source_path() {
 append_path /sbin /usr/sbin /usr/local/sbin
 append_path $HOME/bin $HOME/git/note/bin
 
-user=`whoami`
-uname -a | grep Darwin 1>/dev/null 2>&1
-if [ $? -eq 0 ]; then
+if [[ $OSTYPE =~ "darwin" ]]; then
   export os="mac"
   export ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'`
-else
+elif [[ $OSTYPE =~ "linux" ]]; then
   export os="linux"
   export ip=`ifconfig eth0 | grep inet | grep -v inet6 | awk '{print $2}'`
-fi
-
-if [[ "x$os" == "xlinux" ]]; then
   export env=`systemd-detect-virt`
-elif [[ "x$os" == "xmac" ]]; then
-  append_path "/usr/local/texlive/2020/bin/x86_64-darwin"
 fi
 
 ulimit -c unlimited
@@ -132,6 +125,7 @@ export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,ht
 append_path $HOME/opt/node/bin   ## node
 append_path $HOME/.cargo/bin     ## rust
 append_path $HOME/opt/cmake/bin  ## cmake
+append_path "/usr/local/texlive/2020/bin/x86_64-darwin" # texlive
 
 # clang + llvm
 p=$HOME/opt/clang+llvm
