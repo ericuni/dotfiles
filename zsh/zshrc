@@ -53,6 +53,13 @@ alias watch='watch -d -n 1'
 alias tuer="ps x | fzf | awk '{print \$1}' | xargs kill -9"
 alias tmux="TERM=screen-256color-bce tmux"
 
+which nvim >/dev/null
+if [[ $? -eq 0 ]]; then
+  alias vi="nvim"
+else
+  alias vi="vim"
+fi
+
 which fd >/dev/null
 if [ $? -ne 0 ]; then
   alias fd="fdfind"
