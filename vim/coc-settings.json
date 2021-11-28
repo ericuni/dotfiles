@@ -10,10 +10,17 @@
         "completeUnimported": true
       }
     },
+    "clangd": {
+      "command": "clangd",
+      "filetypes": ["c", "cpp", "cc", "cxx", "h"],
+      "rootPatterns": ["compile_flags.txt", ".git"],
+      "requireRootPattern": true
+    },
     "ccls": {
       "command": "ccls",
-      "filetypes": ["c", "cpp", "cc", "cxx"],
-      "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
+      "filetypes": ["c", "cpp", "cc", "cxx", "h"],
+      "rootPatterns": [".ccls", ".git"],
+      "requireRootPattern": true,
       "initializationOptions": {
          "cache": {
            "directory": "/tmp/ccls"
