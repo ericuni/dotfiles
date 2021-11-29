@@ -132,7 +132,6 @@ export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,ht
 append_path $HOME/opt/node/bin   ## node
 append_path $HOME/.cargo/bin     ## rust
 append_path $HOME/opt/cmake/bin  ## cmake
-append_path "/usr/local/texlive/2020/bin/x86_64-darwin" # texlive
 
 # clang + llvm
 p=$HOME/opt/clang+llvm
@@ -189,6 +188,13 @@ function dm() {
     docker exec -it $1 /bin/zsh
   fi
 }
+
+# texlive
+p="/usr/local/texlive/2020"
+if [[ -d $p ]]; then
+  append_path "$p/bin/x86_64-darwin"
+  export INFOPATH="$p/texmf-dist/doc/info:$INFOPATH"
+fi
 
 function clean() {
   setopt null_glob
