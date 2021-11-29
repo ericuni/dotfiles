@@ -108,7 +108,7 @@ source_path $HOME/git/dotfiles/zsh/bazelfunctions.zsh
 
 # golang
 if [[ "x$os" == "xmac" ]]; then
-  export GOROOT="/usr/local/opt/go@1.15/libexec"  # installed using brew
+  export GOROOT="/usr/local/opt/go@1.16/libexec"  # installed using brew
 else
   export GOROOT="$HOME/opt/go"
 fi
