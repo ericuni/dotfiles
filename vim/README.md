@@ -196,9 +196,13 @@ coc-go 和 languageserver.golang 只能使用其中的一个, 否则自动补全
 
 [jstemmer/gotags](https://github.com/jstemmer/gotags)
 
-#### ccls
-ccls is better than clangd, 可以在只打开一个头文件的情况下, 跳转到实现的地方, 而clangd 需要先把实现文件也打开才能正常跳转
+#### cpp
+- ccls 可以在只打开一个头文件的情况下, 跳转到实现的地方, 而clangd 需要先把实现文件也打开才能正常跳转
+- 同一个仓库下不同文件的同名的class, ccls 会错误地当成一个类型
 
+所以需要根据具体场景适当选择
+
+##### ccls
 安装, https://github.com/MaskRay/ccls/wiki/Build
 
 1. cmake, 使用 https://cmake.org/download/ 上的 ``make-3.22.0-linux-x86_64.sh` 就行, 然后通过软链
@@ -219,21 +223,13 @@ sudo ln -sf /usr/local/lib64/libstdc++.so.6.0.29 /usr/lib/x86_64-linux-gnu/libst
 
 [编译安装ccls](https://edward852.github.io/post/编译安装ccls/)
 
-#### clangd
-同理, coc-clangd 和 languageserver.clangd 也只能用一个.
+##### clangd
+coc-clangd 和 languageserver.clangd 也只能用一个.
 
-```json
-{
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "trace.server": "verbose",
-      "rootPatterns": ["compile_flags.txt"],
-      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
-    }
-  }
-}
-```
+#### latex
+[coc-texlab](https://github.com/fannheyward/coc-texlab)
+
+digestif 不好用
 
 ## [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim)
 | Command | Description                                       |

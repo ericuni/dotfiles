@@ -221,3 +221,18 @@ function clean() {
   done 2>/dev/null
 }
 
+function pdf() {
+  tex=`echo $1 | awk -F. '{print $1}'`
+  xelatex $tex || exit 1
+
+  count=`ls *.bib 2>/dev/null | wc -l`
+  if [ $count -gt 0 ]; then
+    bibtex $tex || exit 1
+    xelatex $tex || exit 1
+  fi
+
+  xelatex $tex || exit 1
+
+  clean
+}
+
