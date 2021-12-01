@@ -63,8 +63,13 @@ endif
 set maxmempattern=5000
 
 " go back the previvous cursor location
-if has("autocmd")
+if has('autocmd')
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
+if has('nvim')
+  "" How to make Neovim to not show the [Process exited {num}] when quitting a term?
+  au TermClose * b#
 endif
 
 " 定义快捷键的前缀,即<Leader>
