@@ -68,8 +68,8 @@ if has('autocmd')
 endif
 
 if has('nvim')
-  "" How to make Neovim to not show the [Process exited {num}] when quitting a term?
-  au TermClose * b#
+  " alias
+  cnoreabbrev shell terminal
 endif
 
 " 定义快捷键的前缀,即<Leader>
