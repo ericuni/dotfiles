@@ -222,17 +222,16 @@ function clean() {
 }
 
 function pdf() {
-  tex=`echo $1 | awk -F. '{print $1}'`
-  xelatex $tex || exit 1
-
-  count=`ls *.bib 2>/dev/null | wc -l`
-  if [ $count -gt 0 ]; then
-    bibtex $tex || exit 1
-    xelatex $tex || exit 1
+  if [ $# -ne 1 ]; then
+    echo "no file" >&2
+    return 1
   fi
 
-  xelatex $tex || exit 1
+  tex=`echo $1 | awk -F. '{print $1}'`
 
-  clean
+  xelatex $tex
+  asy $tex*.asy
+  bibtex $tex
+  xelatex $tex
 }
 

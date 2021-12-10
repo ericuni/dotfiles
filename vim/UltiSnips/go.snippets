@@ -32,6 +32,8 @@ func (h *$1Handler) Handle() *$2.$1Response {
 		return h.returnAhead(errors.Trace(err))
 	}
 
+	$0
+
 	return h.returnAhead(nil)
 }
 
@@ -88,6 +90,8 @@ func New$1Handler(ctx context.Context) *$1Handler {
 
 // Handle .
 func (h *$1Handler) Handle() error {
+	$0
+
 	return nil
 }
 
@@ -117,6 +121,8 @@ func (s *$1Suite) TearDownTest() {
 func (s *$1Suite) TestEx() {
 	assert := s.Assert()
 	t := s.T()
+
+	$0
 }
 
 func Test$1(t *testing.T) {
@@ -157,6 +163,8 @@ func (s *$1Suite) TearDownTest() {
 func (s *$1Suite) TestEx() {
 	assert := s.Assert()
 	t := s.T()
+
+	$0
 }
 
 func Test$1(t *testing.T) {
@@ -207,6 +215,8 @@ func (s *$1Suite) TestEx() {
 
 	bs, _ := ioutil.ReadAll(rsp.Body)
 	t.Log(string(bs))
+
+	$0
 }
 
 func Test$1(t *testing.T) {
@@ -230,6 +240,9 @@ func main() {
 
 func run() error {
 	defer glog.Infoln("done")
+
+	$0
+
 	return nil
 }
 endsnippet

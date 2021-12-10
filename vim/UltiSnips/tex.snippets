@@ -1,0 +1,22 @@
+snippet fig.asy "asy figure" b
+\begin{figure}[ht]
+\centering
+\begin{asy}
+size(3cm);
+draw((-0.1, 0) -- (3, 0), arrow = Arrow(TeXHead));
+draw((0, -0.1) -- (0, 3), arrow = Arrow(TeXHead));
+
+$0
+\end{asy}
+\caption{${1:example}}
+\label{fig.$1}
+\end{figure}
+
+endsnippet
+
+snippet code "lstlisting" b
+\begin{lstlisting}[label={code.${1:example}}]
+$0
+\end{lstlisting}
+endsnippet
+

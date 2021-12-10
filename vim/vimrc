@@ -1,9 +1,8 @@
 let os = "linux"
-if has('unix')
-  if has('mac')
-    let os = "mac"
-  endif
+if has('mac')
+  let os = "mac"
 endif
+" echo os
 
 let env = system("systemd-detect-virt")
 let tokens = split(env, "\n")
@@ -13,8 +12,10 @@ endif
 
 set nocompatible
 set pastetoggle=<F9> "raw copy, do not use auto indent etc.
-" set clipboard=unnamed
-set clipboard+=unnamedplus
+set clipboard=unnamed
+if os == "linux"
+  set clipboard+=unnamedplus
+endif
 set mouse-=a "disable visual mode
 set modifiable  " nerdtree create dir/file
 set backspace=indent,eol,start
