@@ -196,10 +196,10 @@ if [[ -d $p ]]; then
 fi
 
 function clean() {
-  setopt null_glob
+  # setopt null_glob
 
   ## latex
-  rm *.aux *.bbl *.blg *.lof *.lot *.toc *.thm *.snm *.vrb *.nav *.fdb_latexmk *.fls 2>/dev/null
+  rm *.aux *.bbl *.blg *.lof *.lot *.toc *.thm *.snm *.vrb *.nav *.fdb_latexmk *.fls, *.pre 2>/dev/null
 
   ## glog
   rm *.`hostname`.`whoami`.* 2>/dev/null
@@ -213,7 +213,7 @@ function clean() {
   for file in `ls *.out *.log`
   do
     ## preserve nohup.out and err.log
-    if [ "x$file" == "xnohup.out" -o "x$file" == "xerr.log" ]; then
+    if [[ "x$file" == "xnohup.out" || "x$file" == "xerr.log" ]]; then
       continue
     fi
     rm $file
@@ -231,7 +231,7 @@ function pdf() {
   xelatex $tex
   if [[ -d asytmp ]]; then
     cd asytmp
-    asy $tex*.asy
+    asy $tex-*.asy || return 1
     cd -
   fi
   bibtex $tex
