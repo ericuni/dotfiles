@@ -233,5 +233,6 @@ function pdf() {
   asy $tex*.asy
   bibtex $tex
   xelatex $tex
+  xelatex $tex  ## update cref
 }
 
