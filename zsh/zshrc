@@ -69,7 +69,8 @@ alias tmux="TERM=screen-256color-bce tmux"
 
 replace vi nvim vim
 replace fd fdfind
-replace ls exa
+replace ls lsd
+alias ll="ls -l"
 
 export no_proxy="localhost,127.0.0.1,$ip"
 
