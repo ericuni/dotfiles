@@ -93,7 +93,7 @@ func (h *$1Handler) Handle() error {
 
 // GetTags .
 func (h *$1Handler) GetTags() map[string]string {
-	return map[string]string{"reason": h.reason}
+	return map[string]string{trace.ReasonTag: h.reason}
 }
 endsnippet
 
