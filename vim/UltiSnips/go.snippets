@@ -100,6 +100,8 @@ endsnippet
 snippet ut_clean "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
+	ctx context.Context
+	t   time.Time
 }
 
 func (s *$1Suite) SetupSuite() {
@@ -109,9 +111,12 @@ func (s *$1Suite) TearDownSuite() {
 }
 
 func (s *$1Suite) SetupTest() {
+	s.ctx = context.Background()
+	s.t = time.Now()
 }
 
 func (s *$1Suite) TearDownTest() {
+	s.T().Logf("cost %v", time.Since(s.t))
 }
 
 func (s *$1Suite) TestEx() {
@@ -146,6 +151,7 @@ func (s *$1Suite) SetupTest() {
 
 func (s *$1Suite) TearDownTest() {
 	defer logs.Flush()
+	s.T().Logf("cost %v", time.Since(s.t))
 }
 
 func (s *$1Suite) TestEx() {
