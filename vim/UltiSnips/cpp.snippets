@@ -3,28 +3,40 @@ snippet cmd "cmd template" b
 #include <glog/logging.h>
 #include <stdio.h>
 
+#include "thirdparty/fmt/fmt.h"
+
 int main(int argc, char* argv[]) {
   FLAGS_alsologtostderr = true;
   FLAGS_colorlogtostderr = true;
   google::InitGoogleLogging(argv[0]);
   google::ParseCommandLineFlags(&argc, &argv, true);
 
-	$0
-
   return 0;
 }
 endsnippet
 
 snippet ut "unit test" b
+#include <glog/logging.h>
+#include <gperftools/heap-checker.h>
+#include <gtest/gtest.h>
+
+#include "thirdparty/fmt/fmt.h"
+
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  HeapLeakChecker heap_checker("heap checker");
+  auto ret = RUN_ALL_TESTS();
+  CHECK(heap_checker.NoLeaks());
+  return ret;
 }
 endsnippet
 
 snippet leetcode "leetcode solution" b
 #include <glog/logging.h>
+#include <gperftools/heap-checker.h>
 #include <gtest/gtest.h>
+
+#include "thirdparty/fmt/fmt.h"
 
 /*
 
@@ -55,7 +67,10 @@ TEST($1, ex) {
 
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+  HeapLeakChecker heap_checker("heap checker");
+  auto ret = RUN_ALL_TESTS();
+  CHECK(heap_checker.NoLeaks());
+  return ret;
 }
 endsnippet
 
