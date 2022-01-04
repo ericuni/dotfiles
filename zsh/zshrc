@@ -114,9 +114,7 @@ function br() {
 source_path $HOME/git/dotfiles/zsh/bazelfunctions.zsh
 
 # golang
-if [[ "x$os" == "xmac" ]]; then
-  export GOROOT="/usr/local/opt/go@1.16/libexec"  # installed using brew
-else
+if [[ "$os" == "linux" ]]; then
   export GOROOT="$HOME/opt/go"
 fi
 export GOPATH="$HOME/go"
@@ -148,7 +146,7 @@ if [ -d $HOME/opt/jdk ]; then
 fi
 
 # enterprise
-source_path $HOME/.bashrc_enterprise
+source_path $HOME/git/work/conf/zshrc
 
 # udf
 function where() {
@@ -160,6 +158,7 @@ function where() {
   fi
 }
 
+# docker machine
 function dm() {
   if [[ "x$1" == "xinit" ]]; then
     name=$2
@@ -172,6 +171,9 @@ function dm() {
       mkdir $home
     fi
 
+    image=`docker images | grep ubuntu | grep latest | awk '{print $1":"$2}'`
+    echo "image $image used" >&2
+
     ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
     docker run -dt \
       -v $home:/root \
@@ -182,7 +184,7 @@ function dm() {
       --security-opt seccomp=unconfined \
       --hostname $name \
       --name $name \
-      ubuntu:latest
+      $image
   else
     docker exec -it $1 /bin/zsh
   fi
