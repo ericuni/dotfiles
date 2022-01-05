@@ -171,7 +171,7 @@ function dm() {
       mkdir $home
     fi
 
-    image=`docker images | grep ubuntu | grep latest | awk '{print $1":"$2}'`
+    image=`docker images | grep ubuntu | grep latest | awk '{print $1":"$2}' | sort -r | head -n 1`
     echo "image $image used" >&2
 
     ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
