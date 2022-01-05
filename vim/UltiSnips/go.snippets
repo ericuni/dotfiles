@@ -74,10 +74,10 @@ type $1Handler struct {
 }
 
 // New$1Handler .
-func New$1Handler(ctx context.Context) *$1Handler {
+func New$1Handler(ctx context.Context, tags []metrics.T) *$1Handler {
 	return &$1Handler{
 		ctx:  ctx,
-		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
+		tags: tags,
 		t:    time.Now(),
 	}
 }
