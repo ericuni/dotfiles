@@ -198,7 +198,7 @@ if [[ -d $p ]]; then
 fi
 
 function clean() {
-  # setopt null_glob
+  emulate -L bash
 
   ## latex
   rm *.aux *.bbl *.blg *.lof *.lot *.toc *.thm *.snm *.vrb *.nav *.fdb_latexmk *.fls, *.pre 2>/dev/null
