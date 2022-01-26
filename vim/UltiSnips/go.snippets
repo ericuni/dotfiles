@@ -101,9 +101,8 @@ type ${1:Template}Suite struct {
 }
 
 func (s *$1Suite) SetupSuite() {
-}
-
-func (s *$1Suite) TearDownSuite() {
+	flag.Set("logtostderr", "true")
+	flag.Parse()
 }
 
 func (s *$1Suite) SetupTest() {
@@ -175,9 +174,6 @@ func (s *$1Suite) SetupSuite() {
 	s.router = router
 }
 
-func (s *$1Suite) TearDownSuite() {
-}
-
 func (s *$1Suite) SetupTest() {
 	ctx := context.Background()
 	ctx = kitutil.NewCtxWithLogID(ctx, logid.GetNginxID())
@@ -186,7 +182,7 @@ func (s *$1Suite) SetupTest() {
 }
 
 func (s *$1Suite) TearDownTest() {
-	defer logs.Flush()
+	logs.Flush()
 }
 
 func (s *$1Suite) TestEx() {
