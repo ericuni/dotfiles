@@ -1,0 +1,17 @@
+snippet cc_test "cc test template" b
+cc_test(
+  name = '$1',
+  srcs = ['$1.cc'],
+  deps = ['//base:gtest'],
+)
+endsnippet
+
+snippet cc_library "cc library template" b
+cc_library(
+  name = '$1',
+  hdrs = ['$1.h'],
+  srcs = ['$1.cpp'],
+  deps = ['//base:init'],
+)
+endsnippet
+
