@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# brew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
 # nvim
 brew install node neovim ripgrep
 python3 -m pip install --user --upgrade pynvim
