@@ -1,4 +1,6 @@
 --glob
+!.github
+!.codebase
 target
 kitex_gen
 thrift_gen
