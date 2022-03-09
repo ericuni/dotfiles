@@ -2,9 +2,6 @@
 
 # Debian 9 linux 4.14
 
-local pkg="sudo apt"
-$pkg update
-
 cd ~
 if [[ ! -d opt ]]; then
   mkdir opt
@@ -23,7 +20,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # golang
-if [[ ! -f go ]]; then
+if [[ ! -e go ]]; then
   local version="1.17.8"
   curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
   tar zxf go.tar.gz
@@ -32,7 +29,7 @@ if [[ ! -f go ]]; then
 fi
 
 # node
-if [[ ! -f node ]]; then
+if [[ ! -e node ]]; then
   local version="v16.14.0"
   curl https://nodejs.org/dist/${version}/node-${version}-linux-x64.tar.xz >node.tar.xz
   xz -d node.tar.xz
@@ -45,12 +42,12 @@ fi
 which cargo
 if [[ $? -ne 0 ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-   && . $HOME/.cargo/env && export CARGO_NET_GIT_FETCH_WITH_CLI=true \
+   && . $HOME/.cargo/env && export CARGO_NET_GIT_FETCH_WITH_CLI=true
 fi
 
-cargo install lsd ripgrep
-
 cd -
+
+cargo install lsd ripgrep
 
 exit 0
 
