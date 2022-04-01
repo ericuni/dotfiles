@@ -125,7 +125,7 @@ if [ ! -d $GOTMPDIR ]; then
 fi
 append_path $GOROOT/bin $GOBIN
 export GO111MODULE=on
-export GOPROXY="https://goproxy.io,https://proxy.golang.org,https://goproxycn,https://sum.golang.org,direct"
+export GOPROXY="https://goproxy.io,direct"
 
 append_path $HOME/opt/node/bin   ## node
 append_path $HOME/.cargo/bin     ## rust
