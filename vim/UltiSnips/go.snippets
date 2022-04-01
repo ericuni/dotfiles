@@ -5,9 +5,6 @@ type $1Handler struct {
 	req  *$2.$1Request
 	rsp  *$2.$1Response
 	code int32
-	msg  string
-	tags []metrics.T
-	t    time.Time
 }
 
 // New$1Handler .
@@ -16,19 +13,16 @@ func New$1Handler(ctx context.Context, req *$2.$1Request) *$1Handler {
 		ctx: ctx,
 		req: req,
 		rsp: &$2.$1Response{
-			HttpCode: http.StatusOK,
 			BaseResp: base.NewBaseResp(),
 		},
-		code: fault.RetCodeInternalErr,
-		tags: bmetrics.Map2Tag(trace.GetBaseTags(ctx)),
-		t:    time.Now(),
+		code: err_code.PopErrInternalError,
 	}
 }
 
 // Handle .
 func (h *$1Handler) Handle() *$2.$1Response {
 	if err := h.isValid(); err != nil {
-		trace.ReportError("isValid", h.tags, false)
+		h.code = err_code.PopErrInvalidParam
 		return h.returnAhead(errors.Trace(err))
 	}
 
@@ -36,30 +30,17 @@ func (h *$1Handler) Handle() *$2.$1Response {
 }
 
 func (h *$1Handler) isValid() error {
-	h.code = fault.RetCodeParamErr
-
-	if h.req.GetFromSource() == "" {
-		return errors.New("from_source empty")
-	}
-	h.tags = append(h.tags, metrics.Tag("from_source", h.req.GetFromSource()))
-
-	h.code = fault.RetCodeInternalErr
 	return nil
 }
 
 func (h *$1Handler) returnAhead(err error) *$2.$1Response {
 	if err == nil {
-		bmetrics.EmitCounter("success.count", 1, h.tags...)
-		bmetrics.EmitTimer("success.cost.ms", time.Since(h.t).Milliseconds(), h.tags...)
 		return h.rsp
 	}
 
 	logs.CtxError(h.ctx, "$1 error %d %+v", h.code, err)
 	h.rsp.BaseResp.StatusCode = h.code
-	if h.msg == "" {
-		h.msg = fault.GetErrorMessageFmt(h.code, "%+v", err)
-	}
-	h.rsp.BaseResp.StatusMessage = h.msg
+	h.rsp.BaseResp.StatusMessage = err.Error()
 	return h.rsp
 }
 endsnippet
@@ -101,12 +82,13 @@ type ${1:Template}Suite struct {
 }
 
 func (s *$1Suite) SetupSuite() {
+	s.ctx = context.Background()
+
 	flag.Set("logtostderr", "true")
 	flag.Parse()
 }
 
 func (s *$1Suite) SetupTest() {
-	s.ctx = context.Background()
 	s.t = time.Now()
 }
 
@@ -128,25 +110,20 @@ snippet ut "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx context.Context
-	t   time.Time
+}
+
+func (s *$1Suite) SetupSuite() {
+	s.ctx = context.Background()
+}
+
+func (s *$1Suite) TearDownSuite() {
 }
 
 func (s *$1Suite) SetupTest() {
-	t := s.T()
-
-	id := logid.GetNginxID()
-	t.Logf("logid: %s", id)
-
-	ctx := context.Background()
-	ctx = kitutil.NewCtxWithLogID(ctx, id)
-	s.ctx = ctx
-
-	s.t = time.Now()
 }
 
 func (s *$1Suite) TearDownTest() {
-	defer logs.Flush()
-	s.T().Logf("cost %v", time.Since(s.t))
+	logs.Flush()
 }
 
 func (s *$1Suite) TestEx() {
