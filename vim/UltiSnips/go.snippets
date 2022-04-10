@@ -74,38 +74,6 @@ func (h *$1Handler) GetTags() map[string]string {
 }
 endsnippet
 
-snippet ut_clean "unit test template" b
-type ${1:Template}Suite struct {
-	suite.Suite
-	ctx context.Context
-	t   time.Time
-}
-
-func (s *$1Suite) SetupSuite() {
-	s.ctx = context.Background()
-
-	flag.Set("logtostderr", "true")
-	flag.Parse()
-}
-
-func (s *$1Suite) SetupTest() {
-	s.t = time.Now()
-}
-
-func (s *$1Suite) TearDownTest() {
-	s.T().Logf("cost %v", time.Since(s.t))
-}
-
-func (s *$1Suite) TestEx() {
-	assert := s.Assert()
-	t := s.T()
-}
-
-func Test$1(t *testing.T) {
-	suite.Run(t, new($1Suite))
-}
-endsnippet
-
 snippet ut "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
@@ -192,14 +160,16 @@ func init() {
 
 func main() {
 	defer glog.Flush()
-	if err := run(); err != nil {
+
+	ctx := context.Background()
+	if err := run(ctx); err != nil {
 		glog.Errorf("run error %+v", err)
 		return
 	}
 	glog.Infoln("done")
 }
 
-func run() error {
+func run(ctx context.Context) error {
 	return nil
 }
 endsnippet
