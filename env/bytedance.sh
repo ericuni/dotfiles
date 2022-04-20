@@ -1,4 +1,5 @@
 #!/bin/zsh
+set -x
 
 # Debian 9 linux 4.14
 

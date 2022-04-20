@@ -37,3 +37,5 @@ brew install --cask baiduinput yinxiangbiji \
   neteasemusic qqlive iina \
   flux
 
+exit 0
+
