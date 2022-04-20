@@ -11,7 +11,12 @@ brew install tree
 
 # lsd
 ## [Icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
+## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install --cask devtoys
+## dev
+brew install --cask devtoys iterm2 utools
+
+## other
+brew install --cask neteasemusic wechat
 
