@@ -14,9 +14,15 @@ brew install tree
 ## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
+# https://formulae.brew.sh/cask/
+
 ## dev
 brew install --cask devtoys iterm2 utools
 
 ## other
-brew install --cask neteasemusic wechat
+brew install --cask baiduinput yinxiangbiji \
+  wechat \
+  baidunetdisk adrive thunder \
+  neteasemusic qqlive \
+  flux
 
