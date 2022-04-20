@@ -1,6 +1,17 @@
 #!/bin/zsh
+set -x
 
 # brew
+which brew
+if [[ $? -eq 0 ]]; then
+  brew update  ## Update homebrew itself and the package lists
+  brew upgrade
+  brew upgrade --cask
+  brew cleanup
+
+  exit 0
+fi
+
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # nvim
@@ -23,6 +34,6 @@ brew install --cask devtoys iterm2 utools
 brew install --cask baiduinput yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive \
+  neteasemusic qqlive iina \
   flux
 
