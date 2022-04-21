@@ -12,6 +12,10 @@ if [[ $? -eq 0 ]]; then
   exit 0
 fi
 
+## 去掉各种设置密码的规则限制
+## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
+pwpolicy -clearaccountpolicies
+
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # nvim
@@ -24,8 +28,6 @@ brew install tree
 ## [Icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
 ## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
-
-# https://formulae.brew.sh/cask/
 
 ## dev
 brew install --cask devtoys iterm2 utools

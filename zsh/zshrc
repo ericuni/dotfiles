@@ -67,6 +67,10 @@ alias watch='watch -d -n 1'
 alias tuer="ps x | fzf | awk '{print \$1}' | xargs kill -9"
 alias tmux="TERM=screen-256color-bce tmux"
 
+if [[ $os == "mac" ]]; then
+  alias sha256="shasum -a 256"
+fi
+
 replace vi nvim vim
 replace fd fdfind
 replace ls lsd
