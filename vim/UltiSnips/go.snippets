@@ -74,6 +74,21 @@ func (h *$1Handler) GetTags() map[string]string {
 }
 endsnippet
 
+snippet ut_clean "unit test template" b
+type ${1:Template}Suite struct {
+	suite.Suite
+}
+
+func (s *$1Suite) TestEx() {
+	assert := s.Assert()
+	t := s.T()
+}
+
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1Suite))
+}
+endsnippet
+
 snippet ut "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
@@ -149,6 +164,12 @@ func (s *$1Suite) TestEx() {
 func Test$1(t *testing.T) {
 	suite.Run(t, new($1Suite))
 }
+endsnippet
+
+snippet glog_init "init glog" b
+flag.Set("alsologtostderr", "true")
+flag.Set("log_dir", "./")
+flag.Parse()
 endsnippet
 
 snippet cmd "cmd" b
