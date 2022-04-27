@@ -33,10 +33,12 @@ brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-
 brew install --cask devtoys iterm2 utools
 
 ## other
-brew install --cask baiduinput yinxiangbiji \
+brew install --cask baiduinput \
+  v2rayu \
+  yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive iina \
+  neteasemusic qqlive qqmusic iina \
   flux
 
 exit 0
