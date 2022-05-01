@@ -3,7 +3,6 @@
     "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.experimentalFeatures": "Enabled",
-    "C_Cpp.updateChannel": "Insiders",
     "cmake.configureOnOpen": true,
     "editor.rulers": [120],
     "editor.suggestSelection": "first",
@@ -12,9 +11,11 @@
     "extensions.ignoreRecommendations": false,
     "go.autocompleteUnimportedPackages": true,
     "go.formatTool": "goimports",
-    "go.testFlags": ["-v", "-gcflags=all=-l"],
+    "go.testFlags": ["-v", "-gcflags=all=-l", "-cover"],
     "go.useLanguageServer": true,
-    "http.proxySupport": "off",
+    "gopls": {
+        "build.experimentalWorkspaceModule": true
+    },
     "markdownlint.config": {
         "MD007": false,
         "MD010": false,
@@ -36,9 +37,6 @@
     "vsicons.dontShowNewVersionMessage": true,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "window.nativeTabs": true,
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter.notebook.ipynb"
-    },
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
