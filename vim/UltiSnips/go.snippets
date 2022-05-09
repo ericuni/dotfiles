@@ -4,7 +4,6 @@ type $1Handler struct {
 	ctx  context.Context
 	req  *$2.$1Request
 	rsp  *$2.$1Response
-	code int32
 }
 
 // New$1Handler .
@@ -15,15 +14,13 @@ func New$1Handler(ctx context.Context, req *$2.$1Request) *$1Handler {
 		rsp: &$2.$1Response{
 			BaseResp: base.NewBaseResp(),
 		},
-		code: err_code.PopErrInternalError,
 	}
 }
 
 // Handle .
 func (h *$1Handler) Handle() *$2.$1Response {
 	if err := h.isValid(); err != nil {
-		h.code = err_code.PopErrInvalidParam
-		return h.returnAhead(errors.Trace(err))
+		return h.returnAhead(errorx.Trace(err))
 	}
 
 	return h.returnAhead(nil)
@@ -38,9 +35,14 @@ func (h *$1Handler) returnAhead(err error) *$2.$1Response {
 		return h.rsp
 	}
 
-	logs.CtxError(h.ctx, "$1 error %d %+v", h.code, err)
-	h.rsp.BaseResp.StatusCode = h.code
-	h.rsp.BaseResp.StatusMessage = err.Error()
+	logs.CtxError(h.ctx, "$1 error %+v", err)
+	base := h.rsp.BaseResp
+	if base.StatusCode == 0 {
+		base.StatusCode = util.ServerInternalErrorCode
+	}
+	if base.StatusMessage == "" {
+		base.StatusMessage = err.Error()
+	}
 	return h.rsp
 }
 endsnippet
