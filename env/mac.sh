@@ -30,7 +30,7 @@ brew install tree lrzsz
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
 ## dev
-brew install --cask devtoys iterm2 utools
+brew install --cask devtoys iterm2 utools postman
 
 ## other
 brew install --cask baiduinput \
@@ -38,7 +38,7 @@ brew install --cask baiduinput \
   yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive qqmusic iina \
+  neteasemusic qqlive qqmusic bilibili-official iina \
   flux
 
 exit 0
