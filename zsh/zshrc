@@ -56,7 +56,7 @@ if [[ $OSTYPE =~ "darwin" ]]; then
   export ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'`
 elif [[ $OSTYPE =~ "linux" ]]; then
   export os="linux"
-  export ip=`ifconfig eth0 | grep inet | grep -v inet6 | awk '{print $2}'`
+  export ip=`ip -4 address | grep eth0 | tail -n 1 | awk '{print $2}' | awk -F'/' '{print $1}'`
   export env=`systemd-detect-virt`
 fi
 
