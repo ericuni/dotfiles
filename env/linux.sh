@@ -13,15 +13,9 @@ cd opt
 # neovim
 which nvim
 if [[ $? -ne 0 ]]; then
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-  chmod +x nvim.appimage
-  ./nvim.appimage --appimage-extract
-  mv squashfs-root nvim
-  if [[ `whoami` == "root" ]]; then
-    ln -sf ~/opt/nvim/AppRun /usr/local/bin/nvim
-  else
-    sudo ln -sf ~/opt/nvim/AppRun /usr/local/bin/nvim
-  fi
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+  tar zxvf nvim-linux64.tar.gz
+  mv nvim-linux64 nvim
 fi
 
 # golang

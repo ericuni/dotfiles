@@ -71,8 +71,11 @@ if [[ $os == "mac" ]]; then
   alias sha256="shasum -a 256"
 fi
 
+append_path $HOME/opt/nvim/bin
 replace vi nvim vim
+
 replace fd fdfind
+
 replace ls lsd
 alias ll="ls -l"
 

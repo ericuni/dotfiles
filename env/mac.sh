@@ -38,7 +38,7 @@ brew install --cask baiduinput \
   yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive qqmusic bilibili-official iina \
+  neteasemusic qqlive qqmusic iina \
   flux
 
 exit 0
