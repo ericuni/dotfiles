@@ -3,6 +3,11 @@ set -x
 
 # Debian 9 linux 4.14
 
+which zsh
+if [[ $? -ne 0 ]]; then
+  sudo apt install zsh
+fi
+
 cd ~
 if [[ ! -d opt ]]; then
   mkdir opt
