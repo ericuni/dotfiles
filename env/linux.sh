@@ -17,7 +17,11 @@ if [[ $? -ne 0 ]]; then
   chmod +x nvim.appimage
   ./nvim.appimage --appimage-extract
   mv squashfs-root nvim
-  sudo ln -sf ~/opt/nvim/AppRun /usr/bin/nvim
+  if [[ `whoami` == "root" ]]; then
+    ln -sf ~/opt/nvim/AppRun /usr/local/bin/nvim
+  else
+    sudo ln -sf ~/opt/nvim/AppRun /usr/local/bin/nvim
+  fi
 fi
 
 # golang
