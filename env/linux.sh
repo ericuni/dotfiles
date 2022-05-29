@@ -14,7 +14,7 @@ cd opt
 which nvim
 if [[ $? -ne 0 ]]; then
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-  tar zxvf nvim-linux64.tar.gz
+  tar zxf nvim-linux64.tar.gz
   mv nvim-linux64 nvim
 fi
 
@@ -25,6 +25,14 @@ if [[ ! -e go ]]; then
   tar zxf go.tar.gz
   mv go go${version}
   ln -sf go${version} go
+fi
+
+which go
+if [[ $? -eq 0 ]]; then
+  which gopls
+  if [[ $? -ne 0 ]]; then
+    go install golang.org/x/tools/gopls@latest
+  fi
 fi
 
 # node
@@ -46,7 +54,16 @@ fi
 
 cd -
 
-cargo install lsd ripgrep
+function install_rust_cmds() {
+  for cmd in $@; do
+    which $cmd
+    if [[ $? -ne 0 ]]; then
+      cargo install $cmd
+    fi
+  done
+}
+
+install_rust_cmds lsd ripgrep
 
 exit 0
 
