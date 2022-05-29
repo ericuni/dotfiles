@@ -4,6 +4,7 @@
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.experimentalFeatures": "Enabled",
     "cmake.configureOnOpen": true,
+    "editor.inlineSuggest.enabled": true,
     "editor.rulers": [120],
     "editor.suggestSelection": "first",
     "editor.tabSize": 2,
