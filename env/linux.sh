@@ -63,7 +63,12 @@ function install_rust_cmds() {
   done
 }
 
-install_rust_cmds lsd ripgrep
+install_rust_cmds lsd
+
+which rg
+if [[ $? -ne 0 ]]; then
+  cargo install ripgrep
+fi
 
 exit 0
 
