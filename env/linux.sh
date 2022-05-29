@@ -3,6 +3,11 @@ set -x
 
 # Debian 9 linux 4.14
 
+which zsh
+if [[ $? -ne 0 ]]; then
+  sudo apt install zsh
+fi
+
 cd ~
 if [[ ! -d opt ]]; then
   mkdir opt
@@ -43,6 +48,14 @@ if [[ ! -e node ]]; then
   tar xf node.tar
   ln -sf node-${version}-linux-x64 node
   rm node.tar
+fi
+
+which npm
+if [[ $? -eq 0 ]]; then
+  npm list -g | grep neovim
+  if [[ $? -ne 0 ]]; then
+    npm install -g neovim  ## make coc to work with gopls
+  fi
 fi
 
 # rust
