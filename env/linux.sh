@@ -54,7 +54,7 @@ which npm
 if [[ $? -eq 0 ]]; then
   npm list -g | grep neovim
   if [[ $? -ne 0 ]]; then
-    npm install -g neovim
+    npm install -g neovim  ## make coc to work with gopls
   fi
 fi
 
