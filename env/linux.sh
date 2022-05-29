@@ -50,6 +50,14 @@ if [[ ! -e node ]]; then
   rm node.tar
 fi
 
+which npm
+if [[ $? -eq 0 ]]; then
+  npm list -g | grep neovim
+  if [[ $? -ne 0 ]]; then
+    npm install -g neovim
+  fi
+fi
+
 # rust
 which cargo
 if [[ $? -ne 0 ]]; then
