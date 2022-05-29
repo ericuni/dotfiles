@@ -21,6 +21,7 @@ if [[ $? -ne 0 ]]; then
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
   tar zxf nvim-linux64.tar.gz
   mv nvim-linux64 nvim
+  rm nvim-linux64.tar.gz
 fi
 
 # golang
@@ -30,6 +31,7 @@ if [[ ! -e go ]]; then
   tar zxf go.tar.gz
   mv go go${version}
   ln -sf go${version} go
+  rm go.tar.gz
 fi
 
 which go
