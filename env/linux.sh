@@ -85,5 +85,10 @@ if [[ $? -ne 0 ]]; then
   cargo install ripgrep
 fi
 
+which fd
+if [[ $? -ne 0 ]]; then
+  cargo install fd-find
+fi
+
 exit 0
 
