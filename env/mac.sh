@@ -34,12 +34,12 @@ brew install --cask devtoys iterm2 utools postman
 
 ## other
 brew install --cask baiduinput \
+  maczip \
   v2rayu \
   yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive qqmusic iina \
-  flux
+  neteasemusic qqlive qqmusic iina
 
 exit 0
 

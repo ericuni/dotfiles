@@ -4,6 +4,7 @@
 
 - yinxiangbiji: 印象笔记
 - adrive: 阿里网盘
+- maczip: eZip
 
 ## App Store
 - Get Plain Text
@@ -13,5 +14,4 @@
 - Downie
 - 壁纸: pap.er
 - docker
-- eZip
 
