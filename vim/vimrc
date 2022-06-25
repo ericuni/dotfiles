@@ -107,8 +107,6 @@ Plug 'ianva/vim-youdao-translater'
 " conquer of completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'github/copilot.vim'
-
 " 用来提供一个导航目录的侧边栏
 Plug 'scrooloose/nerdtree'
 
