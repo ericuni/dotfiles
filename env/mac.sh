@@ -6,7 +6,7 @@ which brew
 if [[ $? -eq 0 ]]; then
   brew update  ## Update homebrew itself and the package lists
   brew upgrade
-  brew upgrade --cask
+  brew upgrade --cask --greedy
   brew cleanup
 
   exit 0
