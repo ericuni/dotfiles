@@ -148,3 +148,22 @@ func run(ctx context.Context) error {
 }
 endsnippet
 
+snippet cronjob "cronjob" b
+func main() {
+	defer logs.Flush()
+
+	ctx := context.Background()
+	ctx = ctxvalues.SetLogID(ctx, logid.GetNginxID())
+
+	if err := run(ctx); err != nil {
+		logs.CtxError(ctx, "run error %+v", err)
+		return
+	}
+
+	logs.CtxInfo(ctx, "done")
+}
+
+func run(ctx context.Context) error {
+	return nil
+}
+endsnippet
