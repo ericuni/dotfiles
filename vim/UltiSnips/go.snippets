@@ -5,7 +5,7 @@ import (
 )
 */
 type ${1:Table}Repo interface {
-	// sql(value="select * from ${2:table} where id = #{id}", mode = "named_placeholder")
+	// sql(value="select * from ${2:table} where id = #id", mode = "named_placeholder")
 	FindByID(ctx context.Context, id int64) (*ddl.${1:Table}, error)
 }
 
@@ -18,9 +18,24 @@ var (
 func Init${1:Table}(testdb *gorm.DB) {
 	${2:table}Once.Do(func() {
 		if testdb != nil {
+			${2:table}R = New${1:Table}Repo(testdb)
+			${2:table}W = ${2:table}R
 			return
 		}
+
+		${2:table}R = New${1:Table}Repo(db.GetMysql().ForReadV2())
+		${2:table}W = New${1:Table}Repo(db.GetMysql().ForWriteV2())
 	})
+}
+
+func Get${1:Table}R() ${1:Table}Repo {
+	Init${1:Table}(nil)
+	return ${2:table}R
+}
+
+func Get${1:Table}W() ${1:Table}Repo {
+	Init${1:Table}(nil)
+	return ${2:table}W
 }
 endsnippet
 
