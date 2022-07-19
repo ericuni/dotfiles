@@ -1,3 +1,55 @@
+snippet repo "comments_build_tools orm interface" b
+/*
+import (
+	"gorm.io/gorm"
+)
+*/
+type ${1:Table}Repo interface {
+	// sql(value="select * from ${2:table} where id = #{id}", mode = "named_placeholder")
+	FindByID(ctx context.Context, id int64) (*ddl.${1:Table}, error)
+}
+
+var (
+	${2:table}R    ${1:Table}Repo
+	${2:table}W    ${1:Table}Repo
+	${2:table}Once sync.Once
+)
+
+func Init${1:Table}(testdb *gorm.DB) {
+	${2:table}Once.Do(func() {
+		if testdb != nil {
+			return
+		}
+	})
+}
+endsnippet
+
+snippet rpc "rpc service" b
+func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp ${2:service}.${1:method}Response, err error) {
+	rsp = &${2:service}.${1:method}Response{
+		BaseResp: base.NewBaseResp(),
+	}
+	defer func() {
+		if err != nil {
+			fault.SetBaseResp(ctx, rsp.BaseResp, err)
+		}
+	}()
+
+	if err := is${1:method}RequestValid(req); err != nil {
+		return rsp, errors.Trace(fault.New(err_code.PopErrInternalError, err.Error()))
+	}
+	return
+}
+
+func is${1:method}RequestValid(req *${2:service}.${1:method}Reuqest) error {
+	if req == nil {
+		return errors.New("req nil")
+	}
+
+	return nil
+}
+endsnippet
+
 snippet handler_faas_cronjob "faas cronjob handler template" b
 // ${1:Template}Handler .
 type $1Handler struct {
