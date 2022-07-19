@@ -40,7 +40,7 @@ func Get${1:Table}W() ${1:Table}Repo {
 endsnippet
 
 snippet rpc "rpc service" b
-func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp ${2:service}.${1:method}Response, err error) {
+func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp *${2:service}.${1:method}Response, err error) {
 	rsp = &${2:service}.${1:method}Response{
 		BaseResp: base.NewBaseResp(),
 	}
@@ -56,7 +56,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp
 	return
 }
 
-func is${1:method}RequestValid(req *${2:service}.${1:method}Reuqest) error {
+func is${1:method}RequestValid(req *${2:service}.${1:method}Request) error {
 	if req == nil {
 		return errors.New("req nil")
 	}
