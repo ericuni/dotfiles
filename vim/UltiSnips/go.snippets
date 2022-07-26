@@ -1,4 +1,4 @@
-snippet repo "comments_build_tools orm interface" b
+snippet entry_repo "comments_build_tools orm interface" b
 /*
 import (
 	"gorm.io/gorm"
@@ -39,7 +39,16 @@ func Get${1:Table}W() ${1:Table}Repo {
 }
 endsnippet
 
-snippet rpc "rpc service" b
+snippet entry_hertz "hertz service" b
+func ${1:method}(ctx context.Context, request *model.${1}Reuqest) (data *model.${1}Data, err error) {
+	data = &model.${1}Data{
+	}
+	return data, nil
+}
+
+endsnippet
+
+snippet entry_kitex "kitex service" b
 func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp *${2:service}.${1:method}Response, err error) {
 	rsp = &${2:service}.${1:method}Response{
 		BaseResp: base.NewBaseResp(),
@@ -51,8 +60,9 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Request) (rsp
 	}()
 
 	if err := is${1:method}RequestValid(req); err != nil {
-		return rsp, errors.Trace(fault.New(err_code.PopErrInternalError, err.Error()))
+		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
+
 	return
 }
 
