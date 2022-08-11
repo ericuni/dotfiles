@@ -129,12 +129,6 @@ func (s *$1Suite) SetupSuite() {
 	s.ctx = context.Background()
 }
 
-func (s *$1Suite) TearDownSuite() {
-}
-
-func (s *$1Suite) SetupTest() {
-}
-
 func (s *$1Suite) TearDownTest() {
 	logs.Flush()
 }
@@ -142,53 +136,6 @@ func (s *$1Suite) TearDownTest() {
 func (s *$1Suite) TestEx() {
 	assert := s.Assert()
 	t := s.T()
-}
-
-func Test$1(t *testing.T) {
-	suite.Run(t, new($1Suite))
-}
-endsnippet
-
-snippet ut_http "http unit test template" b
-type ${1:Template}Suite struct {
-	suite.Suite
-	ctx    context.Context
-	router *ginex.Engine
-	w      *httptest.ResponseRecorder
-}
-
-func (s *$1Suite) SetupSuite() {
-	ginex.Init()
-	router := ginex.Default()
-	router.Get()
-	s.router = router
-}
-
-func (s *$1Suite) SetupTest() {
-	ctx := context.Background()
-	ctx = kitutil.NewCtxWithLogID(ctx, logid.GetNginxID())
-	s.ctx = ctx
-	s.w = httptest.NewRecorder()
-}
-
-func (s *$1Suite) TearDownTest() {
-	logs.Flush()
-}
-
-func (s *$1Suite) TestEx() {
-	assert := s.Assert()
-	t := s.T()
-
-	url := fmt.Sprintf("")
-	req := httptest.NewRequest(http.MethodGet, url, nil)
-	s.router.ServeHTTP(s.w, req)
-
-	rsp := s.w.Result()
-	defer rsp.Body.Close()
-	assert.Equal(http.StatusOK, rsp.StatusCode)
-
-	bs, _ := ioutil.ReadAll(rsp.Body)
-	t.Log(string(bs))
 }
 
 func Test$1(t *testing.T) {
@@ -244,3 +191,4 @@ func run(ctx context.Context) error {
 	return nil
 }
 endsnippet
+
