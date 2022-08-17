@@ -12,7 +12,7 @@
     "extensions.ignoreRecommendations": false,
     "go.autocompleteUnimportedPackages": true,
     "go.formatTool": "goimports",
-    "go.testFlags": ["-v", "-gcflags=all=-l", "-cover"],
+    "go.testFlags": ["-race", "-v", "-gcflags=all=-l", "-cover"],
     "go.useLanguageServer": true,
     "gopls": {
         "build.experimentalWorkspaceModule": true
@@ -41,5 +41,5 @@
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
-    "workbench.startupEditor": "gettingStarted"
+    "workbench.startupEditor": "welcomePage"
 }
