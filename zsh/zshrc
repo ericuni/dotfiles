@@ -91,8 +91,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL
 source_path "$HOME/.fzf.zsh"
 
 # autojump
-source_path "/usr/local/etc/profile.d/autojump.sh"  ## mac homebrew
-source_path "/usr/share/autojump/autojump.sh"       ## linux
+which zoxide >/dev/null
+if [[ $? -eq 0 ]]; then
+  eval "$(zoxide init zsh)"
+fi
 
 # git
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page

@@ -69,7 +69,7 @@ function install_rust_special_cmd() {
   fi
 }
 
-install_rust_cmds bat procs
+install_rust_cmds bat procs zoxide
 install_rust_special_cmd btm bottom
 
 exit 0
