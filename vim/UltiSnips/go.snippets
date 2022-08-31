@@ -59,14 +59,14 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 		}
 	}()
 
-	if err := is${1:method}ReqValid(req); err != nil {
+	if err := validate${1:method}Req(req); err != nil {
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
 
 	return
 }
 
-func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
+func validate${1:method}Req(req *${2:service}.${1:method}Req) error {
 	if req == nil {
 		return errors.New("req nil")
 	}
