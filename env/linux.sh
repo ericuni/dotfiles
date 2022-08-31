@@ -78,14 +78,14 @@ if [[ $? -ne 0 ]]; then
   rm protoc-gen-go.tar.gz
 fi
 
+cd -
+
 # rust
 which cargo
 if [[ $? -ne 0 ]]; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
    && . $HOME/.cargo/env && export CARGO_NET_GIT_FETCH_WITH_CLI=true
 fi
-
-cd -
 
 function install_rust_cmds() {
   for cmd in $@; do
@@ -96,17 +96,19 @@ function install_rust_cmds() {
   done
 }
 
+function install_rust_special_cmd() {
+  cmd=$1
+  pkg=$2
+
+  which $cmd
+  if [[ $? -ne 0 ]]; then
+    cargo install $pkg
+  fi
+}
+
 install_rust_cmds lsd
-
-which rg
-if [[ $? -ne 0 ]]; then
-  cargo install ripgrep
-fi
-
-which fd
-if [[ $? -ne 0 ]]; then
-  cargo install fd-find
-fi
+install_rust_special_cmd rg ripgrep
+install_rust_special_cmd fd fd-find
 
 exit 0
 

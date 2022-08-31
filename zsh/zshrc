@@ -35,6 +35,7 @@ function source_path() {
 }
 
 ## replace vi nvim vim
+## use $2 to replace $1, if $2 not found, use $3 to replace $1
 function replace() {
   if [[ $# -lt 2 ]]; then
     echo "arguments error" >&2
@@ -75,6 +76,9 @@ append_path $HOME/opt/nvim/bin
 replace vi nvim vim
 
 replace fd fdfind
+replace cat bat
+replace top btm
+replace ps procs
 
 replace ls lsd
 alias ll="ls -l"
