@@ -60,6 +60,24 @@ if [[ $? -eq 0 ]]; then
   fi
 fi
 
+# protoc
+which protoc
+if [[ $? -ne 0 ]]; then
+  mkdir protoc
+  cd protoc
+
+  local version="21.5"
+  curl -L https://github.com/protocolbuffers/protobuf/releases/download/v${version}/protoc-${version}-linux-x86_64.zip >protoc.zip
+  unzip protoc.zip
+  rm protoc.zip
+
+  version="1.28.1"
+  curl -L https://github.com/protocolbuffers/protobuf-go/releases/download/v${version}/protoc-gen-go.v${version}.linux.amd64.tar.gz >protoc-gen-go.tar.gz
+  tar xf protoc-gen-go.tar.gz
+  mv protoc-gen-go bin/
+  rm protoc-gen-go.tar.gz
+fi
+
 # rust
 which cargo
 if [[ $? -ne 0 ]]; then

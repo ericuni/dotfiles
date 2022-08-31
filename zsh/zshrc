@@ -135,17 +135,9 @@ export GO111MODULE=on
 export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
-append_path $HOME/opt/node/bin   ## node
-append_path $HOME/.cargo/bin     ## rust
-append_path $HOME/opt/cmake/bin  ## cmake
-
-# clang + llvm
-p=$HOME/opt/clang+llvm
-if [ -d $p ]; then
-  export PATH=$p/bin:$PATH
-  export LIBRARY_PATH=$p/lib:$LIBRARY_PATH
-  export CPLUS_INCLUDE_PATH=$p/include:$CPLUS_INCLUDE_PATH
-fi
+append_path $HOME/.cargo/bin      ## rust
+append_path $HOME/opt/node/bin    ## node
+append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
 # java
 if [ -d $HOME/opt/jdk ]; then
