@@ -3,23 +3,26 @@ set -x
 
 source util.sh || exit 1
 
-# brew
-# [Conditional Expressions](https://zsh.sourceforge.io/Doc/Release/Conditional-Expressions.html)
-which brew
-if [[ $? -eq 0 && -z $GITHUB_ACTIONS ]]; then
-  brew update  ## Update homebrew itself and the package lists
-  brew upgrade
-  brew upgrade --cask --greedy
-  brew cleanup
+# github already has brew installed
+if [[ -z $GITHUB_ACTIONS ]]; then
+  # brew
+  which brew
+  if [[ $? -eq 0 ]]; then
+    brew update  ## Update homebrew itself and the package lists
+    brew upgrade
+    brew upgrade --cask --greedy
+    brew cleanup
 
-  exit 0
+    exit 0
+  fi
+
+  # install brew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  ## 去掉各种设置密码的规则限制
+  ## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
+  pwpolicy -clearaccountpolicies
 fi
-
-## 去掉各种设置密码的规则限制
-## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
-pwpolicy -clearaccountpolicies
-
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # nvim
 brew install node neovim ripgrep

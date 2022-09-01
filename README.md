@@ -1,2 +1,3 @@
-# dotfiles
-linux conf files
+[![Linux](https://github.com/ericuni/dotfiles/actions/workflows/linux.yml/badge.svg)](https://github.com/ericuni/dotfiles/actions/workflows/linux.yml)
+[![MacOS](https://github.com/ericuni/dotfiles/actions/workflows/mac.yml/badge.svg)](https://github.com/ericuni/dotfiles/actions/workflows/mac.yml)
+
