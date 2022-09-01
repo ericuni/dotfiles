@@ -4,8 +4,9 @@ set -x
 source util.sh || exit 1
 
 # brew
+# [Conditional Expressions](https://zsh.sourceforge.io/Doc/Release/Conditional-Expressions.html)
 which brew
-if [[ $? -eq 0 -a -z $GITHUB_ACTIONS ]]; then
+if [[ $? -eq 0 && -z $GITHUB_ACTIONS ]]; then
   brew update  ## Update homebrew itself and the package lists
   brew upgrade
   brew upgrade --cask --greedy
