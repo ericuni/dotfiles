@@ -1,6 +1,8 @@
 #!/bin/zsh
 set -x
 
+source util.sh || exit 1
+
 # Debian 9 linux 4.14
 
 which zsh
@@ -81,31 +83,7 @@ fi
 cd -
 
 # rust
-which cargo
-if [[ $? -ne 0 ]]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-   && . $HOME/.cargo/env && export CARGO_NET_GIT_FETCH_WITH_CLI=true
-fi
-
-function install_rust_cmds() {
-  for cmd in $@; do
-    which $cmd
-    if [[ $? -ne 0 ]]; then
-      cargo install $cmd
-    fi
-  done
-}
-
-function install_rust_special_cmd() {
-  cmd=$1
-  pkg=$2
-
-  which $cmd
-  if [[ $? -ne 0 ]]; then
-    cargo install $pkg
-  fi
-}
-
+install_rust
 install_rust_cmds lsd zoxide
 install_rust_special_cmd rg ripgrep
 install_rust_special_cmd fd fd-find
