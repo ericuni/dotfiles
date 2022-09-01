@@ -35,6 +35,8 @@ brew install tree lrzsz
 ## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
+brew install bat procs zoxide bottom
+
 ## dev
 brew install --cask devtoys iterm2 utools postman
 
@@ -49,8 +51,6 @@ brew install --cask baiduinput \
 
 # rust
 install_rust
-install_rust_cmds bat procs zoxide
-install_rust_special_cmd btm bottom
 
 exit 0
 
