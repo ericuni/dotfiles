@@ -5,7 +5,7 @@ source util.sh || exit 1
 
 # brew
 which brew
-if [[ $? -eq 0 ]]; then
+if [[ $? -eq 0 -a -z $GITHUB_ACTIONS ]]; then
   brew update  ## Update homebrew itself and the package lists
   brew upgrade
   brew upgrade --cask --greedy
@@ -44,7 +44,6 @@ brew install --cask baiduinput \
   neteasemusic qqlive qqmusic iina
 
 # rust
-
 install_rust
 install_rust_cmds bat procs zoxide
 install_rust_special_cmd btm bottom
