@@ -132,6 +132,8 @@ source_path $HOME/git/dotfiles/zsh/bazelfunctions.zsh
 # golang
 if [[ "$os" == "linux" ]]; then
   export GOROOT="$HOME/opt/go"
+else
+  export GOROOT="/usr/local/Cellar/go@1.18/1.18.5/libexec"
 fi
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
