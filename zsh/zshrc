@@ -76,7 +76,6 @@ append_path $HOME/opt/nvim/bin
 replace vi nvim vim
 
 replace fd fdfind
-replace cat bat
 replace ls lsd
 
 alias ll="ls -l"
