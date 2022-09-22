@@ -17,6 +17,17 @@ fi
 
 cd opt
 
+# github does not support direct password when using https, needs gcm
+which git-credential-manager-core
+if [[ $? -ne 0 ]]; then
+  # https://github.com/GitCredentialManager/git-credential-manager/blob/main/README.md#download-and-install
+  local version="2.0.785"
+  curl https://github.com/GitCredentialManager/git-credential-manager/releases/download/v${version}/gcm-linux_amd64.${version}.deb >gcm.deb
+  sudo dpkg -i gcm.deb
+  git-credential-manager-core configure
+  rm gcm.deb
+fi
+
 # neovim
 which nvim
 if [[ $? -ne 0 ]]; then
