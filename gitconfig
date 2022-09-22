@@ -5,4 +5,9 @@
 	editor = vim
 	autocrlf = false
 	quotepath = false
+[credential]
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+  credentialStore = cache
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 
