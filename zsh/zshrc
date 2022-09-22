@@ -128,7 +128,7 @@ source_path $HOME/git/dotfiles/zsh/bazelfunctions.zsh
 if [[ "$os" == "linux" ]]; then
   export GOROOT="$HOME/opt/go"
 else
-  export GOROOT="/usr/local/Cellar/go@1.18/1.18.5/libexec"
+  export GOROOT="/usr/local/Cellar/go/1.19.1/libexec"
 fi
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
@@ -177,7 +177,7 @@ function switch_ssh() {
 
 # docker machine
 function dm() {
-  if [[ "x$1" == "xinit" ]]; then
+  if [[ $1 == "init" ]]; then
     name=$2
     if [[ -z $name ]]; then
       echo "name invalid" >&2
@@ -202,6 +202,8 @@ function dm() {
       --hostname $name \
       --name $name \
       $image
+  elif [[ $1 == "clear" ]]; then
+    docker ps -a | grep -v dev | grep -v "CONTAINER ID" | awk '{print $1}' | xargs docker rm
   else
     docker exec -it $1 /bin/zsh
   fi

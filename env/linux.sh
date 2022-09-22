@@ -28,7 +28,7 @@ fi
 
 # golang
 if [[ ! -e go ]]; then
-  local version="1.17.10"
+  local version="1.19.1"
   curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
   tar zxf go.tar.gz
   mv go go${version}
@@ -46,7 +46,7 @@ fi
 
 # node
 if [[ ! -e node ]]; then
-  local version="v16.14.0"
+  local version="v16.17.0"
   curl https://nodejs.org/dist/${version}/node-${version}-linux-x64.tar.xz >node.tar.xz
   xz -d node.tar.xz
   tar xf node.tar
