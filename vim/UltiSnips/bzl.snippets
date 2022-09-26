@@ -1,4 +1,4 @@
-snippet cc_test "cc test template" b
+snippet snippet_cc_test "cc test template" b
 cc_test(
   name = '$1',
   srcs = ['$1.cc'],
@@ -6,7 +6,7 @@ cc_test(
 )
 endsnippet
 
-snippet cc_library "cc library template" b
+snippet snippet_cc_library "cc library template" b
 cc_library(
   name = '$1',
   hdrs = ['$1.h'],
@@ -15,7 +15,7 @@ cc_library(
 )
 endsnippet
 
-snippet cc_binary "cc binary template" b
+snippet snippet_cc_binary "cc binary template" b
 cc_binary(
   name = '$1',
   srcs = ['$1.cc'],

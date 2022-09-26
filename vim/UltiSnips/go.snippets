@@ -1,4 +1,4 @@
-snippet entry_repo "comments_build_tools orm interface" b
+snippet snippet_repo "comments_build_tools orm interface" b
 /*
 import (
 	"gorm.io/gorm"
@@ -39,7 +39,7 @@ func Get${1:Table}W() ${1:Table}Repo {
 }
 endsnippet
 
-snippet entry_hertz "hertz service" b
+snippet snippet_hertz "hertz service" b
 func ${1:method}(ctx context.Context, request *model.${1}Req) (data *model.${1}Data, err error) {
 	data = &model.${1}Data{
 	}
@@ -48,7 +48,7 @@ func ${1:method}(ctx context.Context, request *model.${1}Req) (data *model.${1}D
 
 endsnippet
 
-snippet entry_kitex "kitex service" b
+snippet snippet_kitex "kitex service" b
 func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${2:service}.${1:method}Resp, err error) {
 	rsp = &${2:service}.${1:method}Resp{
 		BaseResp: base.NewBaseResp(),
@@ -104,7 +104,7 @@ func (h *$1Handler) GetTags() map[string]string {
 }
 endsnippet
 
-snippet entry_test_suite "unit test template" b
+snippet snippet_test_suite "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 }
@@ -119,7 +119,7 @@ func Test$1(t *testing.T) {
 }
 endsnippet
 
-snippet entry_test_suite_bytedance "unit test template" b
+snippet snippet_test_suite_bytedance "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx context.Context
@@ -149,7 +149,7 @@ flag.Set("log_dir", "./")
 flag.Parse()
 endsnippet
 
-snippet entry_cmd "cmd" b
+snippet snippet_cmd "cmd" b
 func init() {
 	flag.Set("alsologtostderr", "true")
 	flag.Set("log_dir", "./")
@@ -172,7 +172,7 @@ func run(ctx context.Context) error {
 }
 endsnippet
 
-snippet entry_cronjob "cronjob" b
+snippet snippet_cronjob "cronjob" b
 func main() {
 	defer logs.Flush()
 
