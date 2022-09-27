@@ -97,6 +97,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 ```
 
 ## [junegunn/vim-easy-align](https://github.com/junegunn/vim-easy-align)
+markdown table: `vipga*|` or `gaip*|`
 
 ## [preservim/nerdcommenter](https://github.com/preservim/nerdcommenter)
 - `[count]<leader>cc`: 注释从当前行往下数的 count 行,count 可省略,默认值为 1 (cc 是 NERDCommenterComment 的缩写).
