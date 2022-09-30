@@ -175,7 +175,7 @@ func Test$1(t *testing.T) {
 }
 endsnippet
 
-snippet snippet_test_suite_bytedance "unit test template" b
+snippet snippet_test_bytedance "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
 	ctx context.Context
@@ -192,6 +192,57 @@ func (s *$1Suite) TearDownTest() {
 func (s *$1Suite) TestEx() {
 	assert := s.Assert()
 	t := s.T()
+}
+
+func Test$1(t *testing.T) {
+	suite.Run(t, new($1Suite))
+}
+endsnippet
+
+snippet snippet_test_kitex "unit test template" b
+type ${1:Template}Suite struct {
+	suite.Suite
+	ctx context.Context
+}
+
+func (s *${1:method}Suite) SetupSuite() {
+	s.ctx = context.Background()
+}
+
+func (s *$1Suite) TearDownTest() {
+	logs.Flush()
+}
+
+func (s *$1Suite) Test_isValid() {
+	assert := s.Assert()
+	t := s.T()
+
+	t.Run("ok", func(t *testing.T) {
+		req := &${2:service}.${1:method}Req{
+		}
+		assert.Nil(is${1:method}ReqValid(req))
+	})
+
+	tds := []struct {
+		name string
+		req  *${2:service}.${1:method}Req
+	}{
+		{
+			name: "req nil",
+			req:  nil,
+		},
+		{
+			name: "xxx",
+			req:  &${2:service}.${1:method}Req{},
+		},
+	}
+
+	for _, td := range tds {
+		t.Run(td.name, func(t *testing.T) {
+			err := is${1:method}ReqValid(td.req)
+			assert.ErrorContains(err, td.name)
+		})
+	}
 }
 
 func Test$1(t *testing.T) {
