@@ -1,12 +1,22 @@
-snippet snippet_repo "comments_build_tools orm interface" b
+snippet snippet_cbt_repo "cbt orm interface" b
 /*
 import (
 	"gorm.io/gorm"
 )
 */
 type ${1:Table}Repo interface {
+	// transaction
+	BeginWithHandler(handler *gorm.DB) ${1:Table}Repo
+
+	// inserter()
+	Insert(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
+
 	// sql(value="select * from ${2:table} where id = #id", mode = "named_placeholder")
-	FindByID(ctx context.Context, id int64) (*ddl.${1:Table}, error)
+	Find(ctx context.Context, id int64) (*ddl.${1:Table}, error)
+
+	// used in admin
+	// updater(v2="true", skipZero="false", skipFields=["create_time", "creator"])
+	Update(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
 }
 
 var (
@@ -23,7 +33,7 @@ func Init${1:Table}(testdb *gorm.DB) {
 			return
 		}
 
-		${2:table}R = New${1:Table}Repo(db.GetMysql().ForReadV2())
+		${2:table}R = New${1:Table}Repo(db.GetMysql().ForOnlyRead())
 		${2:table}W = New${1:Table}Repo(db.GetMysql().ForWriteV2())
 	})
 }
@@ -36,6 +46,52 @@ func Get${1:Table}R() ${1:Table}Repo {
 func Get${1:Table}W() ${1:Table}Repo {
 	Init${1:Table}(nil)
 	return ${2:table}W
+}
+endsnippet
+
+snippet snippet_cbt_transaction "cbt transaction" b
+/*
+import (
+	"gorm.io/gorm"
+)
+*/
+type TransactionManager interface {
+	// transaction(action="begin")
+	Begin(ctx context.Context) (TransactionManager, error)
+
+	// transaction(action="commit")
+	Commit(ctx context.Context) (*gorm.DB, error)
+
+	// transaction(action="rollback")
+	Rollback(ctx context.Context) (*gorm.DB, error)
+
+	// DoTransaction 自动实现commit和rollback
+	// transaction(action="do_transaction")
+	DoTransaction(ctx context.Context, fn func(ctx context.Context, inter TransactionManager) error) error
+
+	// delegation()
+	Get${1:Table}Repo(repo ${1:Table}Repo) ${1:Table}Repo
+}
+
+var (
+	transactionManager     TransactionManager
+	transactionManagerOnce sync.Once
+)
+
+func InitTransactionManager(testdb *gorm.DB) {
+	transactionManagerOnce.Do(func() {
+		if testdb != nil {
+			transactionManager = NewTransactionManager(testdb)
+			return
+		}
+
+		transactionManager = NewTransactionManager(db.GetMysql().ForWriteV2())
+	})
+}
+
+func GetTransactionManager() TransactionManager {
+	InitTransactionManager(nil)
+	return transactionManager
 }
 endsnippet
 
@@ -59,14 +115,14 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 		}
 	}()
 
-	if err := validate${1:method}Req(req); err != nil {
+	if err := is${1:method}ReqValid(req); err != nil {
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
 
 	return
 }
 
-func validate${1:method}Req(req *${2:service}.${1:method}Req) error {
+func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 	if req == nil {
 		return errors.New("req nil")
 	}
