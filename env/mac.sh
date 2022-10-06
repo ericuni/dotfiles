@@ -37,6 +37,8 @@ brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-
 
 brew install fd bat procs zoxide bottom
 
+brew install mysql
+
 ## dev
 brew install --cask devtoys iterm2 utools postman
 

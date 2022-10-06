@@ -28,3 +28,8 @@ auth sufficient pam_tid.so
 ```
 注: 加到最后一行不行
 
+mysql
+```bash
+brew services start/stop/info/run mysql
+```
+
