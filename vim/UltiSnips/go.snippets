@@ -106,13 +106,12 @@ endsnippet
 
 snippet snippet_kitex "kitex service" b
 func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${2:service}.${1:method}Resp, err error) {
+	const where = "${1:method}"
 	rsp = &${2:service}.${1:method}Resp{
 		BaseResp: base.NewBaseResp(),
 	}
 	defer func() {
-		if err != nil {
-			fault.SetBaseResp(ctx, rsp.BaseResp, err)
-		}
+		fault.SetBaseResp(ctx, rsp.BaseResp, err)
 	}()
 
 	if err := is${1:method}ReqValid(req); err != nil {
@@ -131,15 +130,29 @@ func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 }
 endsnippet
 
-snippet snippet_kitex_resp "kitex service" b
+snippet snippet_kitex_req "kitex service with pop.RpcReq as request" b
+func ${1:method}(ctx context.Context, req *pop.RpcReq) (rsp *${2:service}.${1:method}Resp, err error) {
+	const where = "${1:method}"
+	rsp = &${2:service}.${1:method}Resp{
+		BaseResp: base.NewBaseResp(),
+	}
+	defer func() {
+		fault.SetBaseResp(ctx, rsp.BaseResp, err)
+	}()
+
+	return
+}
+
+endsnippet
+
+snippet snippet_kitex_resp "kitex service with pop.RpcResp as response" b
 func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *pop.RpcResp, err error) {
+	const where = "${1:method}"
 	rsp = &pop.RpcResp{
 		BaseResp: base.NewBaseResp(),
 	}
 	defer func() {
-		if err != nil {
-			fault.SetBaseResp(ctx, rsp.BaseResp, err)
-		}
+		fault.SetBaseResp(ctx, rsp.BaseResp, err)
 	}()
 
 	if err := is${1:method}ReqValid(req); err != nil {
