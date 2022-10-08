@@ -131,6 +131,33 @@ func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 }
 endsnippet
 
+snippet snippet_kitex_resp "kitex service" b
+func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *pop.RpcResp, err error) {
+	rsp = &pop.RpcResp{
+		BaseResp: base.NewBaseResp(),
+	}
+	defer func() {
+		if err != nil {
+			fault.SetBaseResp(ctx, rsp.BaseResp, err)
+		}
+	}()
+
+	if err := is${1:method}ReqValid(req); err != nil {
+		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
+	}
+
+	return
+}
+
+func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
+	if req == nil {
+		return errors.New("req nil")
+	}
+
+	return nil
+}
+endsnippet
+
 snippet handler_faas_cronjob "faas cronjob handler template" b
 // ${1:Template}Handler .
 type $1Handler struct {
