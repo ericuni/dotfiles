@@ -103,6 +103,14 @@ func ${1:method}(ctx context.Context, request *model.${1}Req) (data *model.${1}D
 }
 endsnippet
 
+snippet snippet_hertz_manager_req "hertz method with pop.ManagerReq as request" b
+func ${1:method}(ctx context.Context, request *pop.ManagerReq) (data *model.${1}Data, err error) {
+	data = &model.${1}Data{
+	}
+	return data, nil
+}
+endsnippet
+
 snippet snippet_hertz_resp "hertz method with pop.HttpResp as response" b
 func ${1:method}(ctx context.Context, request *model.${1}Req) error {
 	return nil
