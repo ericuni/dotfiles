@@ -5,6 +5,7 @@
 - yinxiangbiji: 印象笔记
 - adrive: 阿里网盘
 - maczip: eZip
+- maccy: clipboard manager
 
 ## App Store
 - Get Plain Text

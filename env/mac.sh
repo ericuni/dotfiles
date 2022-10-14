@@ -44,6 +44,7 @@ brew install --cask devtoys iterm2 utools postman
 
 ## other
 brew install --cask baiduinput \
+  maccy \
   maczip \
   v2rayu \
   yinxiangbiji \
