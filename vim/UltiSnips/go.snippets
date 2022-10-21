@@ -313,7 +313,7 @@ endsnippet
 
 snippet glog_init "init glog" b
 flag.Set("alsologtostderr", "true")
-flag.Set("log_dir", "./")
+flag.Set("logtostderr", "true")
 flag.Parse()
 endsnippet
 
@@ -330,6 +330,7 @@ func main() {
 	ctx := context.Background()
 	if err := run(ctx); err != nil {
 		glog.Errorf("run error %+v", err)
+		os.Exit(-1)
 		return
 	}
 	glog.Infoln("done")
@@ -340,7 +341,11 @@ func run(ctx context.Context) error {
 }
 endsnippet
 
-snippet snippet_cronjob "cronjob" b
+snippet snippet_cmd_bytedance "cmd at bytedance" b
+func init() {
+	flag.Parse()
+}
+
 func main() {
 	defer logs.Flush()
 
@@ -349,9 +354,9 @@ func main() {
 
 	if err := run(ctx); err != nil {
 		logs.CtxError(ctx, "run error %+v", err)
+		os.Exit(-1)
 		return
 	}
-
 	logs.CtxInfo(ctx, "done")
 }
 
