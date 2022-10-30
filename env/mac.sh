@@ -9,8 +9,15 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   which brew
   if [[ $? -eq 0 ]]; then
     brew update  ## Update homebrew itself and the package lists
-    brew upgrade
-    brew upgrade --cask --greedy
+
+    brew upgrade --formula
+
+    # original brew can only pin formula not cask
+    # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask) supports pinning cask
+    # brew upgrade --cask --greedy
+    brew cu pin adrive
+    brew cu -a
+
     brew cleanup
 
     exit 0
