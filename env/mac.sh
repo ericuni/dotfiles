@@ -13,7 +13,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     brew upgrade --formula
 
     # original brew can only pin formula not cask
-    # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask) supports pinning cask
+    # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
     # brew upgrade --cask --greedy
     brew cu pin adrive
     brew cu -a
@@ -30,6 +30,9 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   ## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
   pwpolicy -clearaccountpolicies
 fi
+
+# suports `brew cu pin`
+brew tap buo/cask-upgrade
 
 # nvim
 brew install node neovim ripgrep
@@ -61,6 +64,7 @@ brew install --cask baiduinput \
 
 # rust
 install_rust
+
 
 exit 0
 
