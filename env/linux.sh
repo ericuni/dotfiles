@@ -39,7 +39,7 @@ fi
 
 # golang
 if [[ ! -e go ]]; then
-  local version="1.19.2"
+  local version="1.19.3"
   curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
   tar zxf go.tar.gz
   mv go go${version}
