@@ -15,9 +15,6 @@
     "go.formatTool": "goimports",
     "go.testFlags": ["-race", "-v", "-gcflags=all=-l", "-cover"],
     "go.useLanguageServer": true,
-    "gopls": {
-        "build.experimentalWorkspaceModule": true
-    },
     "markdownlint.config": {
         "MD007": false,
         "MD010": false,
