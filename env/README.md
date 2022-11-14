@@ -6,6 +6,7 @@
 - adrive: 阿里网盘
 - maczip: eZip
 - maccy: clipboard manager
+- paper: 壁纸pap.er
 
 ### homebrew terminology
 [What does brew tap mean?](https://stackoverflow.com/questions/34408147/what-does-brew-tap-mean)
@@ -29,7 +30,6 @@ Homebrew core repo formulae: downloaded to `/usr/local/Homebrew/Library/taps/hom
 
 ## dmg
 - Downie
-- 壁纸: pap.er
 - docker
 
 ## tips

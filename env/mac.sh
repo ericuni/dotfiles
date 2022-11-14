@@ -16,6 +16,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
     # brew upgrade --cask --greedy
     brew cu pin adrive
+    brew cu pin docker
     brew cu -a
 
     brew cleanup
@@ -54,6 +55,7 @@ brew install --cask devtoys iterm2 utools postman
 
 ## other
 brew install --cask baiduinput \
+  paper \
   maccy \
   maczip \
   v2rayu \
