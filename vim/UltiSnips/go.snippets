@@ -12,10 +12,9 @@ type ${1:Table}Repo interface {
 	Insert(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
 
 	// sql(value="select * from ${2:table} where id = #id", mode = "named_placeholder")
-	Find(ctx context.Context, id int64) (*ddl.${1:Table}, error)
+	Find(ctx context.Context, id int64) (ddl.${1:Table}, error)
 
-	// used in admin
-	// updater(v2="true", skipZero="false", skipFields=["create_time", "creator"])
+	// updater(v2="true", skipZero="false", skipFields=["created_at", "created_by"])
 	Update(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
 }
 
@@ -25,26 +24,20 @@ var (
 	${2:table}Once sync.Once
 )
 
-func Init${1:Table}(testdb *gorm.DB) {
+func init${1:Table}() {
 	${2:table}Once.Do(func() {
-		if testdb != nil {
-			${2:table}R = New${1:Table}Repo(testdb)
-			${2:table}W = ${2:table}R
-			return
-		}
-
 		${2:table}R = New${1:Table}Repo(db.GetMysql().ForOnlyRead())
 		${2:table}W = New${1:Table}Repo(db.GetMysql().ForWriteV2())
 	})
 }
 
 func Get${1:Table}R() ${1:Table}Repo {
-	Init${1:Table}(nil)
+	init${1:Table}(nil)
 	return ${2:table}R
 }
 
 func Get${1:Table}W() ${1:Table}Repo {
-	Init${1:Table}(nil)
+	init${1:Table}(nil)
 	return ${2:table}W
 }
 endsnippet
