@@ -26,18 +26,18 @@ var (
 
 func init${1:Table}() {
 	${2:table}Once.Do(func() {
-		${2:table}R = New${1:Table}Repo(db.GetMysql().ForOnlyRead())
+		${2:table}R = New${1:Table}Repo(db.GetMysql().ForReadOnly())
 		${2:table}W = New${1:Table}Repo(db.GetMysql().ForWriteV2())
 	})
 }
 
 func Get${1:Table}R() ${1:Table}Repo {
-	init${1:Table}(nil)
+	init${1:Table}()
 	return ${2:table}R
 }
 
 func Get${1:Table}W() ${1:Table}Repo {
-	init${1:Table}(nil)
+	init${1:Table}()
 	return ${2:table}W
 }
 endsnippet
