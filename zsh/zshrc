@@ -79,7 +79,7 @@ replace fd fdfind
 replace ls lsd
 
 alias ll="ls -l"
-which btm >/dev/null && alias btm="btm --network_use_bytes"
+which btm >/dev/null && alias btm="btm --network_use_bytes --current_usage"
 
 export no_proxy="localhost,127.0.0.1,$ip"
 
