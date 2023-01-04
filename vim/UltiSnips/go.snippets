@@ -129,6 +129,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 	}()
 
 	if err := is${1:method}ReqValid(req); err != nil {
+		trace.ReportErrorEvent(ctx, where, "reqInvalid")
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
 
@@ -170,6 +171,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *po
 	}()
 
 	if err := is${1:method}ReqValid(req); err != nil {
+		trace.ReportErrorEvent(ctx, where, "reqInvalid")
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
 
@@ -182,35 +184,6 @@ func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 	}
 
 	return nil
-}
-endsnippet
-
-snippet handler_faas_cronjob "faas cronjob handler template" b
-// ${1:Template}Handler .
-type $1Handler struct {
-	ctx    context.Context
-	reason string
-	tags   []metrics.T
-	t      time.Time
-}
-
-// New$1Handler .
-func New$1Handler(ctx context.Context, tags []metrics.T) *$1Handler {
-	return &$1Handler{
-		ctx:  ctx,
-		tags: tags,
-		t:    time.Now(),
-	}
-}
-
-// Handle .
-func (h *$1Handler) Handle() error {
-	return nil
-}
-
-// GetTags .
-func (h *$1Handler) GetTags() map[string]string {
-	return map[string]string{trace.ReasonTag: h.reason}
 }
 endsnippet
 
