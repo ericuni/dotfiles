@@ -128,7 +128,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 		fault.SetBaseResp(ctx, rsp.BaseResp, err)
 	}()
 
-	if err := is${1:method}ReqValid(req); err != nil {
+	if err = is${1:method}ReqValid(req); err != nil {
 		trace.ReportErrorEvent(ctx, where, "reqInvalid")
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
@@ -170,7 +170,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *po
 		fault.SetBaseResp(ctx, rsp.BaseResp, err)
 	}()
 
-	if err := is${1:method}ReqValid(req); err != nil {
+	if err = is${1:method}ReqValid(req); err != nil {
 		trace.ReportErrorEvent(ctx, where, "reqInvalid")
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
