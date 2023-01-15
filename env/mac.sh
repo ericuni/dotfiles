@@ -62,11 +62,10 @@ brew install --cask baiduinput \
   yinxiangbiji \
   wechat \
   baidunetdisk adrive thunder \
-  neteasemusic qqlive qqmusic iina
+  neteasemusic qqlive qqmusic iina xld
 
 # rust
 install_rust
-
 
 exit 0
 

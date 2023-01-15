@@ -7,6 +7,7 @@
 - maczip: eZip
 - maccy: clipboard manager
 - paper: 壁纸pap.er
+- xld: Lossless audio decoder, convert FLAC to Apple Lossless Music
 
 ### homebrew terminology
 [What does brew tap mean?](https://stackoverflow.com/questions/34408147/what-does-brew-tap-mean)
