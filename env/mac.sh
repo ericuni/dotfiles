@@ -56,7 +56,7 @@ brew install --cask devtoys iterm2 utools postman
 ## other
 brew install --cask baiduinput \
   paper \
-  maccy \
+  appcleaner \
   maczip \
   v2rayu \
   yinxiangbiji \
