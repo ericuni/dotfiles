@@ -67,5 +67,9 @@ brew install --cask baiduinput \
 # rust
 install_rust
 
+# aria2
+brew install aria2
+brew install --cask ariang
+
 exit 0
 
