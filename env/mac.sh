@@ -17,6 +17,8 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     # brew upgrade --cask --greedy
     brew cu pin adrive
     brew cu pin docker
+    brew cu pin qq
+    brew cu pin postman
     brew cu -a
 
     brew cleanup
