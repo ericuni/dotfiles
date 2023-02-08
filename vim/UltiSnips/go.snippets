@@ -187,6 +187,37 @@ func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 }
 endsnippet
 
+snippet snippet_kitex_eventbus "kitex method for eventbus" b
+type ${1:method}Message struct {
+}
+
+func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackRequest) (
+	rsp *eventbus.MessageCallbackResponse, err error) {
+	const where = "Consume${1:method}"
+	rsp = &eventbus.MessageCallbackResponse{
+		BaseResp: base.NewBaseResp(),
+	}
+	defer func() {
+		fault.SetBaseResp(ctx, rsp.BaseResp, err)
+	}()
+
+	if err = isConsume${1:method}ReqValid(req); err != nil {
+		trace.ReportErrorEvent(ctx, where, "reqInvalid")
+		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
+	}
+
+	return
+}
+
+func isConsume${1:method}ReqValid(ctx context.Context, req *eventbus.MessageCallbackRequest) (${1:method}, error) {
+	if req == nil {
+		return ${1:method}{}, errors.New("req nil")
+	}
+
+	return ${1:method}{}, nil
+}
+endsnippet
+
 snippet snippet_test_suite "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
