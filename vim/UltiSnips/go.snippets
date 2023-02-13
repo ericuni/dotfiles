@@ -191,8 +191,7 @@ snippet snippet_kitex_eventbus "kitex method for eventbus" b
 type ${1:method}Message struct {
 }
 
-func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackRequest) (
-	rsp *eventbus.MessageCallbackResponse, err error) {
+func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackRequest) ( rsp *eventbus.MessageCallbackResponse, err error) {
 	const where = "Consume${1:method}"
 	rsp = &eventbus.MessageCallbackResponse{
 		BaseResp: base.NewBaseResp(),
@@ -201,7 +200,8 @@ func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackReques
 		fault.SetBaseResp(ctx, rsp.BaseResp, err)
 	}()
 
-	if err = isConsume${1:method}ReqValid(req); err != nil {
+	msg, err := isConsume${1:method}ReqValid(ctx, req)
+	if err != nil {
 		trace.ReportErrorEvent(ctx, where, "reqInvalid")
 		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
 	}
@@ -209,12 +209,21 @@ func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackReques
 	return
 }
 
-func isConsume${1:method}ReqValid(ctx context.Context, req *eventbus.MessageCallbackRequest) (${1:method}, error) {
+func isConsume${1:method}ReqValid(ctx context.Context, req *eventbus.MessageCallbackRequest) (${1:method}Message, error) {
 	if req == nil {
-		return ${1:method}{}, errors.New("req nil")
+		return ${1:method}Message{}, errors.New("req nil")
 	}
 
-	return ${1:method}{}, nil
+	var msg ${1:method}Message
+	if err := jsoniter.Unmarshal(req.Message.Value, &msg); err != nil {
+		return ${1:method}Message{}, errors.Trace(err)
+	}
+
+	if err := validator.Validate(msg); err != nil {
+		return ${1:method}Message{}, errors.Trace(err)
+	}
+
+	return msg, nil
 }
 endsnippet
 
