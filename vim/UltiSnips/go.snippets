@@ -71,19 +71,11 @@ var (
 	transactionManagerOnce sync.Once
 )
 
-func InitTransactionManager(testdb *gorm.DB) {
+func GetTransactionManager() TransactionManager {
 	transactionManagerOnce.Do(func() {
-		if testdb != nil {
-			transactionManager = NewTransactionManager(testdb)
-			return
-		}
-
 		transactionManager = NewTransactionManager(db.GetMysql().ForWriteV2())
 	})
-}
 
-func GetTransactionManager() TransactionManager {
-	InitTransactionManager(nil)
 	return transactionManager
 }
 endsnippet
