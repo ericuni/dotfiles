@@ -20,6 +20,7 @@ cd opt
 # neovim
 which nvim
 if [[ $? -ne 0 ]]; then
+  # [version `GLIBC_2.29' not found with latest appimage](https://github.com/neovim/neovim/issues/19711)
   curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
   chmod u+x nvim.appimage
   ./nvim.appimage --appimage-extract
