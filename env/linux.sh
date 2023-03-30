@@ -24,6 +24,7 @@ if [[ $? -ne 0 ]]; then
   chmod u+x nvim.appimage
   ./nvim.appimage --appimage-extract
   mv squashfs-root/usr nvim
+  rm nvim.appimage
 fi
 
 # golang
