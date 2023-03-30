@@ -20,10 +20,10 @@ cd opt
 # neovim
 which nvim
 if [[ $? -ne 0 ]]; then
-  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-  tar zxf nvim-linux64.tar.gz
-  mv nvim-linux64 nvim
-  rm nvim-linux64.tar.gz
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
+  ./nvim.appimage --appimage-extract
+  mv squashfs-root/usr nvim
 fi
 
 # golang
