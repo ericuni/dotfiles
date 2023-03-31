@@ -56,6 +56,11 @@ if [[ $? -eq 0 ]]; then
   if [[ $? -ne 0 ]]; then
     go install golang.org/x/tools/gopls@latest
   fi
+
+  which mockgen
+  if [[ $? -ne 0 ]]; then
+    go install github.com/golang/mock/mockgen@latest
+  fi
 fi
 
 # node
