@@ -123,38 +123,24 @@ if [[ $? -ne 0 ]]; then
   # [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
   # [Install static binaries](https://docs.docker.com/engine/install/binaries/)
 
-  # step 1: setup repository
-  cat /etc/apt/sources.list.d/docker.list | grep docker
-  if [[ $? -ne 0 ]]; then
-    # uninstall old versions
-    sudo apt-get remove docker docker-engine docker.io containerd runc
+  curl -L https://download.docker.com/linux/static/stable/x86_64/docker-23.0.2.tgz >docker.tgz
+  tar zxvf docker.tgz
 
-    sudo apt-get update
-    sudo apt-get install ca-certificates curl gnupg
+  sudo service docker status
+  sudo service docker stop
+  sudo cp docker/* /usr/bin/
+  sudo service docker start
+  sudo service docker status
+  rm -rf dokcer.tgz docker
 
-    sudo mkdir -m 0755 -p /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-    echo \
-    "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-    "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  fi
-
-  # step 2: install docker
-  # time consuming, download is very slow
-  sudo apt-get update
-  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-  # step 3: verify docker
   sudo docker run hello-world
 
   # step 4: no need sudo
   # [How to Fix Docker Permission Denied Error on Ubuntu](https://linuxhandbook.com/docker-permission-denied/)
-  sudo groupadd docker
-  sudo usermod -aG docker $USER
-  newgrp docker
-  docker images
+  # sudo groupadd docker
+  # sudo usermod -aG docker $USER
+  # newgrp docker
+  # docker images
 fi
 
 exit 0

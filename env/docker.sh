@@ -5,6 +5,13 @@ source util.sh || exit 1
 
 # latest Ubuntu Docker
 
+which nvim
+if [[ $? -ne 0 ]]; then
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.deb
+  apt install ./nvim-linux64.deb
+  rm nvim-linux64.deb
+fi
+
 cd ~
 if [[ ! -d opt ]]; then
   mkdir opt
