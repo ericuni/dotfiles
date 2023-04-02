@@ -126,11 +126,9 @@ if [[ $? -ne 0 ]]; then
   curl -L https://download.docker.com/linux/static/stable/x86_64/docker-23.0.2.tgz >docker.tgz
   tar zxvf docker.tgz
 
-  sudo service docker status
-  sudo service docker stop
+  sudo systemctl stop docker
   sudo cp docker/* /usr/bin/
-  sudo service docker start
-  sudo service docker status
+  sudo systemctl start docker
   rm -rf dokcer.tgz docker
 
   sudo docker run hello-world
