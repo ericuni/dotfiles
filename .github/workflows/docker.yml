@@ -1,0 +1,26 @@
+name: docker
+
+on:
+  push:
+    paths:
+      - ".github/workflows/docker.yml"
+      - "docker/Dockerfile"
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  job1:
+    name: ci pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: env
+      run: docker version
+
+    - name: build
+      run: |
+        cd docker
+        docker build --tag ubuntu:latest.$(date +%s) .
+
