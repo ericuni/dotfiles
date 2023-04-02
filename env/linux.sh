@@ -121,6 +121,7 @@ fi
 which docker
 if [[ $? -ne 0 ]]; then
   # [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
+  # [Install static binaries](https://docs.docker.com/engine/install/binaries/)
 
   # step 1: setup repository
   cat /etc/apt/sources.list.d/docker.list | grep docker

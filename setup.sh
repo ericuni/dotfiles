@@ -11,8 +11,6 @@ ln -si $dot/gitconfig .gitconfig
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
-if [ ! -d .config/nvim ]; then
-fi
 cd $p
 ln -sf $dot/vim/init.vim init.vim
 ln -sf $dot/vim/coc-settings.json coc-settings.json
