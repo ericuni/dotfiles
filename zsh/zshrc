@@ -98,6 +98,8 @@ fi
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
 # bazel
+export USE_BAZEL_VERSION=5.4.0  ## bazel 6 has a big break change
+
 function bb() {
   target=":all"
   if [ $# -gt 0 ]; then
