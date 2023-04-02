@@ -127,7 +127,8 @@ if [[ $? -ne 0 ]]; then
   tar zxvf docker.tgz
 
   sudo systemctl stop docker
-  sudo cp docker/* /usr/bin/
+  # [What generates the "text file busy" message in Unix?](https://stackoverflow.com/questions/16764946/what-generates-the-text-file-busy-message-in-unix)
+  sudo cp docker/* /usr/bin/ || exit 1
   sudo systemctl start docker
   rm -rf dokcer.tgz docker
 
