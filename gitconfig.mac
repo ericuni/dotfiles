@@ -2,12 +2,9 @@
   name = Eric Wang
   email = wangchaogo1990@gmail.com
 [core]
-  editor = vim
+  editor = nvim
   autocrlf = false
   quotepath = false
-[credential]
-  helper = /usr/local/bin/git-credential-manager-core
-  credentialStore = plaintext
 [credential "https://dev.azure.com"]
   useHttpPath = true
 [pull]

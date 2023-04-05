@@ -7,7 +7,7 @@ cd $HOME
 rm -rf .vim && ln -sf $dot/vim .vim
 ln -sf $dot/zsh/zshrc .zshrc
 ln -sf $dot/rgignore .rgignore
-ln -si $dot/gitconfig .gitconfig
+ln -si $dot/gitconfig.$os .gitconfig
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
