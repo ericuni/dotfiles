@@ -16,7 +16,7 @@ set clipboard=unnamed
 if os == "linux"
   set clipboard+=unnamedplus
 endif
-set mouse-=a "disable visual mode
+set mouse= "disable visual mode
 set modifiable  " nerdtree create dir/file
 set backspace=indent,eol,start
 set shell=/bin/zsh
