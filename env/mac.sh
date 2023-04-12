@@ -57,6 +57,7 @@ brew install --cask devtoys iterm2 utools postman
 
 ## other
 brew install --cask baiduinput \
+  logseq zotero \
   paper \
   appcleaner \
   maccy \
@@ -72,7 +73,6 @@ install_rust
 
 # aria2
 brew install aria2
-brew install --cask ariang
 
 exit 0
 
