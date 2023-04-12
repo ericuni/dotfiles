@@ -41,7 +41,7 @@ if [[ ! -e go ]]; then
   rm $out
 
   # many thirdparty dependency have not supportted go 1.20 yet
-  version="1.19.7"
+  version="1.19.8"
 
   curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
   tar zxf go.tar.gz
@@ -65,7 +65,7 @@ fi
 
 # node
 if [[ ! -e node ]]; then
-  local version="v16.17.0"
+  local version="v19.9.0"
   curl https://nodejs.org/dist/${version}/node-${version}-linux-x64.tar.xz >node.tar.xz
   xz -d node.tar.xz
   tar xf node.tar
