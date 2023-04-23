@@ -173,7 +173,7 @@ function switch_ssh() {
   if [[ $? -eq 0 ]]; then
     ln -sf git/work/conf/gitconfig .gitconfig
   else
-    ln -sf git/dotfiles/gitconfig  .gitconfig
+    ln -sf git/dotfiles/gitconfig.$os .gitconfig
   fi
   cd -
 }
