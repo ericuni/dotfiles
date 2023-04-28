@@ -1,5 +1,4 @@
 #!/bin/zsh
-set -x
 
 function install_rust() {
   which cargo
@@ -26,5 +25,25 @@ function install_rust_special_cmd() {
   if [[ $? -ne 0 ]]; then
     cargo install $pkg
   fi
+}
+
+function update_rust() {
+  if [[ -z $os ]]; then
+    echo "os unknown" >&2
+    return 1
+  fi
+
+  rustup update
+  rustup component add rust-src
+
+  if [[ $os == "mac" ]]; then
+    url="https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-apple-darwin.gz"
+  else
+    url="https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz"
+  fi
+
+  curl -L $url | gunzip -c - >rust-analyzer
+  chmod +x rust-analyzer
+  mv rust-analyzer ~/.cargo/bin/
 }
 
