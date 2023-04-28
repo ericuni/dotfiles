@@ -36,6 +36,7 @@ function update_rust() {
   rustup update
   rustup component add rust-src
 
+  # [User Manual](https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary)
   if [[ $os == "mac" ]]; then
     url="https://github.com/rust-lang/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-apple-darwin.gz"
   else
