@@ -93,7 +93,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || find ."
 
 function rgvi() {
-  x=`sk --ansi -i -c 'rg --color=always --line-number "{}"' --preview="~/preview.sh {}"`
+  x=`sk --ansi -i -c 'rg --color=always --line-number "{}"' --preview="~/git/dotfiles/zsh/preview.sh {}"`
   # x : file path:line number:search pattern
   if [[ $? -eq 0 ]]; then
     vi `echo $x | cut -d: -f1` "+`echo $x | cut -d: -f2`" || true

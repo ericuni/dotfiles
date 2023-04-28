@@ -103,7 +103,7 @@ cd -
 
 # rust
 install_rust
-install_rust_cmds lsd zoxide
+install_rust_cmds lsd zoxide bat
 install_rust_special_cmd rg ripgrep
 install_rust_special_cmd fd fd-find
 install_rust_special_cmd sk skim
