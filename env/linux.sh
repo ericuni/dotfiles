@@ -40,9 +40,6 @@ if [[ ! -e go ]]; then
   local version=`cat $out | grep "download downloadBox" | head -n 1 | awk -F "go" '{print $2}' | awk -F ".windows" '{print $1}'`
   rm $out
 
-  # many thirdparty dependency have not supportted go 1.20 yet
-  version="1.19.8"
-
   curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
   tar zxf go.tar.gz
   mv go go${version}
