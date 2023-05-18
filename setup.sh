@@ -8,6 +8,7 @@ rm -rf .vim && ln -sf $dot/vim .vim
 ln -sf $dot/zsh/zshrc .zshrc
 ln -sf $dot/rgignore .rgignore
 ln -si $dot/gitconfig.$os .gitconfig
+ln -sf $dot/rustfmt.toml .rustfmt.toml
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
