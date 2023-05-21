@@ -1,4 +1,37 @@
-snippet snippet_leetcode "leetcode template" b
+snippet snippet_cmd "binary" b
+use anyhow::{bail, Context};
+use log::{error, info};
+use rust::base;
+use structopt::StructOpt;
+
+#[derive(StructOpt, Debug)]
+#[structopt(name = "fmt", about = "what for")]
+struct Opt {
+  #[structopt(short, long)]
+  debug: bool,
+
+  #[structopt(short, long, default_value = "./")]
+  path: std::path::PathBuf,
+}
+
+fn main() {
+  base::init_log();
+
+  let opt = Opt::from_args();
+  info!("opt: {:?}", opt);
+
+  match run(&opt) {
+    Ok(_) => info!("done"),
+    Err(err) => error!("{:?}", err),
+  }
+}
+
+fn run(opt: &Opt) -> anyhow::Result<()> {
+  Ok(())
+}
+endsnippet
+
+snippet snippet_leetcode "leetcode" b
 trait Solution {
 }
 
@@ -8,20 +41,20 @@ impl Solution for SolutionNaive {
 
 #[test]
 fn ex() {
-    struct TestData {
-    }
-    let tds = vec![
-        TestData {
-        },
-    ];
+  struct TestData {
+  }
+  let tds = vec![
+    TestData {
+    },
+  ];
 
-    let mut sos: Vec<Box<dyn Solution>> = Vec::new();
-    sos.push(Box::new(SolutionNaive {}));
+  let mut sos: Vec<Box<dyn Solution>> = Vec::new();
+  sos.push(Box::new(SolutionNaive {}));
 
-    for so in sos {
-        for td in tds.iter() {
-        }
+  for so in sos {
+    for td in &tds {
     }
+  }
 }
 endsnippet
 
