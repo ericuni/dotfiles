@@ -96,7 +96,7 @@ function rgvi() {
   x=`sk --ansi -i -c 'rg --color=always --line-number "{}"' --preview="~/git/dotfiles/zsh/preview.sh {}"`
   # x : file path:line number:search pattern
   if [[ $? -eq 0 ]]; then
-    vi `echo $x | cut -d: -f1` "+`echo $x | cut -d: -f2`" || true
+    nvim `echo $x | cut -d: -f1` "+`echo $x | cut -d: -f2`" || true
   fi
 }
 
