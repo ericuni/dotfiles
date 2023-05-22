@@ -50,13 +50,13 @@ brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-
 
 brew install fd bat procs zoxide bottom sk
 
-brew install mysql
+# brew install mysql
 
 ## dev
 brew install --cask devtoys iterm2 utools postman
 
 ## other
-brew install --cask baiduinput \
+brew install --cask \
   logseq zotero \
   paper \
   appcleaner \
@@ -65,14 +65,14 @@ brew install --cask baiduinput \
   v2rayu \
   yinxiangbiji \
   wechat \
-  baidunetdisk adrive thunder \
-  neteasemusic qqlive qqmusic iina xld
+  adrive thunder \
+  neteasemusic qqmusic iina xld
 
 # rust
 install_rust
 
 # aria2
-brew install aria2
+# brew install aria2
 
 exit 0
 
