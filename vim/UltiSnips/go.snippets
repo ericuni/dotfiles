@@ -222,16 +222,11 @@ endsnippet
 snippet snippet_test_suite "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
-	assert *assert.Assertions
-	t      *testing.T
-}
-
-func (s *$1Suite) SetupSuite() {
-	s.assert = s.Assert()
-	s.t = s.T()
 }
 
 func (s *$1Suite) TestEx() {
+	assert = s.Assert()
+	t := s.T()
 }
 
 func Test$1(t *testing.T) {
@@ -242,14 +237,10 @@ endsnippet
 snippet snippet_test_bytedance "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
-	assert *assert.Assertions
-	t      *testing.T
 	ctx    context.Context
 }
 
 func (s *$1Suite) SetupSuite() {
-	s.assert = s.Assert()
-	s.t = s.T()
 	s.ctx = context.Background()
 }
 
@@ -258,6 +249,8 @@ func (s *$1Suite) TearDownTest() {
 }
 
 func (s *$1Suite) TestEx() {
+	assert = s.Assert()
+	t = s.T()
 }
 
 func Test$1(t *testing.T) {
@@ -268,14 +261,10 @@ endsnippet
 snippet snippet_test_kitex "unit test template for kitex" b
 type ${1:Template}Suite struct {
 	suite.Suite
-	assert *assert.Assertions
-	t      *testing.T
 	ctx    context.Context
 }
 
 func (s *${1:method}Suite) SetupSuite() {
-	s.assert = s.Assert()
-	s.t = s.T()
 	s.ctx = context.Background()
 }
 
