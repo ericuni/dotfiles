@@ -65,7 +65,7 @@ brew install --cask \
   v2rayu \
   yinxiangbiji \
   wechat \
-  adrive thunder \
+  adrive nutstore thunder \
   neteasemusic qqmusic iina xld
 
 # rust
