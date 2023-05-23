@@ -86,7 +86,7 @@ export no_proxy="localhost,127.0.0.1,$ip"
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # [FZF newcomer: fd or ripgrep?](https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/)
-export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL-T as well
 
 # skim
