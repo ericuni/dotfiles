@@ -225,7 +225,7 @@ type ${1:Template}Suite struct {
 }
 
 func (s *$1Suite) TestEx() {
-	assert = s.Assert()
+	assert := s.Assert()
 	t := s.T()
 }
 
@@ -249,8 +249,8 @@ func (s *$1Suite) TearDownTest() {
 }
 
 func (s *$1Suite) TestEx() {
-	assert = s.Assert()
-	t = s.T()
+	assert := s.Assert()
+	t := s.T()
 }
 
 func Test$1(t *testing.T) {
