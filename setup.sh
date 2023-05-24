@@ -9,7 +9,7 @@ ln -sf $dot/zsh/zshrc .zshrc
 ln -sf $dot/rgignore .rgignore
 ln -si $dot/gitconfig.$os .gitconfig
 ln -sf $dot/rustfmt.toml .rustfmt.toml
-ln -sf $dot/nutstore/customExtRules.cfg .nutstore/db/customExtRules.cfg
+ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
