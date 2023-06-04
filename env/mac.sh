@@ -33,6 +33,9 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   ## 去掉各种设置密码的规则限制
   ## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
   pwpolicy -clearaccountpolicies
+
+  ## 禁止.DS_Store生成
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 fi
 
 # suports `brew cu pin`
