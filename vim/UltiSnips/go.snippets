@@ -237,7 +237,7 @@ endsnippet
 snippet snippet_test_bytedance "unit test template" b
 type ${1:Template}Suite struct {
 	suite.Suite
-	ctx    context.Context
+	ctx context.Context
 }
 
 func (s *$1Suite) SetupSuite() {
@@ -261,7 +261,7 @@ endsnippet
 snippet snippet_test_kitex "unit test template for kitex" b
 type ${1:Template}Suite struct {
 	suite.Suite
-	ctx    context.Context
+	ctx context.Context
 }
 
 func (s *${1:method}Suite) SetupSuite() {
