@@ -74,6 +74,8 @@ fi
 
 append_path $HOME/opt/nvim/bin
 replace vi nvim vim
+replace vim vi
+alias vimdiff="vi -d"
 
 replace fd fdfind
 replace ls lsd
