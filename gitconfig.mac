@@ -5,6 +5,7 @@
   editor = nvim
   autocrlf = false
   quotepath = false
+  ignorecase = false
 [credential "https://dev.azure.com"]
   useHttpPath = true
 [pull]
