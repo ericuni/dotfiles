@@ -5,7 +5,6 @@
 - yinxiangbiji: 印象笔记
 - adrive: 阿里网盘
 - maczip: eZip
-- maccy: clipboard manager
 - paper: 壁纸pap.er
 - xld: Lossless audio decoder, convert FLAC to Apple Lossless Music
 
@@ -29,7 +28,6 @@ Homebrew core repo formulae: downloaded to `/usr/local/Homebrew/Library/taps/hom
 - Get Plain Text
 - Hidden Bar
 - VimKey: Safari vim 键位模式操作, Chrome 浏览器的 Surfingkeys
-
 
 ## dmg
 - Downie

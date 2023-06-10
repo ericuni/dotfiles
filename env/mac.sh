@@ -57,14 +57,13 @@ brew install fd bat procs zoxide bottom sk
 # brew install mysql
 
 ## dev
-brew install --cask devtoys iterm2 utools postman
+brew install --cask devtoys iterm2 postman
 
 ## other
 brew install --cask \
-  logseq zotero \
+  raycast \
+  logseq obsidian zotero \
   paper \
-  appcleaner \
-  maccy \
   maczip \
   v2rayu \
   yinxiangbiji \
