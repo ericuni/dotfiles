@@ -122,14 +122,6 @@ endif
 Plug 'solarnz/thrift.vim'
 
 " 配色方案
-" colorscheme neodark
-Plug 'KeitaNakamura/neodark.vim'
-" colorscheme monokai
-Plug 'crusoexia/vim-monokai'
-" colorscheme github
-Plug 'acarapetis/vim-colors-github'
-" colorscheme codedark
-Plug 'tomasiser/vim-code-dark'
 " colorscheme gruvbox
 Plug 'morhetz/gruvbox'
 
