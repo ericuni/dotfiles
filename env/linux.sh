@@ -26,6 +26,7 @@ if [[ $? -ne 0 ]]; then
   ./nvim.appimage --appimage-extract
   mv squashfs-root/usr nvim
   rm nvim.appimage
+  rm -rf squashfs-root
 fi
 
 # golang
@@ -62,7 +63,7 @@ fi
 
 # node
 if [[ ! -e node ]]; then
-  local version="v19.9.0"
+  local version="v20.3.0"
   curl https://nodejs.org/dist/${version}/node-${version}-linux-x64.tar.xz >node.tar.xz
   xz -d node.tar.xz
   tar xf node.tar
