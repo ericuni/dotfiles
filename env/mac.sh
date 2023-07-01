@@ -19,7 +19,6 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     brew cu pin docker
     brew cu pin qq
     brew cu pin postman
-    brew cu pin yinxiangbiji
     brew cu -a
 
     brew cleanup
@@ -66,10 +65,9 @@ brew install --cask \
   paper \
   maczip \
   v2rayu \
-  yinxiangbiji \
   wechat \
   adrive nutstore thunder \
-  neteasemusic qqmusic iina xld
+  neteasemusic qqmusic iina
 
 # rust
 install_rust
