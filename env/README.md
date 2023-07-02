@@ -7,6 +7,7 @@
 - maczip: eZip
 - paper: 壁纸pap.er
 - xld: Lossless audio decoder, convert FLAC to Apple Lossless Music
+- novabench: Free benchmark software to test your computer's performance
 
 ### homebrew terminology
 [What does brew tap mean?](https://stackoverflow.com/questions/34408147/what-does-brew-tap-mean)
