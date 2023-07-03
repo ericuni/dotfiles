@@ -43,6 +43,7 @@ brew tap buo/cask-upgrade
 # nvim
 brew install node neovim ripgrep
 python3 -m pip install --user --upgrade pynvim
+npm install -g neovim  ## make coc to work with gopls
 
 brew install tree lrzsz
 
