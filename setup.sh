@@ -10,6 +10,7 @@ ln -sf $dot/rgignore .rgignore
 ln -si $dot/gitconfig.$os .gitconfig
 ln -sf $dot/rustfmt.toml .rustfmt.toml
 ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
+ln -sf $dot/wezterm.lua .wezterm.lua
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
