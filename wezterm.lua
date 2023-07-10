@@ -12,8 +12,7 @@ end
 
 -- This is where you actually apply your config choices
 
--- For example, changing the color scheme:
--- config.color_scheme = 'AdventureTime'
+config.font_size = 13.5
 
 -- and finally, return the configuration to wezterm
 return config
