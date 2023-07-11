@@ -57,7 +57,7 @@ brew install fd bat procs zoxide bottom sk
 # brew install mysql
 
 ## dev
-brew install --cask devtoys iterm2 postman
+brew install --cask devtoys wezterm postman
 
 ## other
 brew install --cask \
