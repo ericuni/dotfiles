@@ -15,6 +15,16 @@ end
 config.check_for_updates = false
 config.font_size = 14.5
 
+config.keys = {
+  -- [PaneSelect](https://wezfurlong.org/wezterm/config/lua/keyassignment/PaneSelect.html)
+  -- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
+  {
+    key = 'w',
+    mods = 'CTRL',
+    action = wezterm.action.PaneSelect
+  }
+}
+
 -- and finally, return the configuration to wezterm
 return config
 
