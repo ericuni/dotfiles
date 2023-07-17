@@ -12,7 +12,8 @@ end
 
 -- This is where you actually apply your config choices
 
-config.font_size = 13.5
+config.check_for_updates = false
+config.font_size = 14.5
 
 -- and finally, return the configuration to wezterm
 return config
