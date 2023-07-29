@@ -53,7 +53,7 @@ brew install tree lrzsz
 ## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install fd bat procs zoxide bottom sk jq
+brew install fd bat procs zoxide bottom sk jq joshuto
 
 # brew install mysql
 
