@@ -19,6 +19,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     brew cu pin docker
     brew cu pin qq
     brew cu pin postman
+    brew cu pin v2rayu
     brew cu -a
 
     brew cleanup
@@ -52,7 +53,7 @@ brew install tree lrzsz
 ## need change iterm font
 brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install fd bat procs zoxide bottom sk
+brew install fd bat procs zoxide bottom sk jq
 
 # brew install mysql
 
