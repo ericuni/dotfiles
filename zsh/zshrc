@@ -103,6 +103,15 @@ function rgvi() {
   fi
 }
 
+function zd() {
+  local depth=2
+  if [[ `pwd` == "$HOME" ]]; then
+    depth=3
+  fi
+
+  cd $(fd --type d --max-depth $depth --exclude opt --exclude go | sk)
+}
+
 # autojump
 which zoxide >/dev/null
 if [[ $? -eq 0 ]]; then
