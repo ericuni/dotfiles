@@ -1,10 +1,13 @@
 [class]
 audio_default = [
+  { command = "open", args = [ "--", ], fork = true, silent = true },
+  { command = "iina", args = [ "--", ], fork = true, silent = true },
   { command = "mpv", args = [ "--", ] },
   { command = "mediainfo", confirm_exit = true },
 ]
 
 image_default = [
+  { command = "open", args = [ "--", ], fork = true, silent = true },
   { command = "qimgv", args = [ "--", ], fork = true, silent = true },
   { command = "krita", args = [ "--", ], fork = true, silent = true },
   { command = "exiftool", confirm_exit = true },
@@ -12,18 +15,23 @@ image_default = [
 ]
 
 video_default = [
+  { command = "open", args = [ "--", ], fork = true, silent = true },
+  { command = "iina", args = [ "--", ], fork = true, silent = true },
   { command = "mpv", args = [ "--", ], fork = true, silent = true },
   { command = "mediainfo", confirm_exit = true },
   { command = "mpv", args = [ "--mute", "on", "--", ], fork = true, silent = true },
 ]
 
 text_default = [
+  { command = "bat", args = [ "--paging=always", ] },
   { command = "micro" },
   { command = "gedit", fork = true, silent = true },
-  { command = "bat", args = [ "--paging=always", ] },
 ]
 
-reader_default = [{ command = "evince", fork = true, silent = true }]
+reader_default = [
+  { command = "open", fork = true, silent = true },
+  { command = "evince", fork = true, silent = true },
+]
 
 libreoffice_default = [{ command = "libreoffice", fork = true, silent = true }]
 
