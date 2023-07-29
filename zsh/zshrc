@@ -103,14 +103,7 @@ function rgvi() {
   fi
 }
 
-function zd() {
-  local depth=2
-  if [[ `pwd` == "$HOME" ]]; then
-    depth=3
-  fi
-
-  cd $(fd --type d --max-depth $depth --exclude opt --exclude go | sk)
-}
+alias sd="cd ~ && cd \$(fd * --type d --max-depth 3 --exclude opt --exclude go --exclude Library | sk)"
 
 # autojump
 which zoxide >/dev/null
