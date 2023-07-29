@@ -79,6 +79,7 @@ alias vimdiff="vi -d"
 
 replace fd fdfind
 replace ls lsd
+export JOSHUTO_CONFIG_HOME="$HOME/git/dotfiles/joshuto"
 
 alias ll="ls -l"
 which btm >/dev/null && alias btm="btm --network_use_bytes --current_usage"
