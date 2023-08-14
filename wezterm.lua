@@ -19,7 +19,7 @@ config.keys = {
   -- [PaneSelect](https://wezfurlong.org/wezterm/config/lua/keyassignment/PaneSelect.html)
   -- activate pane selection mode with the default alphabet (labels are "a", "s", "d", "f" and so on)
   {
-    key = 'w',
+    key = '8',
     mods = 'CTRL',
     action = wezterm.action.PaneSelect
   }
