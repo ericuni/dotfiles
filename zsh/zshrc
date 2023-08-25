@@ -114,34 +114,10 @@ fi
 # git
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
-# bazel
-export USE_BAZEL_VERSION=5.4.0  ## bazel 6 has a big break change
-
-function bb() {
-  target=":all"
-  if [ $# -gt 0 ]; then
-    if [[ $1 == :* ]]; then
-      target=$1
-      shift 1
-    fi
-  fi
-  set -x
-  bazel build $target $@
-  set +x
-}
-
-function bt() {
-  if [ $# -gt 0 ]; then
-    bazel test --test_output=all $@
-  else
-    bazel test :all
-  fi
-}
-
-function br() {
-  bazel run --test_output=all $@
-}
-source_path $HOME/git/dotfiles/zsh/bazelfunctions.zsh
+# blade
+alias bb="blade build"
+alias bt="blade test"
+alias br="blade run"
 
 # golang
 if [[ "$os" == "linux" ]]; then
