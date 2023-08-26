@@ -60,6 +60,9 @@ brew install fd bat procs zoxide bottom sk jq joshuto
 ## dev
 brew install --cask devtoys wezterm postman
 
+# blade and cxx
+brew install ninja glog protobuf googletest google-benchmark gperftools
+
 ## other
 brew install --cask \
   raycast \

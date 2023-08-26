@@ -28,17 +28,6 @@ RUN apt install -y --no-install-recommends \
   zlib1g-dev libsnappy-dev \
   python3 libpython3-dev python3-pip
 
-# bazel
-## https://bazel.build/install/ubuntu
-## 组件名称"jdk1.8"仅因旧版原因而保留,与受支持或包含的 JDK 版本无关.Bazel 版本与 Java 版本无关.更改"jdk1.8"组件名称会破坏代码库的现有用户.
-ADD bazel.gpg .
-RUN apt install -y --no-install-recommends gnupg \
-  && cat bazel.gpg | gpg --dearmor >bazel-archive-keyring.gpg \
-  && mv bazel-archive-keyring.gpg /usr/share/keyrings \
-  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list \
-  && apt update \
-  && apt install -y --no-install-recommends bazel-5.4.0
-
 # ssh
 # `service ssh status|start|stop`
 RUN apt install -y --no-install-recommends openssh-server \
