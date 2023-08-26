@@ -117,6 +117,12 @@ if [[ $? -ne 0 ]]; then
   rm gcm.deb
 fi
 
+# blade and cxx
+sudo apt install \
+  ninja-build \
+  libgoogle-glog-dev \
+  libgoogle-perftools-dev
+
 which docker
 if [[ $? -ne 0 ]]; then
   # [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/)
