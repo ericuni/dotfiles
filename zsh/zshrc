@@ -119,6 +119,10 @@ alias bb="blade build"
 alias bt="blade test"
 alias br="blade run"
 
+## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
+alias shopt="$HOME/git/dotfiles/zsh/shopt"
+source_path $HOME/bin/bladefunctions
+
 # golang
 if [[ "$os" == "linux" ]]; then
   export GOROOT="$HOME/opt/go"
