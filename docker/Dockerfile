@@ -28,6 +28,9 @@ RUN apt install -y --no-install-recommends \
   zlib1g-dev libsnappy-dev \
   python3 libpython3-dev python3-pip
 
+# blade
+RUN apt install -y --no-install-recommends ninja-build
+
 # ssh
 # `service ssh status|start|stop`
 RUN apt install -y --no-install-recommends openssh-server \
