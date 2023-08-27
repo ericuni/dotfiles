@@ -20,7 +20,7 @@ RUN apt install -y --no-install-recommends \
 
 # lang and library
 RUN apt install -y --no-install-recommends \
-  build-essential gcc g++ make cmake gdb clang-format ccls clangd \
+  build-essential gcc g++ make cmake gdb clang-format clangd \
   libprotobuf-dev libprotoc-dev protobuf-compiler \
   libgoogle-glog-dev libgflags-dev libgtest-dev libgmock-dev libbenchmark-dev libgoogle-perftools-dev \
   libleveldb-dev \
