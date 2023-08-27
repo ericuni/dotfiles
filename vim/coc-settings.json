@@ -16,17 +16,6 @@
       "rootPatterns": ["compile_flags.txt"],
       "requireRootPattern": true
     },
-    "ccls": {
-      "command": "ccls",
-      "filetypes": ["c", "cpp", "cc", "cxx", "h"],
-      "rootPatterns": [".ccls"],
-      "requireRootPattern": true,
-      "initializationOptions": {
-         "cache": {
-           "directory": "/tmp/ccls"
-         }
-       }
-    },
     "rust": {
       "command": "rust-analyzer",
       "filetypes": ["rust"],
