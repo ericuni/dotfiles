@@ -121,7 +121,11 @@ fi
 sudo apt install \
   ninja-build \
   libgoogle-glog-dev \
-  libgoogle-perftools-dev
+  libgoogle-perftools-dev \
+  clangd-13
+if [[ ! -f /usr/bin/clangd ]]; then
+  sudo ln -sf /usr/bin/clangd-13 /usr/bin/clangd
+fi
 
 which docker
 if [[ $? -ne 0 ]]; then
