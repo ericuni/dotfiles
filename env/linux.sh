@@ -122,6 +122,7 @@ sudo apt install \
   ninja-build \
   libgoogle-glog-dev \
   libgoogle-perftools-dev \
+  libbenchmark-dev \
   clangd-13
 if [[ ! -f /usr/bin/clangd ]]; then
   sudo ln -sf /usr/bin/clangd-13 /usr/bin/clangd

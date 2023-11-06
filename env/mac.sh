@@ -15,11 +15,10 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     # original brew can only pin formula not cask
     # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
     # brew upgrade --cask --greedy
-    brew cu pin adrive
-    brew cu pin docker
-    brew cu pin qq
-    brew cu pin postman
-    brew cu pin v2rayu
+    for app in adrive docker qq postman v2rayu logseq obsidian raycast
+    do
+      brew cu pin $app
+    done
     brew cu -a
 
     brew cleanup
