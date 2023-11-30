@@ -21,5 +21,6 @@
       "filetypes": ["rust"],
       "rootPatterns": ["Cargo.toml"]
     }
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
