@@ -26,8 +26,8 @@ var (
 
 func init${1:Table}() {
 	${2:table}Once.Do(func() {
-		${2:table}R = New${1:Table}Repo(db.GetMysql().ForReadOnly())
-		${2:table}W = New${1:Table}Repo(db.GetMysql().ForWriteV2())
+		${2:table}R = New${1:Table}Repo(clientx.GetFaceuCapcutDpRds().GetR())
+		${2:table}W = New${1:Table}Repo(clientx.GetFaceuCapcutDpRds().GetW())
 	})
 }
 
@@ -73,7 +73,7 @@ var (
 
 func GetTransactionManager() TransactionManager {
 	transactionManagerOnce.Do(func() {
-		transactionManager = NewTransactionManager(db.GetMysql().ForWriteV2())
+		transactionManager = NewTransactionManager(clientx.GetFaceuCapcutDpRds().GetW())
 	})
 
 	return transactionManager
@@ -88,8 +88,8 @@ func ${1:method}(ctx context.Context, request *model.${1}Req) (data *model.${1}D
 }
 endsnippet
 
-snippet snippet_hertz_req "hertz method with pop.HttpReq as request" b
-func ${1:method}(ctx context.Context, request *pop.HttpReq) (data *model.${1}Data, err error) {
+snippet snippet_hertz_req "hertz method with feed_http.Req as request" b
+func ${1:method}(ctx context.Context, request *feed_http.Req) (data *model.${1}Data, err error) {
 	data = &model.${1}Data{
 	}
 	return data, nil
@@ -104,7 +104,7 @@ func ${1:method}(ctx context.Context, request *pop.ManagerReq) (data *model.${1}
 }
 endsnippet
 
-snippet snippet_hertz_resp "hertz method with pop.HttpResp as response" b
+snippet snippet_hertz_resp "hertz method with feed_http.Resp as response" b
 func ${1:method}(ctx context.Context, request *model.${1}Req) error {
 	return nil
 }
@@ -121,8 +121,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 	}()
 
 	if err = is${1:method}ReqValid(req); err != nil {
-		trace.ReportErrorEvent(ctx, where, "reqInvalid")
-		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
+		return rsp, errorx.Trace(fault.New(-1, err.Error()))
 	}
 
 	return
@@ -130,15 +129,15 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 
 func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 	if req == nil {
-		return errors.New("req nil")
+		return errorx.New("req nil")
 	}
 
 	return nil
 }
 endsnippet
 
-snippet snippet_kitex_req "kitex method with pop.RpcReq as request" b
-func ${1:method}(ctx context.Context, req *pop.RpcReq) (rsp *${2:service}.${1:method}Resp, err error) {
+snippet snippet_kitex_req "kitex method with feed_rpc.Req as request" b
+func ${1:method}(ctx context.Context, req *feed_rpc.Req) (rsp *${2:service}.${1:method}Resp, err error) {
 	const where = "${1:method}"
 	rsp = &${2:service}.${1:method}Resp{
 		BaseResp: base.NewBaseResp(),
@@ -152,10 +151,10 @@ func ${1:method}(ctx context.Context, req *pop.RpcReq) (rsp *${2:service}.${1:me
 
 endsnippet
 
-snippet snippet_kitex_resp "kitex method with pop.RpcResp as response" b
-func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *pop.RpcResp, err error) {
+snippet snippet_kitex_resp "kitex method with feed_rpc.Resp as response" b
+func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *feed_rpc.Resp, err error) {
 	const where = "${1:method}"
-	rsp = &pop.RpcResp{
+	rsp = &feed_rpc.Resp{
 		BaseResp: base.NewBaseResp(),
 	}
 	defer func() {
@@ -163,8 +162,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *po
 	}()
 
 	if err = is${1:method}ReqValid(req); err != nil {
-		trace.ReportErrorEvent(ctx, where, "reqInvalid")
-		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
+		return rsp, errorx.Trace(fault.New(-1, err.Error()))
 	}
 
 	return
@@ -172,7 +170,7 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *po
 
 func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
 	if req == nil {
-		return errors.New("req nil")
+		return errorx.New("req nil")
 	}
 
 	return nil
@@ -194,8 +192,7 @@ func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackReques
 
 	msg, err := isConsume${1:method}ReqValid(ctx, req)
 	if err != nil {
-		trace.ReportErrorEvent(ctx, where, "reqInvalid")
-		return rsp, errors.Trace(fault.New(err_code.PopErrInvalidParam, err.Error()))
+		return rsp, errorx.Trace(fault.New(-1, err.Error()))
 	}
 
 	return
@@ -203,16 +200,16 @@ func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackReques
 
 func isConsume${1:method}ReqValid(ctx context.Context, req *eventbus.MessageCallbackRequest) (${1:method}Message, error) {
 	if req == nil {
-		return ${1:method}Message{}, errors.New("req nil")
+		return ${1:method}Message{}, errorx.New("req nil")
 	}
 
 	var msg ${1:method}Message
 	if err := jsoniter.Unmarshal(req.Message.Value, &msg); err != nil {
-		return ${1:method}Message{}, errors.Trace(err)
+		return ${1:method}Message{}, errorx.Trace(err)
 	}
 
 	if err := validator.Validate(msg); err != nil {
-		return ${1:method}Message{}, errors.Trace(err)
+		return ${1:method}Message{}, errorx.Trace(err)
 	}
 
 	return msg, nil
