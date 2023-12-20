@@ -9,13 +9,13 @@ type ${1:Table}Repo interface {
 	BeginWithHandler(handler *gorm.DB) ${1:Table}Repo
 
 	// inserter()
-	Insert(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
+	Insert(ctx context.Context, ${2:table} *${1:Table}) (int64, error)
 
 	// sql(value="select * from ${2:table} where id = #id", mode = "named_placeholder")
-	Find(ctx context.Context, id int64) (ddl.${1:Table}, error)
+	Find(ctx context.Context, id int64) (${1:Table}, error)
 
 	// updater(v2="true", skipZero="false", skipFields=["created_at", "created_by"])
-	Update(ctx context.Context, ${2:table} *ddl.${1:Table}) (int64, error)
+	Update(ctx context.Context, ${2:table} *${1:Table}) (int64, error)
 }
 
 var (
