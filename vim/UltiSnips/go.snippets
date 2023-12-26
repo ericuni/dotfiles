@@ -121,17 +121,13 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *${
 	}()
 
 	if err = is${1:method}ReqValid(req); err != nil {
-		return rsp, errorx.Trace(fault.New(-1, err.Error()))
+		return rsp, errorx.Trace(err)
 	}
 
 	return
 }
 
 func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
-	if req == nil {
-		return errorx.New("req nil")
-	}
-
 	return nil
 }
 endsnippet
@@ -162,17 +158,13 @@ func ${1:method}(ctx context.Context, req *${2:service}.${1:method}Req) (rsp *fe
 	}()
 
 	if err = is${1:method}ReqValid(req); err != nil {
-		return rsp, errorx.Trace(fault.New(-1, err.Error()))
+		return rsp, errorx.Trace(err)
 	}
 
 	return
 }
 
 func is${1:method}ReqValid(req *${2:service}.${1:method}Req) error {
-	if req == nil {
-		return errorx.New("req nil")
-	}
-
 	return nil
 }
 endsnippet
@@ -192,17 +184,13 @@ func Consume${1:method}(ctx context.Context, req *eventbus.MessageCallbackReques
 
 	msg, err := isConsume${1:method}ReqValid(ctx, req)
 	if err != nil {
-		return rsp, errorx.Trace(fault.New(-1, err.Error()))
+		return rsp, errorx.Trace(err)
 	}
 
 	return
 }
 
 func isConsume${1:method}ReqValid(ctx context.Context, req *eventbus.MessageCallbackRequest) (${1:method}Message, error) {
-	if req == nil {
-		return ${1:method}Message{}, errorx.New("req nil")
-	}
-
 	var msg ${1:method}Message
 	if err := jsoniter.Unmarshal(req.Message.Value, &msg); err != nil {
 		return ${1:method}Message{}, errorx.Trace(err)
