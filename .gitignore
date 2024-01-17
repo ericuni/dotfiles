@@ -2,3 +2,5 @@ nohup.out
 *.html
 aria2/dht.dat
 blade*
+.DS_Store
+
