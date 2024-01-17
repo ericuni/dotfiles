@@ -101,6 +101,9 @@ Plug 'luochen1990/rainbow'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-gitbranch'
 
+" :Git blame
+Plug 'tpope/vim-fugitive'
+
 " 有道词典在线翻译
 Plug 'ianva/vim-youdao-translater'
 
