@@ -7,7 +7,12 @@ cd $HOME
 rm -rf .vim && ln -sf $dot/vim .vim
 ln -sf $dot/zsh/zshrc .zshrc
 ln -sf $dot/rgignore .rgignore
-ln -si $dot/gitconfig.$os .gitconfig
+if [[ ! -z $os ]]; then
+  ln -si $dot/gitconfig.$os .gitconfig
+else
+  ## set mac as default
+  ln -si $dot/gitconfig.mac .gitconfig
+fi
 ln -sf $dot/rustfmt.toml .rustfmt.toml
 ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 ln -sf $dot/wezterm.lua .wezterm.lua

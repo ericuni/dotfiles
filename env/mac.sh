@@ -49,8 +49,9 @@ brew install tree lrzsz
 
 # lsd
 ## [Icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
+brew install lsd
 ## need change iterm font
-brew install lsd && brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
+## brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
 brew install fd bat procs zoxide bottom sk jq joshuto
 
