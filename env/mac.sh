@@ -35,6 +35,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
 
   ## 禁止.DS_Store生成
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+
 fi
 
 # suports `brew cu pin`
@@ -83,6 +84,22 @@ brew install gost
 
 # aria2
 # brew install aria2
+
+# mas: MacOS App Store https://github.com/mas-cli/mas
+brew install mas
+mas install 1659622164  ## vidhub
+mas install 515798947   ## MagicanLite
+mas install 508368068   ## GetPlainText
+mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
+
+## generate ssh key pair
+if [[ ! -d $HOME/.ssh ]]; then
+  mkdir $HOME/.ssh
+fi
+if [[ ! -f $HOME/.ssh/id_rsa ]]; then
+  ## 默认应该会使用 $HOME/.ssh/id_rsa, 如果不行, 再用 -f 指定
+  ssh-keygen -t rsa -q -N ""
+fi
 
 exit 0
 

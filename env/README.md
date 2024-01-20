@@ -26,11 +26,6 @@ Packages are installed into `/usr/local/Cellar/<package>` with symlinks into `/u
 
 Homebrew core repo formulae: downloaded to `/usr/local/Homebrew/Library/taps/homebrew/homebrew-core/formula`
 
-## App Store
-- Get Plain Text
-- Hidden Bar
-- VimKey: Safari vim 键位模式操作, Chrome 浏览器的 Surfingkeys
-
 ## dmg
 - Downie
 - docker
