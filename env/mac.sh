@@ -87,10 +87,14 @@ brew install gost
 
 # mas: MacOS App Store https://github.com/mas-cli/mas
 brew install mas
-mas install 1659622164  ## vidhub
-mas install 515798947   ## MagicanLite
-mas install 508368068   ## GetPlainText
-mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
+
+## github does not support install MacOS App Store software
+if [[ -z $GITHUB_ACTIONS ]]; then
+  mas install 1659622164  ## vidhub
+  mas install 515798947   ## MagicanLite
+  mas install 508368068   ## GetPlainText
+  mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
+fi
 
 ## generate ssh key pair
 if [[ ! -d $HOME/.ssh ]]; then
