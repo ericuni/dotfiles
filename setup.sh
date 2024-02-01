@@ -14,7 +14,6 @@ else
   ln -si $dot/gitconfig.mac .gitconfig
 fi
 ln -sf $dot/rustfmt.toml .rustfmt.toml
-ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 ln -sf $dot/wezterm.lua .wezterm.lua
 
 p=".config/nvim"
