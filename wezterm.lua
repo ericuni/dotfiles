@@ -14,6 +14,8 @@ end
 
 config.check_for_updates = false
 config.font_size = 14.5
+config.font = wezterm.font 'Hack Nerd Font'
+-- config.font = wezterm.font('Hack Nerd Font', { italic = true })
 
 config.keys = {
   -- [PaneSelect](https://wezfurlong.org/wezterm/config/lua/keyassignment/PaneSelect.html)
