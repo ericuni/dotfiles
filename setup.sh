@@ -15,6 +15,7 @@ else
 fi
 ln -sf $dot/rustfmt.toml .rustfmt.toml
 ln -sf $dot/wezterm.lua .wezterm.lua
+ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 
 p=".config/nvim"
 [[ ! -d $p ]] && mkdir -p $p
