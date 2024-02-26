@@ -67,7 +67,7 @@ brew install ninja glog protobuf googletest google-benchmark gperftools
 ## other
 brew install --cask \
   raycast \
-  logseq obsidian zotero \
+  logseq obsidian zotero netnewswire \
   paper \
   maczip \
   v2rayu \
