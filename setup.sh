@@ -15,14 +15,23 @@ else
 fi
 ln -sf $dot/rustfmt.toml .rustfmt.toml
 ln -sf $dot/wezterm.lua .wezterm.lua
-ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 
-p=".config/nvim"
+if [[ -d .nutstore ]]; then
+  ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
+fi
+
+p=".config"
 [[ ! -d $p ]] && mkdir -p $p
 cd $p
-ln -sf $dot/vim/init.vim init.vim
-ln -sf $dot/vim/coc-settings.json coc-settings.json
+ln -sf $dot/nvim nvim
 cd -
+
+# p=".config/nvim"
+# [[ ! -d $p ]] && mkdir -p $p
+# cd $p
+# ln -sf $dot/vim/init.vim init.vim
+# ln -sf $dot/vim/coc-settings.json coc-settings.json
+# cd -
 
 p=".docker"
 [[ ! -d $p ]] && mkdir $p
