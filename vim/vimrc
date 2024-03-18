@@ -74,7 +74,7 @@ if has('nvim')
 endif
 
 " 定义快捷键的前缀,即<Leader>
-let mapleader=";"
+let mapleader=" "
 
 " 插件开始的位置
 call plug#begin('~/.plugged')
