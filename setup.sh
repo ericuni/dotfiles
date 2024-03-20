@@ -20,18 +20,12 @@ if [[ -d .nutstore ]]; then
   ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 fi
 
-p=".config"
-[[ ! -d $p ]] && mkdir -p $p
-cd $p
-ln -sf $dot/nvim nvim
-cd -
-
-# p=".config/nvim"
-# [[ ! -d $p ]] && mkdir -p $p
-# cd $p
-# ln -sf $dot/vim/init.vim init.vim
-# ln -sf $dot/vim/coc-settings.json coc-settings.json
-# cd -
+cd .config || exit 1
+# -L: soft link
+if [[ -L nvim ]]; then
+  rm nvim
+fi
+ln -sf $dot/vim nvim
 
 p=".docker"
 [[ ! -d $p ]] && mkdir $p
