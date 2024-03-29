@@ -91,7 +91,7 @@ Plug 'junegunn/vim-easy-align'
 
 " comment and uncomment
 " Plug 'preservim/nerdcommenter'
-Plug 'numToStr/Comment.nvim' # gcc
+Plug 'numToStr/Comment.nvim' " gcc
 
 " 自动补全括号的插件,包括小括号,中括号,以及花括号
 Plug 'jiangmiao/auto-pairs'
