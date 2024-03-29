@@ -5,3 +5,4 @@
 local opt = vim.opt
 opt.wrap = true
 opt.mouse = ""
+opt.swapfile = false
