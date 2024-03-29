@@ -90,7 +90,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 
 " comment and uncomment
-Plug 'preservim/nerdcommenter'
+" Plug 'preservim/nerdcommenter'
+Plug 'numToStr/Comment.nvim' # gcc
 
 " 自动补全括号的插件,包括小括号,中括号,以及花括号
 Plug 'jiangmiao/auto-pairs'
@@ -131,6 +132,7 @@ Plug 'morhetz/gruvbox'
 " 插件结束的位置,插件全部放在此行上面
 call plug#end()
 
+lua require('Comment').setup()
 
 "==============================================================================
 " 主题配色
