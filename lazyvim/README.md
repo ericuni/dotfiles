@@ -1,4 +1,7 @@
-# 💤 LazyVim
+- zg: add work to spell check
 
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+# plugin
+[Comment.nvim](https://github.com/numToStr/Comment.nvim)
+
+- gcc: comment and uncomment
+
