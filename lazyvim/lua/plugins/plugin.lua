@@ -2,6 +2,14 @@ return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
 
+  -- Configure LazyVim to load gruvbox
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "gruvbox",
+    },
+  },
+
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
@@ -9,6 +17,7 @@ return {
       require("dashboard").setup({
         -- config
         theme = "hyper",
+        shortcut_type = "number",
         config = {
           week_header = {
             enable = true,
@@ -31,6 +40,7 @@ return {
               key = "g",
             },
           },
+          mru = { cwd_only = true }, -- Most Recent Files
         },
       })
     end,
