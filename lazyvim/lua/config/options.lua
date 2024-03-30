@@ -7,7 +7,8 @@ local opt = vim.opt
 opt.wrap = true
 opt.mouse = ""
 opt.swapfile = false
-opt.colorcolumn = "+1"
+opt.colorcolumn = "121"
+opt.laststatus = 3
 
 -- zg: add word to dictionay located in lazyvim/spell/en.utf-8.add
 opt.spelllang = { "en", "cjk" }
