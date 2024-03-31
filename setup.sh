@@ -25,7 +25,7 @@ cd .config || exit 1
 if [[ -L nvim ]]; then
   rm nvim
 fi
-ln -sf $dot/lazyvim nvim
+ln -sf $dot/vim/lazyvim nvim
 
 p=".docker"
 [[ ! -d $p ]] && mkdir $p
