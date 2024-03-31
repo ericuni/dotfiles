@@ -42,9 +42,12 @@ fi
 brew tap buo/cask-upgrade
 
 # nvim
-brew install node neovim ripgrep
-python3 -m pip install --user --upgrade pynvim
-npm install -g neovim  ## make coc to work with gopls
+brew install neovim ripgrep fd layzgit
+
+# coc.nvim
+# brew install node
+# python3 -m pip install --user --upgrade pynvim
+# npm install -g neovim  ## make coc to work with gopls
 
 brew install tree lrzsz
 
@@ -54,7 +57,7 @@ brew install lsd
 ## need change iterm font
 brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install fd bat procs zoxide bottom sk jq joshuto
+brew install fd zoxide jq lazygit
 
 # brew install mysql
 
@@ -93,7 +96,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   mas install 1659622164  ## vidhub
   mas install 515798947   ## MagicanLite
   mas install 508368068   ## GetPlainText
-  mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
+  # mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
 fi
 
 ## generate ssh key pair

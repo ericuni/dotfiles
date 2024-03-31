@@ -1,3 +1,4 @@
+- `~/.local/share/nvim`: 插件安装位置
 - zg: add work to spell check
 
 # plugin

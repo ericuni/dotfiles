@@ -9,6 +9,11 @@
 - xld: Lossless audio decoder, convert FLAC to Apple Lossless Music
 - novabench: Free benchmark software to test your computer's performance
 - jq: pretty json
+- bat: cat with syntax highlighting and Git integration
+- btm: bottom, Yet another cross-platform graphical process/system monitor compared with top
+- sk: skim, fuzzy finder in rust
+- joshuto: ranger-like terminal file manager in rust
+- procs: A modern replacement for ps written in rust
 
 ### homebrew terminology
 [What does brew tap mean?](https://stackoverflow.com/questions/34408147/what-does-brew-tap-mean)
@@ -28,7 +33,6 @@ Homebrew core repo formulae: downloaded to `/usr/local/Homebrew/Library/taps/hom
 
 ## dmg
 - Downie
-- docker
 
 ## tips
 [Enable Touch ID for sudo](https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/)

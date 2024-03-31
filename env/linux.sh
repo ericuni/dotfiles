@@ -59,6 +59,11 @@ if [[ $? -eq 0 ]]; then
   if [[ $? -ne 0 ]]; then
     go install github.com/golang/mock/mockgen@latest
   fi
+
+  which layzgit
+  if [[ $? -ne 0 ]]; then
+    go install github.com/jesseduffield/lazygit@latest
+  fi
 fi
 
 # node
