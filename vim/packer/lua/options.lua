@@ -6,9 +6,14 @@ local opt = vim.opt
 
 opt.wrap = true
 opt.mouse = ""
+
 opt.swapfile = false
-opt.colorcolumn = "121"
 opt.laststatus = 2
+
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.colorcolumn = "121"
 
 opt.nu = true
 opt.rnu = true

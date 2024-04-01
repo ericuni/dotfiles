@@ -10,3 +10,6 @@ lazy-lock.json
 # Vim uses a binary version, en.utf-8.add.spl, as a data structure to improve performance.
 en.utf-8.add.spl
 
+# packer
+packer_compiled.lua
+
