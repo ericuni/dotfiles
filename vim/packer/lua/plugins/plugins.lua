@@ -62,5 +62,9 @@ return require('packer').startup(function(use)
 
   -- usage: :Git blame
   use 'tpope/vim-fugitive'
+
+  use 'ianva/vim-youdao-translater'
+
+  use 'solarnz/thrift.vim'
 end)
 
