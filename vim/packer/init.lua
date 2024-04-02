@@ -39,3 +39,24 @@ vim.api.nvim_create_autocmd('BufRead', {
     })
   end,
 })
+
+local wk = require('which-key')
+wk.register({
+  f = {
+    name = "File",
+    f = {"<cmd>Telescope find_files<cr>", "Find File"},
+    g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
+    h = {"<cmd>Telescope help_tags<cr>", "Help Tags"}
+  },
+  s = {
+    name = "Search",
+    o = {"<cmd>Telescope vim_options<cr>", "Options"},
+    k = {"<cmd>Telescope keymaps<cr>", "Key Maps"}
+  },
+  g = {
+    name = "Git",
+    c = {"<cmd>Telescope git_commits<CR>", "Commits"},
+    s = {"<cmd>Telescope git_status<CR>", "Status"}
+  }
+}, {prefix = "<leader>"})
+
