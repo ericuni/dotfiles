@@ -26,3 +26,7 @@ opt.ic = true
 -- zg: add word to dictionay located in lazyvim/spell/en.utf-8.add
 opt.spelllang = { "en", "cjk" }
 
+
+-- rainbow
+vim.g.rainbow_active = 1
+
