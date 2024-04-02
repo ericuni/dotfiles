@@ -44,5 +44,9 @@ return require('packer').startup(function(use)
       }
     end
   }
+
+  use 'jiangmiao/auto-pairs'
+  -- colored parentheses
+  use 'luochen1990/rainbow'
 end)
 
