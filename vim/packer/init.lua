@@ -51,12 +51,15 @@ wk.register({
   s = {
     name = "Search",
     o = {"<cmd>Telescope vim_options<cr>", "Options"},
-    k = {"<cmd>Telescope keymaps<cr>", "Key Maps"}
+    k = {"<cmd>Telescope keymaps<cr>", "Key Maps"},
   },
   g = {
     name = "Git",
+    b = {"<cmd>Git blame<cr>", "Git blame"},
     c = {"<cmd>Telescope git_commits<CR>", "Commits"},
     s = {"<cmd>Telescope git_status<CR>", "Status"}
   }
 }, {prefix = "<leader>"})
+
+require('mason').setup()
 

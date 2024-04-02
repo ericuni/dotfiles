@@ -21,6 +21,9 @@ return require('packer').startup(function(use)
 
   use {'neoclide/coc.nvim', branch = 'release'}
 
+  -- install and manage LSP servers, DAP servers, linters, and formatters.
+  use "williamboman/mason.nvim"
+
   use { "ellisonleao/gruvbox.nvim" }
 
   -- lua functions collection
