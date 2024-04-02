@@ -13,8 +13,9 @@ local wk = require('which-key')
 wk.register({
   f = {
     name = "File",
-    f = {"<cmd>Telescope find_files<cr>", "Find File"},
     g = {"<cmd>Telescope live_grep<cr>", "Live Grep"},
+    t = {"<cmd>terminal<cr>i", "Terminal"},
+    f = {"<cmd>Telescope find_files<cr>", "Find File"},
     h = {"<cmd>Telescope help_tags<cr>", "Help Tags"}
   },
   s = {
