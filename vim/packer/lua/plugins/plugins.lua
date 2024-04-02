@@ -78,6 +78,12 @@ return require('packer').startup(function(use)
   -- usage: :Git blame
   use 'tpope/vim-fugitive'
 
+  use {
+    "kdheepak/lazygit.nvim",
+    -- optional for floating window border decoration
+    requires = {"nvim-lua/plenary.nvim"},
+  }
+
   use 'ianva/vim-youdao-translater'
 
   use 'solarnz/thrift.vim'
