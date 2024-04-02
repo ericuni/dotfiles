@@ -14,6 +14,7 @@ return require('packer').startup(function(use)
   -- lua functions collection
   use "nvim-lua/plenary.nvim"
 
+  -- note: TSUpdate will cause Packer to fail upon the first installation.
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -21,11 +22,15 @@ return require('packer').startup(function(use)
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.x',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = {
+      {'nvim-lua/plenary.nvim'},
+      {'nvim-treesitter/nvim-treesitter'}
+    }
   }
 
   use "mhinz/vim-startify"
 
+  -- usage: gcc
   use {
     'numToStr/Comment.nvim',
     config = function()
@@ -48,5 +53,14 @@ return require('packer').startup(function(use)
   use 'jiangmiao/auto-pairs'
   -- colored parentheses
   use 'luochen1990/rainbow'
+
+  -- statusline
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+  }
+
+  -- usage: :Git blame
+  use 'tpope/vim-fugitive'
 end)
 
