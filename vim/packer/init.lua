@@ -1,3 +1,5 @@
+vim.g.mapleader=" "
+
 require('plugins/plugins')
 require('plugins/coc')
 

@@ -1,7 +1,5 @@
 -- vim.opt if for things you would set in vimscript. vim.g is for things you'd let.
 
-vim.g.mapleader=" "
-
 local opt = vim.opt
 
 opt.wrap = true

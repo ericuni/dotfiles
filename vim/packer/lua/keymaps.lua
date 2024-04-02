@@ -29,6 +29,10 @@ wk.register({
     g = {"<cmd>LazyGit<cr>", "LazyGit"},
     c = {"<cmd>Telescope git_commits<CR>", "Commits"},
     s = {"<cmd>Telescope git_status<CR>", "Status"}
+  },
+  c = {
+    name = "code",
+    r = {"<Plug>(coc-rename)", "Rename"}
   }
 }, {prefix = "<leader>"})
 
