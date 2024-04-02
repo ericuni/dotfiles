@@ -27,6 +27,10 @@ opt.ic = true
 opt.spelllang = { "en", "cjk" }
 
 
--- rainbow
+-- rainbow, enable
 vim.g.rainbow_active = 1
+
+-- do not change directory, run `:echo getcwd()` to see result
+-- [vim working directory change when open from MRU](https://github.com/mhinz/vim-startify/issues/387)
+vim.g.startify_change_to_dir = 0
 
