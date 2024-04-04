@@ -24,8 +24,6 @@ return require('packer').startup(function(use)
   -- install and manage LSP servers, DAP servers, linters, and formatters.
   use "williamboman/mason.nvim"
 
-  use { "ellisonleao/gruvbox.nvim" }
-
   -- lua functions collection
   use "nvim-lua/plenary.nvim"
 
@@ -101,6 +99,12 @@ return require('packer').startup(function(use)
   use 'ianva/vim-youdao-translater'
 
   use 'solarnz/thrift.vim'
+
+  -- colorscheme
+  use "ellisonleao/gruvbox.nvim"
+  use "folke/tokyonight.nvim"
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use "rebelot/kanagawa.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
