@@ -56,6 +56,7 @@ wk.register({
     name = "Ui",
     s = {function() vim.opt.spell = not(vim.opt.spell:get()) end, "toggle Spell"},
     n = {function() vim.opt.nu = not(vim.opt.nu:get()) vim.opt.rnu = not(vim.opt.rnu:get()) end, "toggle Number"},
+    c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
   },
   y = {
     name = "Youdao",
