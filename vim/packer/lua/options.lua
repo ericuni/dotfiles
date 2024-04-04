@@ -21,7 +21,9 @@ opt.rnu = true
 
 opt.ic = true
 
--- zg: add word to dictionay located in lazyvim/spell/en.utf-8.add
+-- zg: add word to dictionary located in spell/en.utf-8.add
+-- zw: Like "zg" but mark the word as a wrong (bad) word.
+-- opt.spell = false
 opt.spelllang = { "en", "cjk" }
 
 
