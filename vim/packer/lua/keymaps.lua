@@ -3,11 +3,6 @@ local telescope = require('telescope.builtin')
 vim.keymap.set('n', '<c-p>', telescope.find_files, {})
 vim.keymap.set('n', '<c-e>', telescope.buffers, {})
 
--- youdao translator
-vim.keymap.set('n', '<c-t>', ':<C-u>Ydc<CR>', { silent = true })
-vim.keymap.set('v', '<c-t>', ':<C-u>Ydv<CR>', { silent = true, noremap = true })
-vim.keymap.set('n', '<leader>yd', ':<C-u>Yde<CR>', {})
-
 -- which key
 local wk = require('which-key')
 wk.register({
@@ -18,6 +13,8 @@ wk.register({
     f = { "<cmd>Telescope find_files<cr>", "find File" },
     h = { "<cmd>Telescope help_tags<cr>", "Help tags" }
   },
+  ["/"] = {"<cmd>Telescope live_grep<cr>", "live Grep"},
+
   t = { "<cmd>terminal<cr>i", "Terminal" },
   s = {
     name = "Search",
@@ -32,7 +29,7 @@ wk.register({
     s = { "<cmd>Telescope git_status<CR>", "Status" }
   },
   c = {
-    name = "code",
+    name = "Code",
     r = { "<Plug>(coc-rename)", "Rename" },
     f = { "<cmd>Format <cr>", "Format" },
     i = { "<cmd>OR <cr>", "organize Imports" },
@@ -41,8 +38,25 @@ wk.register({
     a = { "<Plug>(coc-codeaction-source)", "code Actions for current file" },
     c = {
       name = "Coc",
-      e = { "<cmd>CocList extensions<cr>", "CoC extensions" }
+      e = { "<cmd>CocList extensions<cr>", "installed Extensions" },
+      -- :CocInstall coc-marketplace
+      m = { "<cmd>CocList marketplace<cr>", "Marketplace" },
     }
   },
-  -- y = { "<cmd><c-u>Yde<cr>", "Youdao translator" }
+  w = {
+    name = "Window",
+    w = {"<c-w>w<cr>", "switch to other Window"},
+    ["-"] = {"<cmd>sp<cr>", "split window below(up is active)"},
+    ["|"] = {"<cmd>vs<cr>", "split window right(left is active)"},
+  },
+  y = {
+    name = "Youdao",
+    c = {"<cmd>Ydc<cr>", "translate Cusor word" },
+    i = {"<cmd>Yde<cr>", "Input" }
+  },
+  u = {
+    name = "Ui",
+    s = {function() vim.opt.spell = not(vim.opt.spell:get()) end, "toggle Spell"},
+  }
 }, { prefix = "<leader>" })
+
