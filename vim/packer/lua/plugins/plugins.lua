@@ -69,6 +69,9 @@ return require('packer').startup(function(use)
   -- colored parentheses
   use 'luochen1990/rainbow'
 
+  -- automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
+  use 'RRethy/vim-illuminate'
+
   -- statusline
   use {
     'nvim-lualine/lualine.nvim',
