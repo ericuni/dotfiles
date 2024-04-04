@@ -6,16 +6,19 @@ vim.keymap.set('n', '<c-e>', telescope.buffers, {})
 -- which key
 local wk = require('which-key')
 wk.register({
+  ["<space>"] = { "<cmd>Telescope find_files<cr>", "find File" },
+  ["/"] = {"<cmd>Telescope live_grep<cr>", "live Grep"},
+  b = {"<cmd>Telescope buffers<cr>", "Buffers"},
+  t = { "<cmd>terminal<cr>i", "Terminal" },
+
   f = {
     name = "File",
     g = { "<cmd>Telescope live_grep<cr>", "live Grep" },
     t = { "<cmd>terminal<cr>i", "Terminal" },
     f = { "<cmd>Telescope find_files<cr>", "find File" },
-    h = { "<cmd>Telescope help_tags<cr>", "Help tags" }
+    e = {"<cmd>Neotree<cr>", "Explorer neotree"},
+    h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
   },
-  ["/"] = {"<cmd>Telescope live_grep<cr>", "live Grep"},
-
-  t = { "<cmd>terminal<cr>i", "Terminal" },
   s = {
     name = "Search",
     o = { "<cmd>Telescope vim_options<cr>", "Options" },
@@ -26,7 +29,7 @@ wk.register({
     b = { "<cmd>Git blame<cr>", "git Blame" },
     g = { "<cmd>LazyGit<cr>", "lazyGit" },
     c = { "<cmd>Telescope git_commits<CR>", "Commits" },
-    s = { "<cmd>Telescope git_status<CR>", "Status" }
+    s = { "<cmd>Telescope git_status<CR>", "Status" },
   },
   c = {
     name = "Code",
@@ -49,14 +52,15 @@ wk.register({
     ["-"] = {"<cmd>sp<cr>", "split window below(up is active)"},
     ["|"] = {"<cmd>vs<cr>", "split window right(left is active)"},
   },
-  y = {
-    name = "Youdao",
-    c = {"<cmd>Ydc<cr>", "translate Cusor word" },
-    i = {"<cmd>Yde<cr>", "Input" }
-  },
   u = {
     name = "Ui",
     s = {function() vim.opt.spell = not(vim.opt.spell:get()) end, "toggle Spell"},
-  }
+    n = {function() vim.opt.nu = not(vim.opt.nu:get()) vim.opt.rnu = not(vim.opt.rnu:get()) end, "toggle Number"},
+  },
+  y = {
+    name = "Youdao",
+    c = {"<cmd>Ydc<cr>", "translate Cusor word" },
+    i = {"<cmd>Yde<cr>", "Input" },
+  },
 }, { prefix = "<leader>" })
 
