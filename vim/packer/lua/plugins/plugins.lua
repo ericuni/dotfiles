@@ -19,6 +19,7 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
+  -- installed extensions: coc-sumneko-lua(lua lsp), coc-snippets, coc-marketplace
   use {'neoclide/coc.nvim', branch = 'release'}
 
   -- install and manage LSP servers, DAP servers, linters, and formatters.
@@ -79,6 +80,7 @@ return require('packer').startup(function(use)
   use 'luochen1990/rainbow'
 
   -- automatically highlighting other uses of the word under the cursor using either LSP, Tree-sitter, or regex matching
+  -- 常见报错是因为没有对应语言的lsp 或者 tree-sitter parser, 安装tree-sitter parser `:TsInstall language`
   use 'RRethy/vim-illuminate'
 
   -- statusline
