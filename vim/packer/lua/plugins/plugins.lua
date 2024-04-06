@@ -34,6 +34,12 @@ return require('packer').startup(function(use)
     run = ':TSUpdate'
   }
 
+  -- show code context
+  use "nvim-treesitter/nvim-treesitter-context"
+
+  -- visualize and operate on indent scope
+  use "echasnovski/mini.indentscope"
+
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.x',
     requires = {
