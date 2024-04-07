@@ -63,3 +63,6 @@ require('illuminate').configure({
     providers = { "lsp" },
   },
 })
+
+require('gitsigns').setup()
+
