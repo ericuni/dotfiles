@@ -12,7 +12,9 @@ require('lualine').setup({
       {
         'filename',
         file_status = true, -- readonly | modified
-        path = 2            -- 0:just filename, 1:relative path, 2:absolute path
+        -- 0: just filename, 1: relative path, 2: absolute path, 3: absolute path, with tilde as the home directory
+        -- 4: filename and parent dir, with tilde as the home directory
+        path = 3,
       }
     }
   }
