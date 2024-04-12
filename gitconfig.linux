@@ -1,6 +1,6 @@
 [user]
-  name = Eric Wang
-  email = wangchaogo1990@gmail.com
+  name = ericuni
+  email = ericuni90@gmail.com
 [core]
   editor = nvim
   autocrlf = false
