@@ -1,15 +1,17 @@
 [user]
-  name = Eric Wang
-  email = wangchaogo1990@gmail.com
+  name = ericuni
+  email = ericuni90+git@gmail.com
 [core]
   editor = nvim
   autocrlf = false
   quotepath = false
   ignorecase = false
-[credential "https://dev.azure.com"]
-  useHttpPath = true
+[push]
+  default = current
 [pull]
   rebase = false
+[credential "https://dev.azure.com"]
+  useHttpPath = true
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
