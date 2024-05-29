@@ -45,11 +45,9 @@ brew tap buo/cask-upgrade
 brew install neovim ripgrep fd layzgit
 
 # coc.nvim
-# brew install node
-# python3 -m pip install --user --upgrade pynvim
-# npm install -g neovim  ## make coc to work with gopls
-
-brew install tree lrzsz
+brew install node
+python3 -m pip install --user --upgrade pynvim
+npm install -g neovim  ## make coc to work with gopls
 
 # lsd
 ## [Icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
@@ -62,7 +60,8 @@ brew install fd zoxide jq lazygit
 # brew install mysql
 
 ## dev
-brew install --cask devtoys wezterm postman
+brew install --cask devtoys wezterm postman tree
+# lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx
 brew install ninja glog protobuf googletest google-benchmark gperftools
@@ -84,6 +83,9 @@ install_rust
 # proxy
 # usage: nohup gost -L "http://:8118" &
 brew install gost
+
+## video downloader: https://github.com/iawia002/lux
+brew install lux
 
 # aria2
 # brew install aria2
