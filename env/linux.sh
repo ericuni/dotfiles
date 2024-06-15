@@ -15,6 +15,8 @@ if [[ ! -d opt ]]; then
   mkdir opt
 fi
 
+sudo apt install jq
+
 cd opt
 
 # neovim
@@ -122,6 +124,8 @@ if [[ $? -ne 0 ]]; then
   rm gcm.deb
 fi
 
+exit 0
+
 # blade and cxx
 sudo apt install \
   ninja-build \
@@ -156,6 +160,4 @@ if [[ $? -ne 0 ]]; then
   # newgrp docker
   # docker images
 fi
-
-exit 0
 

@@ -46,6 +46,7 @@ wk.register({
       m = { "<cmd>CocList marketplace<cr>", "Marketplace" },
     }
   },
+  j = { "<cmd>%!jq .<cr>", "Json file format"},
   w = {
     name = "Window",
     w = {"<c-w>w<cr>", "switch to other Window"},
