@@ -15,7 +15,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
     # original brew can only pin formula not cask
     # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
     # brew upgrade --cask --greedy
-    for app in devtoys adrive docker qq postman v2rayu logseq obsidian raycast
+    for app in adrive docker qq postman v2rayu logseq obsidian raycast
     do
       brew cu pin $app
     done
@@ -42,7 +42,7 @@ fi
 brew tap buo/cask-upgrade
 
 # nvim
-brew install neovim ripgrep fd layzgit
+brew install neovim ripgrep fd lazygit jq
 
 # coc.nvim
 brew install node
@@ -55,12 +55,12 @@ brew install lsd
 ## need change iterm font
 brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install fd zoxide jq lazygit
+brew install zoxide
 
 # brew install mysql
 
 ## dev
-brew install --cask devtoys wezterm postman tree
+brew install --cask wezterm postman tree
 # lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx
