@@ -104,7 +104,7 @@ function rgvi() {
   fi
 }
 
-alias sd="cd ~ && cd \$(fd --type d --max-depth 3 --exclude opt --exclude go --exclude Library | sk)"
+alias gd="cd \$(fd --type d --max-depth 2 --search-path ~/git | sk)"
 
 # autojump
 which zoxide >/dev/null
