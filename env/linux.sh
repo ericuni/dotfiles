@@ -112,6 +112,7 @@ install_rust_cmds lsd zoxide bat killport joshuto
 install_rust_special_cmd rg ripgrep
 install_rust_special_cmd fd fd-find
 install_rust_special_cmd sk skim
+install_rust_special_cmd delta git-delta
 
 # github does not support direct password when using https, needs gcm
 which git-credential-manager-core

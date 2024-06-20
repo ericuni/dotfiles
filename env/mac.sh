@@ -60,7 +60,7 @@ brew install zoxide
 # brew install mysql
 
 ## dev
-brew install --cask wezterm postman tree
+brew install --cask wezterm postman tree git-delta
 # lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx

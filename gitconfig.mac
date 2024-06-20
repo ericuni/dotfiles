@@ -1,11 +1,6 @@
 [user]
   name = ericuni
   email = ericuni90+git@gmail.com
-[core]
-  editor = nvim
-  autocrlf = false
-  quotepath = false
-  ignorecase = false
 [push]
   default = current
 [pull]
@@ -17,4 +12,27 @@
   smudge = git-lfs smudge -- %f
   process = git-lfs filter-process
   required = true
+
+[core]
+  editor = nvim
+  autocrlf = false
+  quotepath = false
+  ignorecase = false
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = false
+  dark = true
+  line-numbers = true
+  max-line-length = 0  # prevent any truncation https://github.com/dandavison/delta/issues/299
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
 
