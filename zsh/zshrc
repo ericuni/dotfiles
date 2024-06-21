@@ -91,8 +91,8 @@ eval "$(fzf --zsh)"
 # [FZF newcomer: fd or ripgrep?](https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/)
 # CTRL-T: Paste the selected files and directories onto the command-line
 # CTRL-R: Paste the selected command from history onto the command-lin
-# ALT-C: cd into the selected directory
-export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+# ALT-C: cd into the selected directory, option+c on MacOS
+export FZF_DEFAULT_COMMAND='fd --hidden'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL-T as well
 export FZF_ALT_C_COMMAND="fd --type d --hidden"
 
@@ -106,6 +106,9 @@ function _fzf_compgen_dir() {
   fd --type d --hidden . "$1"
 }
 
+## --strip-cwd-prefix cannot be used with --search-path
+alias gd="cd \$(fd --type d --max-depth 2 --search-path ~/git | fzf)"
+
 # skim
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || find ."
 
@@ -116,8 +119,6 @@ function rgvi() {
     nvim `echo $x | cut -d: -f1` "+`echo $x | cut -d: -f2`" || true
   fi
 }
-
-alias gd="cd \$(fd --type d --max-depth 2 --search-path ~/git | sk)"
 
 # autojump
 which zoxide >/dev/null
