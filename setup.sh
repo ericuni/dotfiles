@@ -20,6 +20,8 @@ if [[ -d .nutstore ]]; then
   ln -sf $dot/nutstore/customExtRules.conf .nutstore/db/customExtRules.conf
 fi
 
+ln -sf $dot/fdignore .fdignore
+
 cd .config || exit 1
 # -L: soft link
 if [[ -L nvim ]]; then
