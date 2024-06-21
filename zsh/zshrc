@@ -88,10 +88,24 @@ which btm >/dev/null && alias btm="btm --network_use_bytes --current_usage"
 export no_proxy="localhost,127.0.0.1,$ip"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(fzf --zsh)"
 # [FZF newcomer: fd or ripgrep?](https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/)
-export FZF_DEFAULT_COMMAND='fd --type file --hidden --exclude .git --exclude kitex_gen'
+# CTRL-T: Paste the selected files and directories onto the command-line
+# CTRL-R: Paste the selected command from history onto the command-lin
+# ALT-C: cd into the selected directory
+export FZF_DEFAULT_COMMAND='fd --type file --hidden --strip-cwd-prefix --exclude .git --exclude kitex_gen'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"  # to apply the command to CTRL-T as well
+export FZF_ALT_C_COMMAND="fd --type d --hidden --strip-cwd-prefix --exclude .git"
+
+## use fd to list path candidates for ** completion
+function _fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+## use fd to generate the list for directory completion
+function _fzf_compgen_dir() {
+  fd --type d --hidden --exclude .git . "$1"
+}
 
 # skim
 export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || find ."
