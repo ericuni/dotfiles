@@ -87,7 +87,7 @@ which btm >/dev/null && alias btm="btm --network_use_bytes --current_usage"
 export no_proxy="localhost,127.0.0.1,$ip"
 
 # fzf
-eval "$(fzf --zsh)"
+eval "$(fzf --zsh)"  ## available in fzf 0.48.0 or later.
 # [FZF newcomer: fd or ripgrep?](https://www.reddit.com/r/linux4noobs/comments/egb644/fzf_newcomer_fd_or_ripgrep/)
 # CTRL-T: Paste the selected files and directories onto the command-line
 # CTRL-R: Paste the selected command from history onto the command-lin
