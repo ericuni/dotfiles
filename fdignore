@@ -1,6 +1,8 @@
 .git
 kitex_gen
 go/pkg
+log
+opt
 git/logseq/journals
 Library
 Movies
