@@ -54,7 +54,8 @@ which go
 if [[ $? -eq 0 ]]; then
   which gopls
   if [[ $? -ne 0 ]]; then
-    go install golang.org/x/tools/gopls@latest
+    ## go1.20 最高只能使用gopls v0.15.3
+    go install golang.org/x/tools/gopls@v0.15.3
   fi
 
   which mockgen
