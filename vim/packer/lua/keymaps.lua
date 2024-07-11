@@ -1,35 +1,34 @@
 -- telescope
-local telescope = require('telescope.builtin')
-vim.keymap.set('n', '<c-p>', telescope.find_files, {})
-vim.keymap.set('n', '<c-e>', telescope.buffers, {})
+local fzf = require('fzf-lua')
+vim.keymap.set('n', '<c-p>', fzf.files, { desc = "find File" })
+vim.keymap.set('n', '<c-e>', fzf.buffers, { desc = "find Buffer" })
 
 -- which key
 local wk = require('which-key')
 wk.register({
-  ["<space>"] = { "<cmd>Telescope find_files<cr>", "find File" },
-  ["/"] = {"<cmd>Telescope live_grep<cr>", "live Grep"},
-  b = {"<cmd>Telescope buffers<cr>", "Buffers"},
+  ["<space>"] = { "<cmd>FzfLua files<cr>", "find File" },
+  ["/"] = {"<cmd>FzfLua live_grep<cr>", "live Grep"},
+  b = {"<cmd>FzfLua buffers<cr>", "Buffers"},
   t = { "<cmd>terminal<cr>i", "Terminal" },
 
   f = {
     name = "File",
-    g = { "<cmd>Telescope live_grep<cr>", "live Grep" },
+    g = { "<cmd>FzfLua live_grep<cr>", "live Grep" },
     t = { "<cmd>terminal<cr>i", "Terminal" },
-    f = { "<cmd>Telescope find_files<cr>", "find File" },
+    f = { "<cmd>FzfLua files<cr>", "find File" },
     e = {"<cmd>Neotree<cr>", "Explorer neotree"},
-    h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+    h = { "<cmd>FzfLua help_tags<cr>", "Help tags" },
   },
   s = {
     name = "Search",
     o = { "<cmd>Telescope vim_options<cr>", "Options" },
-    k = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
+    k = { "<cmd>FzfLua keymaps<cr>", "Key Maps" },
   },
   g = {
     name = "Git",
     b = { "<cmd>Git blame<cr>", "git Blame" },
     g = { "<cmd>LazyGit<cr>", "lazyGit" },
-    c = { "<cmd>Telescope git_commits<CR>", "Commits" },
-    s = { "<cmd>Telescope git_status<CR>", "Status" },
+    c = { "<cmd>FzfLua git_commits<CR>", "Commits" },
   },
   c = {
     name = "Code",
@@ -57,7 +56,7 @@ wk.register({
     name = "Ui",
     s = {function() vim.opt.spell = not(vim.opt.spell:get()) end, "toggle Spell"},
     n = {function() vim.opt.nu = not(vim.opt.nu:get()) vim.opt.rnu = not(vim.opt.rnu:get()) end, "toggle Number"},
-    c = {"<cmd>Telescope colorscheme<cr>", "Colorscheme"},
+    c = {"<cmd>FzfLua colorschemes<cr>", "Colorscheme"},
   },
   y = {
     name = "Youdao",

@@ -49,6 +49,12 @@ return require('packer').startup(function(use)
   }
 
   use {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    requires = { "nvim-tree/nvim-web-devicons" }
+  }
+
+  use {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     requires = {
