@@ -1,21 +1,18 @@
 -- telescope
 local fzf = require('fzf-lua')
-vim.keymap.set('n', '<c-p>', fzf.files, { desc = "find File" })
+vim.keymap.set('n', '<c-p>', fzf.files, { desc = "find File with Path" })
 vim.keymap.set('n', '<c-e>', fzf.buffers, { desc = "find Buffer" })
 
 -- which key
 local wk = require('which-key')
 wk.register({
-  ["<space>"] = { "<cmd>FzfLua files<cr>", "find File" },
   ["/"] = {"<cmd>FzfLua live_grep<cr>", "live Grep"},
   b = {"<cmd>FzfLua buffers<cr>", "Buffers"},
   t = { "<cmd>terminal<cr>i", "Terminal" },
 
   f = {
     name = "File",
-    g = { "<cmd>FzfLua live_grep<cr>", "live Grep" },
-    t = { "<cmd>terminal<cr>i", "Terminal" },
-    f = { "<cmd>FzfLua files<cr>", "find File" },
+    g = { "<cmd>Telescope live_grep<cr>", "live Grep" },
     e = {"<cmd>Neotree<cr>", "Explorer neotree"},
     h = { "<cmd>FzfLua help_tags<cr>", "Help tags" },
   },
@@ -28,7 +25,6 @@ wk.register({
     name = "Git",
     b = { "<cmd>Git blame<cr>", "git Blame" },
     g = { "<cmd>LazyGit<cr>", "lazyGit" },
-    c = { "<cmd>FzfLua git_commits<CR>", "Commits" },
   },
   c = {
     name = "Code",
