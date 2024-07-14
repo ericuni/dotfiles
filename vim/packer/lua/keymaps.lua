@@ -6,6 +6,7 @@ vim.keymap.set('n', '<c-e>', fzf.buffers, { desc = "find Buffer" })
 -- which key
 local wk = require('which-key')
 wk.register({
+  ["<space>"] = { "<cmd>FzfLua files<cr>", "find File" },
   ["/"] = {"<cmd>FzfLua live_grep<cr>", "live Grep"},
   b = {"<cmd>FzfLua buffers<cr>", "Buffers"},
   t = { "<cmd>terminal<cr>i", "Terminal" },
@@ -17,7 +18,7 @@ wk.register({
   },
   s = {
     name = "Search",
-    o = { "<cmd>Telescope vim_options<cr>", "Options" },
+    -- o = { "<cmd>Telescope vim_options<cr>", "Options" },
     k = { "<cmd>FzfLua keymaps<cr>", "Key Maps" },
   },
   g = {
