@@ -12,7 +12,6 @@ wk.register({
 
   f = {
     name = "File",
-    g = { "<cmd>Telescope live_grep<cr>", "live Grep" },
     e = {"<cmd>Neotree<cr>", "Explorer neotree"},
     h = { "<cmd>FzfLua help_tags<cr>", "Help tags" },
   },
