@@ -40,12 +40,18 @@ return require('packer').startup(function(use)
   -- visualize and operate on indent scope
   use "echasnovski/mini.indentscope"
 
+  -- use {
+  --   'nvim-telescope/telescope.nvim', tag = '0.1.x',
+  --   requires = {
+  --     {'nvim-lua/plenary.nvim'},
+  --     {'nvim-treesitter/nvim-treesitter'}
+  --   }
+  -- }
+
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.x',
-    requires = {
-      {'nvim-lua/plenary.nvim'},
-      {'nvim-treesitter/nvim-treesitter'}
-    }
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    requires = { "nvim-tree/nvim-web-devicons" }
   }
 
   use {
