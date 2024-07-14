@@ -14,12 +14,15 @@ wk.register({
   f = {
     name = "File",
     e = {"<cmd>Neotree<cr>", "Explorer neotree"},
-    h = { "<cmd>FzfLua help_tags<cr>", "Help tags" },
   },
   s = {
     name = "Search",
     -- o = { "<cmd>Telescope vim_options<cr>", "Options" },
-    k = { "<cmd>FzfLua keymaps<cr>", "Key Maps" },
+    c = { "<cmd>FzfLua commands<cr>", "neovim Commands" },
+    f = { "<cmd>FzfLua builtin<cr>", "Fzf-lua builtin commands" },
+    h = { "<cmd>FzfLua help_tags<cr>", "Help tags" },
+    k = { "<cmd>FzfLua keymaps<cr>", "Key maps" },
+    m = { "<cmd>FzfLua manpages<cr>", "Man pages" },
   },
   g = {
     name = "Git",
