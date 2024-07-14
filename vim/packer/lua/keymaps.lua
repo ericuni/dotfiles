@@ -6,9 +6,10 @@ vim.keymap.set('n', '<c-e>', fzf.buffers, { desc = "find Buffer" })
 local wk = require('which-key')
 wk.register({
   ["<space>"] = { "<cmd>FzfLua files<cr>", "find File" },
-  ["/"] = {"<cmd>FzfLua live_grep<cr>", "live Grep"},
   b = {"<cmd>FzfLua buffers<cr>", "Buffers"},
+  ["/"] = {"<cmd>FzfLua live_grep<cr>", "live Grep"},
   t = { "<cmd>terminal<cr>i", "Terminal" },
+  j = { "<cmd>%!jq .<cr>", "Json file format"},
 
   f = {
     name = "File",
@@ -40,7 +41,6 @@ wk.register({
       m = { "<cmd>CocList marketplace<cr>", "Marketplace" },
     }
   },
-  j = { "<cmd>%!jq .<cr>", "Json file format"},
   w = {
     name = "Window",
     w = {"<c-w>w<cr>", "switch to other Window"},

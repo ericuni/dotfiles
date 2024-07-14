@@ -75,8 +75,10 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- v3 has huge break change
   use {
     "folke/which-key.nvim",
+    tag = "v2.1.0",
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
