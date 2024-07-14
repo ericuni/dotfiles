@@ -1,4 +1,3 @@
--- telescope
 local fzf = require('fzf-lua')
 vim.keymap.set('n', '<c-p>', fzf.files, { desc = "find File with Path" })
 vim.keymap.set('n', '<c-e>', fzf.buffers, { desc = "find Buffer" })
