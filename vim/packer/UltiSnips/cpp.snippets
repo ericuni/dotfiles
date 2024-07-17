@@ -23,13 +23,6 @@ snippet snippet_ut "unit test" b
 
 #include "thirdparty/fmt/fmt.h"
 
-int main(int argc, char** argv) {
-  testing::InitGoogleTest(&argc, argv);
-  HeapLeakChecker heap_checker("heap checker");
-  auto ret = RUN_ALL_TESTS();
-  CHECK(heap_checker.NoLeaks());
-  return ret;
-}
 endsnippet
 
 snippet snippet_leetcode "leetcode solution" b
@@ -63,16 +56,9 @@ TEST($1, ex) {
 
   for (auto&& so : sos) {
     for (auto&& td : tds) {
+      LOG(INFO) << fmt::format("input={}", td.xxx);
     }
   }
-}
-
-int main(int argc, char** argv) {
-  testing::InitGoogleTest(&argc, argv);
-  HeapLeakChecker heap_checker("heap checker");
-  auto ret = RUN_ALL_TESTS();
-  CHECK(heap_checker.NoLeaks());
-  return ret;
 }
 endsnippet
 
