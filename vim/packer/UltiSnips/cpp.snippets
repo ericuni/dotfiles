@@ -55,6 +55,7 @@ TEST($1, ex) {
   sos.push_back(std::make_unique<Solution$2>());
 
   for (auto&& so : sos) {
+    LOG(INFO) << "new solution";
     for (auto&& td : tds) {
       LOG(INFO) << fmt::format("input={}", td.xxx);
     }
