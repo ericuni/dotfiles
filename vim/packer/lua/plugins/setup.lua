@@ -29,6 +29,19 @@ require('nvim-treesitter.configs').setup {
 
 require('mini.indentscope').setup()
 
+-- cpu intensive when file is large
+vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = "disable mini.indentscope for large buffer",
+  pattern = "*",
+  callback = function()
+    local count = vim.fn.line('$')  -- line count
+    local size = vim.fn.getfsize(vim.api.nvim_buf_get_name(0))
+    if count > 5000 or size > 1024*1024 then
+      vim.b.miniindentscope_disable = true
+    end
+  end,
+})
+
 require('illuminate').configure({
   -- providers: provider used to get references in the buffer, ordered by priority
   providers = {
