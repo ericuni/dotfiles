@@ -60,7 +60,7 @@ brew install zoxide fzf
 # brew install mysql
 
 ## dev
-brew install tree git-delta
+brew install tree git-delta tailspin
 brew install --cask wezterm postman
 # lrzsz  ## wezterm does not support rz/sz
 
