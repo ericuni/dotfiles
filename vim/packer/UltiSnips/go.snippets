@@ -305,16 +305,22 @@ flag.Parse()
 endsnippet
 
 snippet snippet_cmd "cmd" b
+func init() {
+	flag.Set("logtostderr", "true")
+	flag.Parse()
+}
+
 func main() {
 	defer glog.Flush()
 
 	ctx := context.Background()
 	if err := run(ctx); err != nil {
-		slog.ErrorCtx(ctx, "run fail", "err", err)
+		glog.Errorf("run fail, err=%+v", err)
 		os.Exit(-1)
 		return
 	}
-	slog.InfoCtx(ctx, "done")
+
+	glog.Infoln("done")
 }
 
 func run(ctx context.Context) error {
