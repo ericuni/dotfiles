@@ -313,8 +313,7 @@ func init() {
 func main() {
 	defer glog.Flush()
 
-	ctx := context.Background()
-	if err := run(ctx); err != nil {
+	if err := run(); err != nil {
 		glog.Errorf("run fail, err=%+v", err)
 		os.Exit(-1)
 		return
@@ -323,7 +322,7 @@ func main() {
 	glog.Infoln("done")
 }
 
-func run(ctx context.Context) error {
+func run() error {
 	return nil
 }
 endsnippet
