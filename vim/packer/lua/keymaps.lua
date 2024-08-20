@@ -54,6 +54,7 @@ wk.register({
     name = "Ui",
     s = {function() vim.opt.spell = not(vim.opt.spell:get()) end, "toggle Spell"},
     n = {function() vim.opt.nu = not(vim.opt.nu:get()) vim.opt.rnu = not(vim.opt.rnu:get()) end, "toggle Number"},
+    i = {function() vim.b.miniindentscope_disable = not(vim.b.miniindentscope_disable) end, "toggle indentscope"},
     c = {"<cmd>FzfLua colorschemes<cr>", "Colorscheme"},
   },
   y = {
