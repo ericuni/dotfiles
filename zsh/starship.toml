@@ -54,6 +54,7 @@ disabled = false
 [username]
 style_user = 'green'
 format = '$user'
+show_always = true
 
 [hostname]
 ssh_symbol = " "
