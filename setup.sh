@@ -28,6 +28,7 @@ if [[ -L nvim ]]; then
   rm nvim
 fi
 ln -sf $dot/vim/packer nvim
+ln -sf $dot/zsh/starship.toml starship.toml
 
 p=".docker"
 [[ ! -d $p ]] && mkdir $p
