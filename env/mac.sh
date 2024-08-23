@@ -55,7 +55,7 @@ brew install lsd
 ## need change iterm font
 brew tap homebrew/cask-fonts && brew install font-hack-nerd-font
 
-brew install zoxide fzf
+brew install zoxide fzf starship
 
 # brew install mysql
 
