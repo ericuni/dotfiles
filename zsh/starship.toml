@@ -58,9 +58,18 @@ style_user = 'green'
 format = '$user'
 show_always = true
 
+# 当是github 的repo 时, 用个人身份, 当是公司的repo时, 用公司身份, 如果不一致, 就以红色显示出来
 [custom.git]
 require_repo = true
-when = "git config remote.origin.url | grep github >/dev/null && [[ $(git config user.name) != 'ericuni' ]]"
+when = """
+name=$(git config user.name)
+git config remote.origin.url | grep github >/dev/null
+if [[ $? -eq 0 ]]; then
+  return $(test $name != 'ericuni')
+else
+  return $(test $name != 'liuqi.victor')
+fi
+"""
 style = "red"
 symbol = 'git'
 command = 'git config user.name'
