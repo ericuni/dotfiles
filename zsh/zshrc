@@ -116,17 +116,6 @@ function _fzf_compgen_dir() {
 ## --strip-cwd-prefix cannot be used with --search-path
 alias gd="cd \$(fd --type d --max-depth 2 --search-path ~/git | fzf)"
 
-# skim
-export SKIM_DEFAULT_COMMAND="fd --type f || rg --files || find ."
-
-function rgvi() {
-  x=`sk --ansi -i -c 'rg --color=always --line-number "{}"' --preview="~/git/dotfiles/zsh/preview.sh {}"`
-  # x : file path:line number:search pattern
-  if [[ $? -eq 0 ]]; then
-    nvim `echo $x | cut -d: -f1` "+`echo $x | cut -d: -f2`" || true
-  fi
-}
-
 # autojump
 which zoxide >/dev/null
 if [[ $? -eq 0 ]]; then
