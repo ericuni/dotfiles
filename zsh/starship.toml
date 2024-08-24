@@ -8,13 +8,13 @@ $git_state\
 $git_metrics\
 $git_status\
 $env_var\
-$custom\
 $line_break\
 $status\
 $character"""
 
 right_format = """
-$username\
+${custom.git}\
+$username
 $hostname\
 $cmd_duration\
 $golang\
@@ -58,6 +58,23 @@ style_user = 'green'
 format = '$user'
 show_always = true
 
+# 当是github 的repo 时, 用个人身份, 当是公司的repo时, 用公司身份, 如果不一致, 就以红色显示出来
+[custom.git]
+require_repo = true
+when = """
+name=$(git config user.name)
+git config remote.origin.url | grep github >/dev/null
+if [[ $? -eq 0 ]]; then
+  return $(test $name != 'ericuni')
+else
+  return $(test $name != 'liuqi.victor')
+fi
+"""
+style = "red"
+symbol = 'git'
+command = 'git config user.name'
+format = "[$output]($style)$symbol "
+
 [hostname]
 ssh_symbol = " "
 format = '@$hostname '
@@ -98,3 +115,4 @@ symbol = "󰏗 "
 [time]
 disabled = false
 format = '$time'
+
