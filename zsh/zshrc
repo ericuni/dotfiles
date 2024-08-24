@@ -19,6 +19,8 @@ export LANG=en_US.UTF-8
 
 which starship >/dev/null
 if [[ $? -eq 0 ]]; then
+  # 重复source ~/.zshrc 会有问题
+  # https://github.com/starship/starship/issues/3418
   eval "$(starship init zsh)"
 else
   export PS1='%(!.%{$fg[red]%}.%{$fg[green]%})%1~%{$fg_bold[blue]%}$(git_prompt_info)%{$reset_color%} '
