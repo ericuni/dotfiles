@@ -153,11 +153,7 @@ export GOSUMDB="sum.golang.google.cn"
 if [[ "$os" == "linux" ]]; then
   export GOROOT=$(go1.20.14 env GOROOT)
 else
-  local dir="/usr/local/Cellar/go@1.20"
-  if [[ -d $dir ]]; then
-    local goversion=`ls $dir`
-    export GOROOT="$dir/$goversion/libexec"
-  fi
+  export GOROOT=$(go1.22.6 env GOROOT)
 fi
 append_path $GOROOT/bin
 
