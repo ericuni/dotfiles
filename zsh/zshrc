@@ -27,6 +27,7 @@ else
   export RPROMPT='%n@%m %*'
 fi
 
+eval "$(direnv hook zsh)"
 
 setopt vi
 setopt NO_HUP
@@ -137,8 +138,20 @@ alias shopt="$HOME/git/dotfiles/zsh/shopt"
 source_path $HOME/bin/bladefunctions
 
 # golang
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export GOTMPDIR="/tmp/go"
+if [ ! -d $GOTMPDIR ]; then
+  mkdir $GOTMPDIR
+fi
+append_path $GOBIN
+
+export GO111MODULE=on
+export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
+export GOSUMDB="sum.golang.google.cn"
+
 if [[ "$os" == "linux" ]]; then
-  export GOROOT="$HOME/opt/go"
+  export GOROOT=$(go1.20.14 env GOROOT)
 else
   local dir="/usr/local/Cellar/go@1.20"
   if [[ -d $dir ]]; then
@@ -146,16 +159,7 @@ else
     export GOROOT="$dir/$goversion/libexec"
   fi
 fi
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export GOTMPDIR="/tmp/go"
-if [ ! -d $GOTMPDIR ]; then
-  mkdir $GOTMPDIR
-fi
-append_path $GOROOT/bin $GOBIN
-export GO111MODULE=on
-export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
-export GOSUMDB="sum.golang.google.cn"
+append_path $GOROOT/bin
 
 append_path $HOME/.cargo/bin      ## rust
 append_path $HOME/opt/node/bin    ## node
