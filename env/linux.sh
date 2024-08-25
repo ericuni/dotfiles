@@ -15,7 +15,7 @@ if [[ ! -d opt ]]; then
   mkdir opt
 fi
 
-sudo apt install jq
+sudo apt install jq direnv
 
 cd opt
 
