@@ -112,7 +112,6 @@ install_rust
 install_rust_cmds lsd zoxide starship bat killport joshuto bandwhich
 install_rust_special_cmd rg ripgrep
 install_rust_special_cmd fd fd-find
-install_rust_special_cmd sk skim
 install_rust_special_cmd delta git-delta
 install_rust_special_cmd tspin tailspin  # color log
 

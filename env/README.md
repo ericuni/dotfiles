@@ -11,7 +11,6 @@
 - jq: pretty json
 - bat: cat with syntax highlighting and Git integration
 - btm: bottom, Yet another cross-platform graphical process/system monitor compared with top
-- sk: skim, fuzzy finder in rust
 - joshuto: ranger-like terminal file manager in rust
 - procs: A modern replacement for ps written in rust
 
