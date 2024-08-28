@@ -1,15 +1,45 @@
 [user]
   name = ericuni
-  email = ericuni90@gmail.com
+  email = ericuni90+github@gmail.com
+
 [core]
   editor = nvim
   autocrlf = false
   quotepath = false
-[credential]
-  helper = /usr/local/bin/git-credential-manager-core
-  credentialStore = plaintext
-[credential "https://dev.azure.com"]
-  useHttpPath = true
+  ignorecase = false
+  pager = delta
+
+[push]
+  default = current
+
 [pull]
   rebase = false
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = false
+  dark = true
+  line-numbers = false
+  max-line-length = 0  # prevent any truncation https://github.com/dandavison/delta/issues/299
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+
+[credential]
+  credentialStore = plaintext
+  helper = /usr/local/bin/git-credential-manager
+[credential "https://dev.azure.com"]
+  useHttpPath = true
 

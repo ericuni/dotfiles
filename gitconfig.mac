@@ -1,17 +1,6 @@
 [user]
   name = ericuni
-  email = ericuni90+git@gmail.com
-[push]
-  default = current
-[pull]
-  rebase = false
-[credential "https://dev.azure.com"]
-  useHttpPath = true
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  process = git-lfs filter-process
-  required = true
+  email = ericuni90+github@gmail.com
 
 [core]
   editor = nvim
@@ -19,6 +8,18 @@
   quotepath = false
   ignorecase = false
   pager = delta
+
+[push]
+  default = current
+
+[pull]
+  rebase = false
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default
 
 [interactive]
   diffFilter = delta --color-only
@@ -30,9 +31,12 @@
   line-numbers = false
   max-line-length = 0  # prevent any truncation https://github.com/dandavison/delta/issues/299
 
-[merge]
-  conflictstyle = diff3
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 
-[diff]
-  colorMoved = default
+[credential "https://dev.azure.com"]
+  useHttpPath = true
 
