@@ -62,6 +62,7 @@ brew install zoxide fzf starship direnv
 ## dev
 brew install tree git-delta tailspin
 brew install --cask wezterm postman
+brew install bandwhich  # sudo bandwhich
 # lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx
