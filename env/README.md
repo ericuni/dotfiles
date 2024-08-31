@@ -14,6 +14,11 @@
 - joshuto: ranger-like terminal file manager in rust
 - procs: A modern replacement for ps written in rust
 
+brew service
+
+- `brew services run mysql`: Run the service formula without registering to launch at login (or boot)
+- `brew services start mysql`: Start the service formula immediately and register it to launch at login
+
 ### homebrew terminology
 [What does brew tap mean?](https://stackoverflow.com/questions/34408147/what-does-brew-tap-mean)
 
@@ -24,7 +29,6 @@
   Latin Modern(font-latin-modern), etc.
 - taps: [Github|Gitlab|...] repositories containing additional packages that are not standard, i.e not incorporated into
   the official homebrew repository.
-
 
 Packages are installed into `/usr/local/Cellar/<package>` with symlinks into `/usr/local/bin` and `/usr/local/lib`, etc.
 
