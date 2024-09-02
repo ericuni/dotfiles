@@ -65,7 +65,7 @@ function replace() {
 }
 
 append_path /sbin /usr/sbin /usr/local/sbin
-append_path $HOME/bin $HOME/git/note/bin
+append_path $HOME/bin $HOME/.local/bin $HOME/git/note/bin
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   export os="mac"

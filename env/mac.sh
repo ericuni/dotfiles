@@ -80,6 +80,10 @@ brew install --cask \
 # rust
 install_rust
 
+# python
+brew install pipx
+pipx install pytest
+
 # proxy
 # usage: nohup gost -L "http://:8118" &
 brew install gost
