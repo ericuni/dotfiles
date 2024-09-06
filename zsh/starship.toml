@@ -111,6 +111,7 @@ format = 'Go$version '
 
 [python]
 symbol = " "
+format = "$symbol$version "
 
 [rust]
 symbol = "󱘗 "
