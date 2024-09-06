@@ -7,7 +7,7 @@
   autocrlf = false
   quotepath = false
   ignorecase = false
-  pager = delta
+  pager = delta --tabs 2
 
 [push]
   default = current
