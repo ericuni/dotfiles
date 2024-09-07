@@ -35,6 +35,7 @@ function update_rust() {
 
   rustup update
   rustup component add rust-src
+  rustup component add rust-analyzer
 
   # [User Manual](https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary)
   if [[ $os == "mac" ]]; then
