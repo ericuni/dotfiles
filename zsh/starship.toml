@@ -20,7 +20,6 @@ $cmd_duration\
 $golang\
 $python\
 $rust\
-$package\
 $c\
 $jobs\
 $time\
@@ -103,21 +102,23 @@ Windows = "󰍲 "
 disabled = true
 
 [c]
-symbol = " "
+symbol = ""
+format = "$name-$version "
 
 [golang]
 symbol = ""
-format = 'Go$version '
+format = 'Go-$version '
 
 [python]
 symbol = " "
-format = "$symbol$version "
+format = "Python-$version "
 
 [rust]
-symbol = "󱘗 "
+symbol = "󱘗"
+format = "Rust-$version "
 
 [package]
-symbol = "󰏗 "
+symbol = "󰏗"
 
 [time]
 disabled = false
