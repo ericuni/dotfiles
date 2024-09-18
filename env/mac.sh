@@ -42,6 +42,7 @@ pwpolicy -clearaccountpolicies
 ## 禁止.DS_Store生成
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
 
+# https://github.com/buo/homebrew-cask-upgrade
 # suports `brew cu pin`
 brew tap buo/cask-upgrade
 
@@ -50,6 +51,7 @@ brew install neovim ripgrep fd lazygit jq
 
 # coc.nvim
 brew install node
+# TODO: error: externally-managed-environment, use pipx
 python3 -m pip install --user --upgrade pynvim
 npm install -g neovim  ## make coc to work with gopls
 
