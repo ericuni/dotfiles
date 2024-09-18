@@ -22,7 +22,9 @@ fi
 
 ln -sf $dot/fdignore .fdignore
 
+[[ ! -d .config ]] && mkdir .config
 cd .config || exit 1
+
 # -L: soft link
 if [[ -L nvim ]]; then
   rm nvim
