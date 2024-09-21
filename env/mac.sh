@@ -79,7 +79,6 @@ brew install --cask \
   raycast \
   logseq obsidian zotero netnewswire \
   maczip \
-  # v2rayu \
   adrive nutstore thunder \
   iina
 
@@ -97,8 +96,7 @@ brew install gost
 ## video downloader: https://github.com/iawia002/lux
 brew install lux
 
-# aria2
-# brew install aria2
+# brew install aria2 v2rayu
 
 # mas: MacOS App Store https://github.com/mas-cli/mas
 brew install mas
@@ -106,7 +104,6 @@ brew install mas
 ## github does not support install MacOS App Store software
 if [[ -z $GITHUB_ACTIONS ]]; then
   mas install 836500024   ## 微信
-  mas install 515798947   ## MagicanLite
   mas install 508368068   ## GetPlainText
   mas install 1352778147  ## Bitwarden
   mas install 1639052102  ## pap.er
@@ -115,6 +112,11 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   mas install 944848654   ## 网易云音乐
   mas install 1661733229  ## LocalSend
   # mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
+
+  local platform=`uanme -m`
+  if [[ $platform == "x86_64" ]]; then
+    mas install 515798947   ## MagicanLite
+  fi
 fi
 
 ## generate ssh key pair
