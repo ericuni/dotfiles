@@ -55,3 +55,12 @@ mysql
 brew services start/stop/info/run mysql
 ```
 
+# coc.nvim
+```vim
+:CocInstall coc-marketplace
+```
+
+- coc-snippets
+- coc-tsserver: JavaScript and TypeScript lsp
+- coc-pyright: Python lsp
+
