@@ -159,11 +159,12 @@ export GOSUMDB="sum.golang.google.cn"
 # go1.22.6 download
 alias go20="go1.20.14"
 alias go21="go1.21.13"
-alias go22="go1.22.6"
+alias go22="go1.22.8"
+alias go23="go1.23.2"
 if [[ "$os" == "linux" ]]; then
-  export GOROOT=$(go20 env GOROOT)
+  export GOROOT=$(go22 env GOROOT)
 else
-  export GOROOT=$(go20 env GOROOT)
+  export GOROOT=$(go22 env GOROOT)
 fi
 append_path $GOROOT/bin
 
