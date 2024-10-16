@@ -28,12 +28,13 @@
       # programs.fish.enable = true;
 
       # unlock sudo commands with our fingerprint instead of typing the password.
+      # macOS resets this file when doing a system update
       # 第一次rebuild 的时候会要求输入密码
       security.pam.enableSudoTouchIdAuth = true;
 
       system.defaults = {
         finder.AppleShowAllExtensions = true;  # Finder shows all file extensions
-        finder.FXPreferredViewStyle = "clmv";  # Default Finder folder view is the columns view
+        finder.FXPreferredViewStyle = "clmv";  # Default Finder folder view is the column view
       };
 
       # Set Git commit hash for darwin-version.
