@@ -38,6 +38,8 @@ cd $p
 ln -sf $dot/docker/config.json config.json
 cd -
 
+ln -sf $dot/nix nix
+
 cd $current
 
 exit 0
