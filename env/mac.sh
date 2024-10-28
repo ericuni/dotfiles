@@ -24,7 +24,7 @@ if [[ $action == "update" ]]; then
   # original brew can only pin formula not cask
   # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
   # brew upgrade --cask --greedy
-  for app in adrive docker qq postman v2rayu logseq obsidian raycast
+  for app in adrive docker qq apifox v2rayu logseq obsidian raycast
   do
     brew cu pin $app
   done
@@ -67,7 +67,7 @@ brew install zoxide fzf starship direnv
 
 ## dev
 brew install tree git-delta tailspin
-brew install --cask wezterm postman
+brew install --cask wezterm apifox
 brew install bandwhich  # sudo bandwhich
 # lrzsz  ## wezterm does not support rz/sz
 
