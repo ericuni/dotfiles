@@ -12,6 +12,7 @@
     "explorer.confirmDragAndDrop": false,
     "extensions.ignoreRecommendations": false,
     "git.openRepositoryInParentFolders": "never",
+    "go.alternateTools": {},
     "go.autocompleteUnimportedPackages": true,
     "go.formatTool": "goimports",
     "go.testFlags": ["-v", "-gcflags=all=-l -N", "-cover"],
@@ -41,5 +42,5 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "welcomePage",
-    "go.alternateTools": {}
+    "editor.accessibilitySupport": "on"
 }
