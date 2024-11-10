@@ -32,24 +32,6 @@ if [[ $? -ne 0 ]]; then
 fi
 
 # golang
-if [[ ! -e go ]]; then
-  local out="go_version.html"
-  curl "https://go.dev/dl/" >$out || exit 1
-  # <a class="download downloadBox" href="/dl/go1.19.5.windows-amd64.msi">
-  # <a class="download downloadBox" href="/dl/go1.19.5.darwin-arm64.pkg">
-  # <a class="download downloadBox" href="/dl/go1.19.5.darwin-amd64.pkg">
-  # <a class="download downloadBox" href="/dl/go1.19.5.linux-amd64.tar.gz">
-  # <a class="download downloadBox" href="/dl/go1.19.5.src.tar.gz">
-  local version=`cat $out | grep "download downloadBox" | head -n 1 | awk -F "go" '{print $2}' | awk -F ".windows" '{print $1}'`
-  rm $out
-
-  curl https://dl.google.com/go/go${version}.linux-amd64.tar.gz >go.tar.gz
-  tar zxf go.tar.gz
-  mv go go${version}
-  ln -sf go${version} go
-  rm go.tar.gz
-fi
-
 which go
 if [[ $? -eq 0 ]]; then
   which gopls
