@@ -24,10 +24,7 @@ if [[ $action == "update" ]]; then
   # original brew can only pin formula not cask
   # [buo/homebrew-cask-upgrade](https://github.com/buo/homebrew-cask-upgrade) supports pinning cask
   # brew upgrade --cask --greedy
-  for app in adrive docker qq apifox v2rayu logseq obsidian raycast
-  do
-    brew cu pin $app
-  done
+  # brew cu pin app
   brew cu -a
 
   brew cleanup
