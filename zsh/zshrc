@@ -287,3 +287,7 @@ function pdf() {
   xelatex $tex  ## update cref
 }
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.cache/lm-studio/bin"
+

@@ -10,3 +10,6 @@ gopls 增加args 的方式
   },
 }
 ```
+
+[coc pyright settings](https://github.com/fannheyward/coc-pyright#Configurations)
+

@@ -31,6 +31,7 @@ if [[ -L nvim ]]; then
 fi
 ln -sf $dot/vim/packer nvim
 ln -sf $dot/zsh/starship.toml starship.toml
+ln -sf $dot/pycodestyle pycodestyle
 
 p=".docker"
 [[ ! -d $p ]] && mkdir $p

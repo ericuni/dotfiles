@@ -22,5 +22,9 @@
       "rootPatterns": ["Cargo.toml"]
     }
   },
+  "pyright.disableDiagnostics": true,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
   "snippets.ultisnips.pythonPrompt": false
 }
