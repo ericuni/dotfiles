@@ -42,5 +42,5 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "welcomePage",
-    "editor.accessibilitySupport": "on"
+    "editor.accessibilitySupport": "off"
 }

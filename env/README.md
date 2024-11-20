@@ -1,5 +1,5 @@
 # mac
-## brew
+## homebrew
 [cast formula](https://formulae.brew.sh/cask/)
 
 - yinxiangbiji: 印象笔记
@@ -36,6 +36,7 @@ Homebrew core repo formulae: downloaded to `/usr/local/Homebrew/Library/taps/hom
 
 ## dmg
 - Downie
+- [Homerow](https://www.homerow.app/): MacOS vim 化
 
 ## tips
 [Enable Touch ID for sudo](https://sixcolors.com/post/2020/11/quick-tip-enable-touch-id-for-sudo/)
