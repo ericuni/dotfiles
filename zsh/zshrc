@@ -172,6 +172,11 @@ append_path $HOME/.cargo/bin      ## rust
 append_path $HOME/opt/node/bin    ## node
 append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
+# venv: python virtual env
+if [ -f $HOME/opt/python/bin/activate ]; then
+  source $HOME/opt/python/bin/activate
+fi
+
 # java
 if [ -d $HOME/opt/jdk ]; then
   export JAVA_HOME="$HOME/opt/jdk"
