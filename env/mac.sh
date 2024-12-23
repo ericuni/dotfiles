@@ -55,6 +55,10 @@ brew install node
 # python3 -m pip install --user --upgrade pynvim
 npm install -g neovim  ## make coc to work with gopls
 
+# https://github.com/sindresorhus/clipboard-cli
+# echo xxx | clipboard, 这样 xxx 就在剪贴板中了
+npm install --global clipboard-cli
+
 # lsd
 ## [Icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
 brew install lsd
