@@ -2,6 +2,8 @@
 ## homebrew
 [cast formula](https://formulae.brew.sh/cask/)
 
+[清华homebrew镜像站](https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/)
+
 - yinxiangbiji: 印象笔记
 - adrive: 阿里网盘
 - maczip: eZip
