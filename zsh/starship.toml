@@ -18,7 +18,6 @@ $username
 $hostname\
 $cmd_duration\
 $golang\
-$python\
 $rust\
 $c\
 $time\
