@@ -37,7 +37,9 @@ if [[ $? -eq 0 ]]; then
   which gopls
   if [[ $? -ne 0 ]]; then
     ## go1.20 最高只能使用gopls v0.15.3
-    go install golang.org/x/tools/gopls@v0.15.3
+    ## gopls@v0.17.0 must be built with Go 1.23.1 or later
+    ## gopls@v0.16.0, final support for Go 1.19 and Go 1.20
+    go install golang.org/x/tools/gopls@v0.16.2
   fi
 
   which mockgen

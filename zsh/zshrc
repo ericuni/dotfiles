@@ -157,10 +157,8 @@ export GOSUMDB="sum.golang.google.cn"
 # go官方多版本方案
 # go install golang.org/dl/go1.22.6@latest
 # go1.22.6 download
-alias go20="go1.20.14"
-alias go21="go1.21.13"
 alias go22="go1.22.8"
-alias go23="go1.23.2"
+alias go23="go1.23.6"
 if [[ "$os" == "linux" ]]; then
   export GOROOT=$(go22 env GOROOT)
 else
