@@ -298,28 +298,24 @@ func (s *$1Suite) Test_isValid() {
 }
 endsnippet
 
-snippet glog_init "init glog" b
-flag.Set("alsologtostderr", "true")
-flag.Set("logtostderr", "true")
-flag.Parse()
-endsnippet
-
 snippet snippet_cmd "cmd" b
 func init() {
-	flag.Set("logtostderr", "true")
 	flag.Parse()
+
+	trace.SetZap()
 }
 
 func main() {
-	defer glog.Flush()
+	defer zap.S().Sync()
 
 	if err := run(); err != nil {
-		glog.Errorf("run fail, err=%+v", err)
+		sugar.Errorf("run fail, err=%+v", err)
+		flag.PrintDefaults()
 		os.Exit(-1)
 		return
 	}
 
-	glog.Infoln("done")
+	zap.S().Infoln("done")
 }
 
 func run() error {
