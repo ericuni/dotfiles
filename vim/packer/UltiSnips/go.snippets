@@ -309,7 +309,7 @@ func main() {
 	defer zap.S().Sync()
 
 	if err := run(); err != nil {
-		sugar.Errorf("run fail, err=%+v", err)
+		zap.S().Errorf("run fail, err=%+v", err)
 		flag.PrintDefaults()
 		os.Exit(-1)
 		return
