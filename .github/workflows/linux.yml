@@ -5,7 +5,7 @@ on:
     paths:
       - ".github/workflows/linux.yml"
       - "env/util.sh"
-      - "env/debian.12.sh.sh"
+      - "env/debian.12.sh"
   pull_request:
     branches: [ master ]
 

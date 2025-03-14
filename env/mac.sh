@@ -37,7 +37,7 @@ fi
 pwpolicy -clearaccountpolicies
 
 # 开盖自动开机功能, 之后还需要重启下
-sudo nvram AutoBoot=%00
+# sudo nvram AutoBoot=%00
 
 ## 禁止.DS_Store生成
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
@@ -70,9 +70,9 @@ brew install zoxide fzf starship direnv
 # brew install mysql
 
 ## dev
-brew install tree git-delta tailspin
+brew install tree git-delta
 brew install --cask wezterm apifox
-brew install bandwhich  # sudo bandwhich
+# brew install tailspin bandwhich  # sudo bandwhich
 # lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx
@@ -98,7 +98,7 @@ pipx install pytest
 brew install gost
 
 ## video downloader: https://github.com/iawia002/lux
-brew install lux
+# brew install lux
 
 # brew install aria2 v2rayu
 
@@ -110,7 +110,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   mas install 1228738830  ## NetWorker Lite
   mas install 836500024   ## 微信
   mas install 508368068   ## GetPlainText
-  mas install 1352778147  ## Bitwarden
+  # mas install 1352778147  ## Bitwarden
   mas install 1639052102  ## pap.er
   mas install 1659622164  ## vidhub
   mas install 595615424   ## QQ音乐
@@ -124,14 +124,7 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   fi
 fi
 
-## generate ssh key pair
-if [[ ! -d $HOME/.ssh ]]; then
-  mkdir $HOME/.ssh
-fi
-if [[ ! -f $HOME/.ssh/id_rsa ]]; then
-  ## 默认应该会使用 $HOME/.ssh/id_rsa, 如果不行, 再用 -f 指定
-  ssh-keygen -t rsa -q -N ""
-fi
+# ssh-keygen -t rsa -C ${email}
 
 exit 0
 
