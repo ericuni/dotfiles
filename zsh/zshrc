@@ -65,7 +65,11 @@ function replace() {
 }
 
 append_path /sbin /usr/sbin /usr/local/sbin
-append_path $HOME/bin $HOME/.local/bin $HOME/git/note/bin
+append_path $HOME/sdk/bin $HOME/bin $HOME/.local/bin $HOME/git/note/bin
+append_path $HOME/.cargo/bin      ## rust
+append_path $HOME/opt/node/bin    ## node
+append_path $HOME/sdk/node/bin    ## node
+append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
 if [[ $OSTYPE =~ "darwin" ]]; then
   export os="mac"
@@ -87,6 +91,7 @@ if [[ $os == "mac" ]]; then
 fi
 
 append_path $HOME/opt/nvim/bin
+append_path $HOME/sdk/nvim-linux-x86_64/bin
 replace vi nvim vim
 replace vim vi
 alias vimdiff="vi -d"
@@ -119,9 +124,6 @@ function _fzf_compgen_path() {
 function _fzf_compgen_dir() {
   fd --type d --hidden . "$1"
 }
-
-## --strip-cwd-prefix cannot be used with --search-path
-alias gd="cd \$(fd --type d --max-depth 2 --search-path ~/git | fzf)"
 
 # autojump
 which zoxide >/dev/null
@@ -158,17 +160,12 @@ export GOSUMDB="sum.golang.google.cn"
 # go install golang.org/dl/go1.22.6@latest
 # go1.22.6 download
 alias go22="go1.22.8"
-alias go23="go1.23.6"
 if [[ "$os" == "linux" ]]; then
   export GOROOT=$(go22 env GOROOT)
 else
   export GOROOT=$(go22 env GOROOT)
 fi
 append_path $GOROOT/bin
-
-append_path $HOME/.cargo/bin      ## rust
-append_path $HOME/opt/node/bin    ## node
-append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
 # venv: python virtual env
 if [ -f $HOME/opt/python/bin/activate ]; then
