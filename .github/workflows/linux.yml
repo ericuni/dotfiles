@@ -5,7 +5,7 @@ on:
     paths:
       - ".github/workflows/linux.yml"
       - "env/util.sh"
-      - "env/linux.sh"
+      - "env/debian.12.sh.sh"
   pull_request:
     branches: [ master ]
 
@@ -24,5 +24,5 @@ jobs:
     - name: build
       run: |
         cd env
-        ./linux.sh
+        ./debian.12.sh
 
