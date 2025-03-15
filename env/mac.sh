@@ -13,7 +13,22 @@ fi
 # brew
 which brew
 if [[ $? -ne 0 ]]; then
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  # official
+  # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # 清华mirror
+  export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+  export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+  export HOMEBREW_INSTALL_FROM_API=1
+  git clone --depth=1 https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git brew-install
+  /bin/bash brew-install/install.sh || exit 1
+  rm -rf brew-install
+
+  echo >> ~/.zprofile
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+  echo '# Set non-default Git remotes for Homebrew/brew and Homebrew/homebrew-core.' >> ~/.zprofile
+  echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> ~/.zprofile
+  echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.zprofile
 fi
 
 if [[ $action == "update" ]]; then
@@ -32,9 +47,9 @@ if [[ $action == "update" ]]; then
   exit 0
 fi
 
-## 去掉各种设置密码的规则限制
-## https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
-pwpolicy -clearaccountpolicies
+# 去掉各种设置密码的规则限制
+# https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
+# pwpolicy -clearaccountpolicies
 
 # 开盖自动开机功能, 之后还需要重启下
 # sudo nvram AutoBoot=%00
@@ -53,7 +68,7 @@ brew install neovim ripgrep fd lazygit jq
 brew install node
 # TODO: error: externally-managed-environment, use pipx
 # python3 -m pip install --user --upgrade pynvim
-npm install -g neovim  ## make coc to work with gopls
+# npm install -g neovim  ## make coc to work with gopls
 
 # https://github.com/sindresorhus/clipboard-cli
 # echo xxx | clipboard, 这样 xxx 就在剪贴板中了, mac 有自带的 pbcopy & pbpaste
@@ -117,11 +132,6 @@ if [[ -z $GITHUB_ACTIONS ]]; then
   mas install 944848654   ## 网易云音乐
   mas install 1661733229  ## LocalSend
   # mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
-
-  local platform=`uanme -m`
-  if [[ $platform == "x86_64" ]]; then
-    mas install 515798947   ## MagicanLite
-  fi
 fi
 
 # ssh-keygen -t rsa -C ${email}
