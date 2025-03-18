@@ -67,7 +67,7 @@ fi
 
 # neovim
 # WhichKey.nvim requires Neovim 0.9 or higher
-# coc.nvim ctrl-j 跳转位置生效被snippet 干扰时, 需要安装下 CocInstall coc-snippets
+# coc.nvim ctrl-j 跳转位置生效被snippet 干扰时(<Plug>(coc-snippets-expand-jump)), 需要安装下 CocInstall coc-snippets
 which nvim
 if [[ $? -ne 0 ]]; then
   cd ~/sdk
