@@ -9,6 +9,11 @@ sudo apt install zsh jq direnv
 # 然后机器需要物理重启才能生效
 # chsh -s $(which zsh)
 
+which brew
+if [[ $? -ne 0 ]]; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 # rust
 sudo apt install cmake pkg-config libssl-dev
 install_rust
