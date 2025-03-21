@@ -31,7 +31,7 @@ fi
 # #!/bin/zsh
 # export GOROOT=$(go1.21.13 env GOROOT)
 # export PATH=$GOROOT/bin:$PATH
-which direnv
+which direnv >/dev/null
 if [[ $? -eq 0 ]]; then
   eval "$(direnv hook zsh)"
 fi
