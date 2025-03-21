@@ -31,7 +31,10 @@ fi
 # #!/bin/zsh
 # export GOROOT=$(go1.21.13 env GOROOT)
 # export PATH=$GOROOT/bin:$PATH
-eval "$(direnv hook zsh)"
+which direnv
+if [[ $? -eq 0 ]]; then
+  eval "$(direnv hook zsh)"
+fi
 
 setopt vi
 setopt NO_HUP
@@ -65,10 +68,9 @@ function replace() {
 }
 
 append_path /sbin /usr/sbin /usr/local/sbin
-append_path $HOME/sdk/bin $HOME/bin $HOME/.local/bin $HOME/git/note/bin
+append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
-append_path $HOME/opt/node/bin    ## node
-append_path $HOME/sdk/node/bin    ## node
+append_path $HOME/.local/bin
 append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
 if [[ $OSTYPE =~ "darwin" ]]; then
@@ -156,6 +158,7 @@ export GO111MODULE=on
 export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
+# brew install go@1.22 后的位置 /home/linuxbrew/.linuxbrew/opt/go@1.22/bin
 # go官方多版本方案
 # go install golang.org/dl/go1.22.6@latest
 # go1.22.6 download
