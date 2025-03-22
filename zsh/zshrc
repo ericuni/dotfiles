@@ -27,12 +27,6 @@ else
   export RPROMPT='%n@%m %*'
 fi
 
-# .envrc only supports export for now, example
-# #!/bin/zsh
-# export GOROOT=$(go1.21.13 env GOROOT)
-# export PATH=$GOROOT/bin:$PATH
-eval "$(direnv hook zsh)"
-
 setopt vi
 setopt NO_HUP
 setopt rmstarsilent  ## supress warning when `rm -rf *` "zsh: sure you want to delete all the files in ... [yn]"?
@@ -65,45 +59,30 @@ function replace() {
 }
 
 append_path /sbin /usr/sbin /usr/local/sbin
-append_path $HOME/sdk/bin $HOME/bin $HOME/.local/bin $HOME/git/note/bin
+append_path /opt/homebrew/bin  ## homebrew for arm mac
+append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
-append_path $HOME/opt/node/bin    ## node
-append_path $HOME/sdk/node/bin    ## node
+
+source_path $HOME/git/dotfiles/zsh/env.zsh
+source_path $HOME/git/work/conf/zshrc # enterprise
+
+# TODO
+append_path $HOME/.local/bin
 append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
-if [[ $OSTYPE =~ "darwin" ]]; then
-  export os="mac"
-  export ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'`
-elif [[ $OSTYPE =~ "linux" ]]; then
-  export os="linux"
-  export ip=`ip -4 address | grep eth0 | tail -n 1 | awk '{print $2}' | awk -F'/' '{print $1}'`
-  export env=`systemd-detect-virt`
-fi
-
-ulimit -c unlimited
-
-alias grep='grep --color=auto'
-alias watch='watch -d -n 1'
-alias tmux="TERM=screen-256color-bce tmux"
-
-if [[ $os == "mac" ]]; then
+if [[ `uname` == "Darwin" ]]; then
   alias sha256="shasum -a 256"
 fi
 
-append_path $HOME/opt/nvim/bin
-append_path $HOME/sdk/nvim-linux-x86_64/bin
 replace vi nvim vim
 replace vim vi
 alias vimdiff="vi -d"
 
 replace fd fdfind
 replace ls lsd
-export JOSHUTO_CONFIG_HOME="$HOME/git/dotfiles/joshuto"
-
 alias ll="ls -l"
-which btm >/dev/null && alias btm="btm --network_use_bytes --current_usage"
 
-export no_proxy="localhost,127.0.0.1,$ip"
+export no_proxy="localhost,127.0.0.1"
 
 # fzf
 eval "$(fzf --zsh)"  ## available in fzf 0.48.0 or later.
@@ -135,13 +114,15 @@ fi
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
 # blade
+source_path $HOME/bin/bladefunctions
 alias bb="blade build"
 alias bt="blade test"
 alias br="blade run"
 
+ulimit -c unlimited
+
 ## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
 alias shopt="$HOME/git/dotfiles/zsh/shopt"
-source_path $HOME/bin/bladefunctions
 
 # golang
 export GOPATH="$HOME/go"
@@ -156,14 +137,10 @@ export GO111MODULE=on
 export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
-# go官方多版本方案
-# go install golang.org/dl/go1.22.6@latest
-# go1.22.6 download
-alias go22="go1.22.8"
-if [[ "$os" == "linux" ]]; then
-  export GOROOT=$(go22 env GOROOT)
+if [[ `uname` == "Linux" ]]; then
+  export GOROOT=$(go1.22.8 env GOROOT)
 else
-  export GOROOT=$(go22 env GOROOT)
+  export GOROOT=$(go1.22.8 env GOROOT)
 fi
 append_path $GOROOT/bin
 
@@ -171,122 +148,6 @@ append_path $GOROOT/bin
 if [ -f $HOME/opt/python/bin/activate ]; then
   source $HOME/opt/python/bin/activate
 fi
-
-# java
-if [ -d $HOME/opt/jdk ]; then
-  export JAVA_HOME="$HOME/opt/jdk"
-  export PATH=$PATH:"$HOME/opt/jdk/bin"
-fi
-
-# enterprise
-source_path $HOME/git/work/conf/zshrc
-
-# udf
-function where() {
-  env | grep VIMRUNTIME >/dev/null
-  if [ $? -eq 0 ]; then
-    echo "vim"
-  else
-    echo "raw"
-  fi
-}
-
-function switch_ssh() {
-  cd
-  ls -l .gitconfig | grep dotfiles >/dev/null
-  if [[ $? -eq 0 ]]; then
-    ln -sf git/work/conf/gitconfig .gitconfig
-  else
-    ln -sf git/dotfiles/gitconfig.$os .gitconfig
-  fi
-  cd -
-}
-
-# docker machine
-function dm() {
-  if [[ $1 == "init" ]]; then
-    name=$2
-    if [[ -z $name ]]; then
-      echo "name invalid" >&2
-      return 1
-    fi
-    home="$HOME/.container"
-    if [[ ! -d $home ]]; then
-      mkdir $home
-    fi
-
-    image=`docker images | grep ubuntu | grep latest | awk '{print $1":"$2}' | sort -r | head -n 1`
-    echo "image $image used" >&2
-
-    ## http://stackoverflow.com/questions/35860527/warning-error-disabling-address-space-randomization-operation-not-permitted/35860616
-    docker run -dt \
-      -v $home:/root \
-      -v $HOME:/root/host \
-      -w /root \
-      -p 8022:22 \
-      --privileged \
-      --security-opt seccomp=unconfined \
-      --hostname $name \
-      --name $name \
-      $image
-  elif [[ $1 == "clear" ]]; then
-    docker ps -a | grep -v dev | grep -v "CONTAINER ID" | awk '{print $1}' | xargs docker rm
-  else
-    docker exec -it $1 /bin/zsh
-  fi
-}
-
-# texlive
-p="/usr/local/texlive/2020"
-if [[ -d $p ]]; then
-  append_path "$p/bin/x86_64-darwin"
-  export INFOPATH="$p/texmf-dist/doc/info:$INFOPATH"
-fi
-
-function clean() {
-  emulate -L bash
-
-  ## latex
-  rm *.aux *.bbl *.blg *.lof *.lot *.toc *.thm *.snm *.vrb *.nav *.fdb_latexmk *.fls, *.pre 2>/dev/null
-
-  ## glog
-  rm *.`hostname`.`whoami`.* 2>/dev/null
-  for file in `ls *.INFO *.WARNING *.ERROR *.FATAL`
-  do
-    if [ -L $file ]; then
-      rm $file
-    fi
-  done 2>/dev/null
-
-  for file in `ls *.out *.log`
-  do
-    ## preserve nohup.out and err.log
-    if [[ "x$file" == "xnohup.out" || "x$file" == "xerr.log" ]]; then
-      continue
-    fi
-    rm $file
-  done 2>/dev/null
-}
-
-function pdf() {
-  if [ $# -ne 1 ]; then
-    echo "no file" >&2
-    return 1
-  fi
-
-  tex=`echo $1 | awk -F. '{print $1}'`
-
-  xelatex $tex
-  if [[ -d asytmp ]]; then
-    cd asytmp
-    asy $tex-*.asy || return 1
-    cd -
-  fi
-  bibtex $tex
-  xelatex $tex
-  xelatex $tex  ## update cref
-}
-
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.cache/lm-studio/bin"
