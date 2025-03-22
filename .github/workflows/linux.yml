@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/linux.yml"
-      - "env/util.sh"
-      - "env/debian.12.sh"
+      - "env/setup.sh"
   pull_request:
     branches: [ master ]
 
@@ -24,5 +23,5 @@ jobs:
     - name: build
       run: |
         cd env
-        ./debian.12.sh
+        ./setup.sh
 

@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - ".github/workflows/mac.yml"
-      - "env/util.sh"
-      - "env/mac.sh"
+      - "env/setup.sh"
   pull_request:
     branches: [ master ]
 
@@ -24,5 +23,5 @@ jobs:
     - name: build
       run: |
         cd env
-        ./mac.sh
+        ./setup.sh
 
