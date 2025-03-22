@@ -10,6 +10,11 @@ function append_path() {
 # 使用具有区分度的email, 例如 ericuni@home
 # ssh-keygen -t rsa -C ${email}
 
+# set right proxy if needed
+# proxy="127.0.0.1:8118"
+# export http_proxy=$proxy
+# export https_proxy=$proxy
+
 # brew
 which brew
 if [[ $? -ne 0 ]]; then
