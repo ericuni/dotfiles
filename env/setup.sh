@@ -10,10 +10,18 @@ function append_path() {
 # 使用具有区分度的email, 例如 ericuni@home
 # ssh-keygen -t rsa -C ${email}
 
-# set right proxy if needed
-# proxy="127.0.0.1:8118"
-# export http_proxy=$proxy
-# export https_proxy=$proxy
+which zsh
+if [[ $? -ne 0 ]]; then
+  sudo apt install zsh
+fi
+# linux 修改默认的bash shell 为zsh shell
+# chsh 需要输入密码, 但是又不能直接sudo, 否则改的是root 的shell.
+# 因此需要先通过sudo 修改用户的密码(sudo passwd `whoami`), 然后再修改用户的shell. 然后机器需要物理重启才能生效
+# chsh -s $(which zsh)
+
+# proxy_loc="127.0.0.1:8118"
+# export http_proxy=$proxy_loc
+# export https_proxy=$proxy_loc
 
 # brew
 which brew
@@ -37,11 +45,6 @@ if [[ $? -ne 0 ]]; then
   # echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> ~/.zprofile
   # echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.zprofile
 fi
-
-brew install zsh
-# 需要输入密码, 但是又不能直接sudo, 否则改的是root 的shell, 因此需要先通过sudo 修改用户的密码, 然后再修改用户的shell
-# 然后机器需要物理重启才能生效
-# chsh -s $(which zsh)
 
 brew install ripgrep fd fzf lsd zoxide starship
 brew install jq lazygit git-delta tree
@@ -134,8 +137,8 @@ if [[ `uname` == "Darwin" ]]; then
     # mas install 1585682577  ## Vimkey, Safari vim 键位模式操作, Chrome 使用插件 Surfingkeys
   fi
 else
-  brew install mysql direnv
-  brew install tailspin bandwhich  # sudo bandwhich
+  brew install direnv tailspin bandwhich  # sudo bandwhich
+  brew install mysql
 fi
 
 exit 0
