@@ -10,7 +10,7 @@ function switch_proxy() {
   if [[ -z $http_proxy ]]; then
     export http_proxy=$proxy_loc
     export https_proxy=$proxy_loc
-    echo "proxy $loc on" >&2
+    echo "proxy $proxy_loc on" >&2
   else
     unset http_proxy
     unset https_proxy
