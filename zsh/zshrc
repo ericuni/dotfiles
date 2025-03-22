@@ -59,27 +59,21 @@ function replace() {
 }
 
 append_path /sbin /usr/sbin /usr/local/sbin
-append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path /opt/homebrew/bin  ## homebrew for arm mac
+append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
+
+source_path $HOME/git/dotfiles/env/env.sh
+source_path $HOME/git/work/conf/zshrc # enterprise
+
+# TODO
 append_path $HOME/.local/bin
 append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
-
-if [[ $OSTYPE =~ "darwin" ]]; then
-  export os="mac"
-  export ip=`ifconfig en0 | grep inet | grep -v inet6 | awk '{print $2}'`
-elif [[ $OSTYPE =~ "linux" ]]; then
-  export os="linux"
-  export ip=`ip -4 address | grep eth0 | tail -n 1 | awk '{print $2}' | awk -F'/' '{print $1}'`
-  export env=`systemd-detect-virt`
-fi
 
 if [[ `uname` == "Darwin" ]]; then
   alias sha256="shasum -a 256"
 fi
 
-append_path $HOME/opt/nvim/bin
-append_path $HOME/sdk/nvim-linux-x86_64/bin
 replace vi nvim vim
 replace vim vi
 alias vimdiff="vi -d"
@@ -88,7 +82,7 @@ replace fd fdfind
 replace ls lsd
 alias ll="ls -l"
 
-export no_proxy="localhost,127.0.0.1,$ip"
+export no_proxy="localhost,127.0.0.1"
 
 # fzf
 eval "$(fzf --zsh)"  ## available in fzf 0.48.0 or later.
@@ -143,7 +137,7 @@ export GO111MODULE=on
 export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
-if [[ "$os" == "linux" ]]; then
+if [[ `uname` == "Linux" ]]; then
   export GOROOT=$(go1.22.8 env GOROOT)
 else
   export GOROOT=$(go1.22.8 env GOROOT)
@@ -161,17 +155,13 @@ if [ -d $HOME/opt/jdk ]; then
   export PATH=$PATH:"$HOME/opt/jdk/bin"
 fi
 
-# enterprise
-source_path $HOME/git/work/conf/zshrc
-source_path $HOME/git/dotfiles/env/env.sh
-
 function switch_ssh() {
   cd
   ls -l .gitconfig | grep dotfiles >/dev/null
   if [[ $? -eq 0 ]]; then
     ln -sf git/work/conf/gitconfig .gitconfig
   else
-    ln -sf git/dotfiles/gitconfig.$os .gitconfig
+    ln -sf git/dotfiles/gitconfig.`uname` .gitconfig
   fi
   cd -
 }
