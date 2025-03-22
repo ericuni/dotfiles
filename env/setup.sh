@@ -141,5 +141,3 @@ else
   brew install mysql
 fi
 
-exit 0
-

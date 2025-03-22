@@ -1,4 +1,5 @@
 #!/bin/zsh
+set -x
 
 brew update  ## Update homebrew itself and the package lists
 
