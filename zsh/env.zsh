@@ -18,3 +18,14 @@ function switch_proxy() {
   fi
 }
 
+function switch_ssh() {
+  cd
+  ls -l .gitconfig | grep dotfiles >/dev/null
+  if [[ $? -eq 0 ]]; then
+    ln -sf git/work/conf/gitconfig .gitconfig
+  else
+    ln -sf git/dotfiles/gitconfig.`uname` .gitconfig
+  fi
+  cd -
+}
+

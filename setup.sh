@@ -7,12 +7,7 @@ cd $HOME
 rm -rf .vim && ln -sf $dot/vim .vim
 ln -sf $dot/zsh/zshrc .zshrc
 ln -sf $dot/rgignore .rgignore
-if [[ ! -z $os ]]; then
-  ln -si $dot/gitconfig.$os .gitconfig
-else
-  ## set mac as default
-  ln -si $dot/gitconfig.mac .gitconfig
-fi
+ln -si $dot/gitconfig.`uname` .gitconfig
 ln -sf $dot/rustfmt.toml .rustfmt.toml
 ln -sf $dot/wezterm.lua .wezterm.lua
 
@@ -38,8 +33,6 @@ p=".docker"
 cd $p
 ln -sf $dot/docker/config.json config.json
 cd -
-
-ln -sf $dot/nix nix
 
 cd $current
 

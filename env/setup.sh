@@ -138,6 +138,8 @@ if [[ `uname` == "Darwin" ]]; then
   fi
 else
   brew install direnv tailspin bandwhich  # sudo bandwhich
-  brew install mysql
+  brew install mysql  ## 因为没有启动, 这个命令的exit status 是非0
 fi
+
+exit 0
 

@@ -63,7 +63,7 @@ append_path /opt/homebrew/bin  ## homebrew for arm mac
 append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
 
-source_path $HOME/git/dotfiles/env/env.sh
+source_path $HOME/git/dotfiles/zsh/env.zsh
 source_path $HOME/git/work/conf/zshrc # enterprise
 
 # TODO
@@ -114,6 +114,7 @@ fi
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
 # blade
+source_path $HOME/bin/bladefunctions
 alias bb="blade build"
 alias bt="blade test"
 alias br="blade run"
@@ -122,7 +123,6 @@ ulimit -c unlimited
 
 ## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
 alias shopt="$HOME/git/dotfiles/zsh/shopt"
-source_path $HOME/bin/bladefunctions
 
 # golang
 export GOPATH="$HOME/go"
@@ -148,23 +148,6 @@ append_path $GOROOT/bin
 if [ -f $HOME/opt/python/bin/activate ]; then
   source $HOME/opt/python/bin/activate
 fi
-
-# java
-if [ -d $HOME/opt/jdk ]; then
-  export JAVA_HOME="$HOME/opt/jdk"
-  export PATH=$PATH:"$HOME/opt/jdk/bin"
-fi
-
-function switch_ssh() {
-  cd
-  ls -l .gitconfig | grep dotfiles >/dev/null
-  if [[ $? -eq 0 ]]; then
-    ln -sf git/work/conf/gitconfig .gitconfig
-  else
-    ln -sf git/dotfiles/gitconfig.`uname` .gitconfig
-  fi
-  cd -
-}
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.cache/lm-studio/bin"

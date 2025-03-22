@@ -1,4 +1,10 @@
 
+# java
+if [ -d $HOME/opt/jdk ]; then
+  export JAVA_HOME="$HOME/opt/jdk"
+  export PATH=$PATH:"$HOME/opt/jdk/bin"
+fi
+
 export JOSHUTO_CONFIG_HOME="$HOME/git/dotfiles/joshuto"
 
 # .envrc only supports export for now, example
