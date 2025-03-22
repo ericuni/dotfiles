@@ -114,15 +114,15 @@ fi
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
 # blade
-source_path $HOME/bin/bladefunctions
+## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
+alias shopt="$HOME/git/dotfiles/zsh/shopt"
+source_path $HOME/bin/bladefunctions  ## 依赖shopt, 需要放在之后
+
 alias bb="blade build"
 alias bt="blade test"
 alias br="blade run"
 
 ulimit -c unlimited
-
-## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
-alias shopt="$HOME/git/dotfiles/zsh/shopt"
 
 # golang
 export GOPATH="$HOME/go"
