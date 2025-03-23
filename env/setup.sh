@@ -138,7 +138,10 @@ if [[ `uname` == "Darwin" ]]; then
   fi
 else
   brew install direnv tailspin bandwhich  # sudo bandwhich
-  brew install mysql  ## 因为没有启动, 这个命令的exit status 是非0
+
+  # 因为没有启动, 这个命令的exit status 是非0, 所以文件最后的exit 0 不能删掉
+  # mysql 9.0 开始不允许使用固定密码登录, 先固定使用mysql 8 的最后一个版本
+  brew install mysql@8.4
 fi
 
 exit 0
