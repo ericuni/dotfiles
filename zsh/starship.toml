@@ -82,6 +82,7 @@ ignore_timeout = true
 ssh_symbol = " "
 format = '@$hostname '
 ssh_only = false
+trim_at = ''
 
 [localip]
 disabled = false
