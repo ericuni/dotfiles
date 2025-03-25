@@ -47,7 +47,8 @@ if [[ $? -ne 0 ]]; then
 fi
 
 brew install ripgrep fd fzf lsd zoxide starship
-brew install jq lazygit git-delta tree
+brew install jq lazygit git-delta
+brew install tree btop
 
 ## [lsd icons render on MacOS](https://github.com/Peltoche/lsd/issues/199#issuecomment-494218334)
 brew install --cask font-hack-nerd-font
@@ -94,6 +95,9 @@ pipx install pytest
 # npm install --global clipboard-cli
 
 if [[ `uname` == "Darwin" ]]; then
+  # 修改URI Schemes 默认的打开app
+  # brew install swiftdefaultappsprefpane
+
   # 去掉各种设置密码的规则限制
   # https://apple.stackexchange.com/questions/337468/how-to-set-a-short-user-password-in-macos-mojave-and-later-10-14
   # pwpolicy -clearaccountpolicies
