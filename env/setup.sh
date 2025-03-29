@@ -46,6 +46,8 @@ if [[ $? -ne 0 ]]; then
   # echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.zprofile
 fi
 
+brew install zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting zsh-completions
+
 brew install ripgrep fd fzf lsd zoxide starship
 brew install jq lazygit git-delta
 brew install tree btop
