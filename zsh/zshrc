@@ -59,13 +59,14 @@ append_path /sbin /usr/sbin /usr/local/sbin
 append_path /opt/homebrew/bin  ## homebrew for arm mac
 append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
+append_path $HOME/bin ## blade
+append_path $HOME/.local/bin  ## pytest
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
 source_path $HOME/git/dotfiles/zsh/env.zsh
 source_path $HOME/git/work/conf/zshrc # enterprise
 
 # TODO
-append_path $HOME/.local/bin
 append_path $HOME/opt/protoc/bin  ## protoc + protoc-gen-go
 
 if [[ `uname` == "Darwin" ]]; then
