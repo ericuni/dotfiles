@@ -46,7 +46,12 @@ if [[ $? -ne 0 ]]; then
   # echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.zprofile
 fi
 
-brew install zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting zsh-completions
+brew install zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+
+# if you receive "zsh compinit: insecure directories" warnings, you may need to run these commands:
+#   chmod go-w '/opt/homebrew/share'
+#   chmod -R go-w '/opt/homebrew/share/zsh'
+brew install zsh-completions
 
 brew install ripgrep fd fzf lsd zoxide starship
 brew install jq lazygit git-delta
