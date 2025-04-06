@@ -15,6 +15,7 @@ end
 config.check_for_updates = false
 config.font_size = 14.5
 -- config.font = wezterm.font 'Hack Nerd Font'
+-- WezTerm failed to render partial Chinese character https://github.com/wezterm/wezterm/issues/6045 系统app: 字体册
 config.font = wezterm.font('Hack Nerd Font', { italic = true })
 
 config.keys = {
