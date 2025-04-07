@@ -101,6 +101,9 @@ export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 # blade
 ## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
 alias shopt="$HOME/git/dotfiles/zsh/shopt"
+## blade 用的还是bash
+autoload -U +X bashcompinit && bashcompinit
+autoload -U +X compinit && compinit
 source_path $HOME/bin/bladefunctions  ## 依赖shopt, 需要放在之后
 
 alias bb="blade build"
