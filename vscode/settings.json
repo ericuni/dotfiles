@@ -42,5 +42,8 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.startupEditor": "welcomePage",
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "marscode.codeCompletionPro": {
+        "enableCodeCompletionPro": true
+    }
 }
