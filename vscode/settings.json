@@ -45,5 +45,6 @@
     "editor.accessibilitySupport": "off",
     "marscode.codeCompletionPro": {
         "enableCodeCompletionPro": true
-    }
+    },
+    "trae.codeCompletionPro": {}
 }

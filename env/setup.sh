@@ -94,8 +94,7 @@ fi
 brew install ninja glog protobuf googletest google-benchmark gperftools
 
 # python
-brew install pipx
-pipx install pytest
+brew install uv
 
 # https://github.com/sindresorhus/clipboard-cli
 # echo xxx | clipboard, 这样 xxx 就在剪贴板中了, mac 有自带的 pbcopy & pbpaste
