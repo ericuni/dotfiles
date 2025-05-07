@@ -126,11 +126,11 @@ export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
 replace go22 go1.22.8
-replace go23 go1.23.7
+replace go23 go1.23.8
 if [[ `uname` == "Linux" ]]; then
-  export GOROOT=$(go1.22.8 env GOROOT)
+  export GOROOT=$(go1.23.8 env GOROOT)
 else
-  export GOROOT=$(go1.22.8 env GOROOT)
+  export GOROOT=$(go1.23.8 env GOROOT)
 fi
 append_path $GOROOT/bin
 
