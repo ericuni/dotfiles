@@ -111,9 +111,24 @@ if [[ `uname` == "Darwin" ]]; then
   # 开盖自动开机功能, 之后还需要重启下
   # sudo nvram AutoBoot=%00
   
+  # ----------- settings defaults start -------------
+
+  # enable tap-to-click for the trackpad and show the correct state in System Preferences
+  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+  defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+
   ## 禁止.DS_Store生成
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
-  
+  defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+  # show the path bar in the Finder
+  defaults write com.apple.finder "ShowPathbar" -bool "true" && killall Finder
+
+  # Apply the settings
+  /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+
+  # ----------- settings defaults end -------------
+
   # https://github.com/buo/homebrew-cask-upgrade
   # suports `brew cu pin`
   brew tap buo/cask-upgrade
