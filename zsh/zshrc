@@ -130,7 +130,7 @@ replace go23 go1.23.8
 if [[ `uname` == "Linux" ]]; then
   export GOROOT=$(go1.23.8 env GOROOT)
 else
-  export GOROOT=$(go1.23.8 env GOROOT)
+  export GOROOT=$(go1.24.3 env GOROOT)
 fi
 append_path $GOROOT/bin
 
@@ -166,4 +166,9 @@ setopt APPEND_HISTORY  ## 添加历史记录, 而非覆盖
 setopt INC_APPEND_HISTORY  ## 立即更新历史记录
 setopt HIST_FIND_NO_DUPS  ## 浏览时跳过重复记录
 setopt HIST_REDUCE_BLANKS  ## 记录到历史文件之前,自动删除命令行中的多余空白字符,包括开头,结尾以及连续的空白字符序列
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/bytedance/.cache/lm-studio/bin"
+# End of LM Studio CLI section
 
