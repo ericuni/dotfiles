@@ -172,3 +172,5 @@ setopt HIST_REDUCE_BLANKS  ## 记录到历史文件之前,自动删除命令行�
 export PATH="$PATH:/Users/bytedance/.cache/lm-studio/bin"
 # End of LM Studio CLI section
 
+append_path /usr/local/texlive/2025/bin/universal-darwin
+
