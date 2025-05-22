@@ -48,7 +48,8 @@ append_path /home/linuxbrew/.linuxbrew/bin  ## homebrew in linux
 append_path $HOME/.cargo/bin      ## rust
 append_path $HOME/bin ## blade
 append_path $HOME/.local/bin  ## pytest
-export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+append_path "/usr/local/texlive/2025/bin/universal-darwin"
+append_path "/opt/homebrew/opt/mysql@8.4/bin"
 
 source_path $HOME/git/dotfiles/zsh/env.zsh
 source_path $HOME/git/work/conf/zshrc # enterprise
@@ -125,10 +126,8 @@ export GO111MODULE=on
 export GOPROXY="https://goproxy.cn|https://proxy.golang.org|direct"
 export GOSUMDB="sum.golang.google.cn"
 
-replace go22 go1.22.8
-replace go23 go1.23.8
 if [[ `uname` == "Linux" ]]; then
-  export GOROOT=$(go1.23.8 env GOROOT)
+  export GOROOT=$(go1.22.8 env GOROOT)
 else
   export GOROOT=$(go1.24.3 env GOROOT)
 fi
@@ -166,11 +165,4 @@ setopt APPEND_HISTORY  ## 添加历史记录, 而非覆盖
 setopt INC_APPEND_HISTORY  ## 立即更新历史记录
 setopt HIST_FIND_NO_DUPS  ## 浏览时跳过重复记录
 setopt HIST_REDUCE_BLANKS  ## 记录到历史文件之前,自动删除命令行中的多余空白字符,包括开头,结尾以及连续的空白字符序列
-
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/bytedance/.cache/lm-studio/bin"
-# End of LM Studio CLI section
-
-append_path /usr/local/texlive/2025/bin/universal-darwin
 
