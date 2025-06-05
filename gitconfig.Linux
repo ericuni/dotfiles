@@ -8,6 +8,7 @@
   quotepath = false
   ignorecase = false
   pager = delta --tabs 2
+	symlinks = true
 
 [push]
   default = current
