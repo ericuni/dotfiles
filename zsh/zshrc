@@ -133,9 +133,6 @@ else
 fi
 append_path $GOROOT/bin
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.cache/lm-studio/bin"
-
 if [ -d ~/.docker/completions ]; then
   # The following lines have been added by Docker Desktop to enable Docker CLI completions.
   fpath=(/Users/bytedance/.docker/completions $fpath)
@@ -165,4 +162,8 @@ setopt APPEND_HISTORY  ## 添加历史记录, 而非覆盖
 setopt INC_APPEND_HISTORY  ## 立即更新历史记录
 setopt HIST_FIND_NO_DUPS  ## 浏览时跳过重复记录
 setopt HIST_REDUCE_BLANKS  ## 记录到历史文件之前,自动删除命令行中的多余空白字符,包括开头,结尾以及连续的空白字符序列
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/bytedance/.cache/lm-studio/bin"
+# End of LM Studio CLI section
 
