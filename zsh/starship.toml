@@ -61,15 +61,11 @@ require_repo = true
 when = """
 local name=$(git config user.name)
 local url=$(git config remote.origin.url)
-echo $url | grep github >/dev/null
+echo $url | grep code.byted.org >/dev/null
 if [[ $? -eq 0 ]]; then
-  echo $url | grep ericuni >/dev/null
-  if [[ $? -eq 0 ]]; then
-    return $(test $name != 'ericuni')
-  fi
-  return 1
-else
   return $(test $name != 'liuqi.victor')
+else
+  return $(test $name == 'liuqi.victor')
 fi
 """
 style = "red"
