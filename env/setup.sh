@@ -91,7 +91,7 @@ fi
 # lrzsz  ## wezterm does not support rz/sz
 
 # blade and cxx
-brew install ninja glog protobuf googletest google-benchmark gperftools
+brew install ninja spdlog glog protobuf googletest google-benchmark gperftools
 
 # python
 brew install uv
