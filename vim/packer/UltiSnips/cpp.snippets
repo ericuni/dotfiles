@@ -1,14 +1,13 @@
 snippet snippet_cmd "cmd template" b
 #include <gflags/gflags.h>
-#include <glog/logging.h>
+#include <spdlog/spdlog.h>
 #include <stdio.h>
 
-#include "thirdparty/fmt/fmt.h"
+#include "base/fmt.h"  // IWYU pragma: keep
+
+using namespace spdlog;
 
 int main(int argc, char* argv[]) {
-  FLAGS_alsologtostderr = true;
-  FLAGS_colorlogtostderr = true;
-  google::InitGoogleLogging(argv[0]);
   google::ParseCommandLineFlags(&argc, &argv, true);
 
   return 0;
@@ -16,23 +15,25 @@ int main(int argc, char* argv[]) {
 endsnippet
 
 snippet snippet_ut "unit test" b
-#include <glog/logging.h>
 #include <gmock/gmock-matchers.h>
 #include <gperftools/heap-checker.h>
 #include <gtest/gtest.h>
+#include <spdlog/spdlog.h>
 
-#include "thirdparty/fmt/fmt.h"
+#include "base/fmt.h"  // IWYU pragma: keep
 
+using namespace spdlog;
 endsnippet
 
 snippet snippet_leetcode "leetcode solution" b
-#include <glog/logging.h>
 #include <gmock/gmock-matchers.h>
 #include <gperftools/heap-checker.h>
 #include <gtest/gtest.h>
+#include <spdlog/spdlog.h>
 
-#include "thirdparty/fmt/fmt.h"
+#include "base/fmt.h"  // IWYU pragma: keep
 
+using namespace spdlog;
 /*
 
 */
@@ -55,9 +56,9 @@ TEST($1, ex) {
   sos.push_back(std::make_unique<Solution$2>());
 
   for (auto&& so : sos) {
-    LOG(INFO) << "new solution";
+    info("new solution");
     for (auto&& td : tds) {
-      LOG(INFO) << fmt::format("input={}", td.xxx);
+      info("input={}", td.xxx);
     }
   }
 }
