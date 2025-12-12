@@ -64,6 +64,7 @@ brew install --cask font-hack-nerd-font
 # WhichKey.nvim requires Neovim 0.9 or higher
 # coc.nvim ctrl-j 跳转位置生效被snippet 干扰时(<Plug>(coc-snippets-expand-jump)), 需要安装下 CocInstall coc-snippets
 brew install neovim node
+brew install autopep8  # coc.nvim 格式化python 代码需要. 不要用uv 安装这种全局的工具
 
 # golang
 which go
