@@ -73,10 +73,10 @@ if [[ $? -ne 0 ]]; then
   append_path /home/linuxbrew/.linuxbrew/opt/go/bin
   append_path /opt/homebrew/opt/go/bin
 
-  go install golang.org/dl/go1.22.8@latest
+  go install golang.org/dl/go1.25.5@latest
   append_path $HOME/go/bin
 
-  go1.22.8 download
+  go1.25.5 download
 else
   which mockgen
   if [[ $? -ne 0 ]]; then
@@ -85,7 +85,7 @@ else
 
   which gopls
   if [[ $? -ne 0 ]]; then
-    go install golang.org/x/tools/gopls@v0.16.2 # for go1.22
+    go install golang.org/x/tools/gopls@latest
   fi
 fi
 
