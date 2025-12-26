@@ -151,7 +151,7 @@ if [[ `uname` == "Darwin" ]]; then
   
   ## github does not support install MacOS App Store software
   if [[ -z $GITHUB_ACTIONS ]]; then
-    mas install 1228738830  ## NetWorker Lite
+    mas install 6756399719  ## Alertivity
     mas install 836500024   ## 微信
     mas install 508368068   ## GetPlainText
     # mas install 1352778147  ## Bitwarden
