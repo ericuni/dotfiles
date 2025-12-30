@@ -151,8 +151,8 @@ if type brew &>/dev/null; then
 fi
 
 HISTFILE=$HOME/.zsh_history
-SAVEHIST=5000  ## 历史记录文件中最多能保存n条记录
-HISTSIZE=5000  ## 在当前zsh 会话中,内存里最多可保存n条记录
+SAVEHIST=50000  ## 历史记录文件中最多能保存n条记录
+HISTSIZE=50000  ## 在当前zsh 会话中,内存里最多可保存n条记录
 
 setopt HIST_IGNORE_DUPS  ## 忽略连续重复的命令
 setopt SHARE_HISTORY  ## 不同的zsh 会话之间实时共享命令历史记录
