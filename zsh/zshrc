@@ -21,6 +21,14 @@ function append_path() {
   done
 }
 
+function append_fpath() {
+  for p in $@; do
+    if [[ -d $p ]] && [[ ! $fpath =~ $p ]]; then
+      fpath=($p $fpath)
+    fi
+  done
+}
+
 function source_path() {
   for p in $@; do
     [[ -f $p ]] && source $p
@@ -128,17 +136,15 @@ else
 fi
 append_path $GOROOT/bin
 
-if [ -d ~/.docker/completions ]; then
-  # The following lines have been added by Docker Desktop to enable Docker CLI completions.
-  fpath=(/Users/bytedance/.docker/completions $fpath)
-fi
+append_fpath $HOME/.docker/completions
 
-source_path $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source_path $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source_path $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+which brew >/dev/null
+if [[ $? -eq 0 ]]; then
+  source_path $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source_path $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  # source_path $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-if type brew &>/dev/null; then
-  fpath=($(brew --prefix)/share/zsh-completions $fpath)
+  append_fpath $(brew --prefix)/share/zsh-completions
 fi
 
 HISTFILE=$HOME/.zsh_history
