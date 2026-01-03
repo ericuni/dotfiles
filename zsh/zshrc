@@ -99,13 +99,8 @@ fi
 # git
 export LESS="-F -X $LESS"  ## tells 'less' not to paginate if less than a page
 
-# blade
 ## shopt is not a command, but a shell built-in. bash knows what to do with it because it's a bash built-in, but zsh has no idea what it is.
 alias shopt="$HOME/git/dotfiles/zsh/shopt"
-## blade 用的还是bash
-autoload -U +X bashcompinit && bashcompinit
-autoload -U +X compinit && compinit
-source_path $HOME/bin/bladefunctions  ## 依赖shopt, 需要放在之后
 
 alias bb="blade build"
 alias bt="blade test"
@@ -136,8 +131,6 @@ append_path $GOROOT/bin
 if [ -d ~/.docker/completions ]; then
   # The following lines have been added by Docker Desktop to enable Docker CLI completions.
   fpath=(/Users/bytedance/.docker/completions $fpath)
-  autoload -Uz compinit
-  compinit
 fi
 
 source_path $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -145,9 +138,7 @@ source_path $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighti
 # source_path $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-  autoload -Uz compinit
-  compinit
+  fpath=($(brew --prefix)/share/zsh-completions $fpath)
 fi
 
 HISTFILE=$HOME/.zsh_history
@@ -166,4 +157,11 @@ setopt HIST_REDUCE_BLANKS  ## 记录到历史文件之前,自动删除命令行�
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/bytedance/.cache/lm-studio/bin"
 # End of LM Studio CLI section
+
+autoload -U +X bashcompinit && bashcompinit  ## blade 用的还是bash
+# 原始的 autoload -U +X compinit && compinit 会很慢
+autoload -Uz compinit && compinit -u -i -C -d $HOME/.cache/zsh/.zcompdump-$ZSH_VERSION  ## 核心优化:1天检查1次补全文件,跳过安全权限校验,极速加载
+
+# blade
+source_path $HOME/bin/bladefunctions  ## 依赖shopt, 需要放在之后
 
