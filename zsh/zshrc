@@ -58,6 +58,7 @@ append_path $HOME/bin ## blade
 append_path $HOME/.local/bin  ## pytest
 append_path "/usr/local/texlive/2025/bin/universal-darwin"
 append_path "/opt/homebrew/opt/mysql@8.4/bin"
+append_path $HOME/.opencode/bin
 
 source_path $HOME/git/dotfiles/zsh/env.zsh
 source_path $HOME/git/dotwork/current/zshrc
